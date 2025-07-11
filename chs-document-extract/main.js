@@ -1971,9 +1971,9 @@ class DocumentExtractService {
           script: [{
             name: 'chs_document_extract_svc',
             run: 'pre',
-            id: 'downloadSingleDocument',
+            id: `downloadSingleDocument_${dmsMediaInstanceRequest.mediaInstanceId}`,
             parameters: {
-              requestType: 'downloadSingleDocument',
+              requestType: `downloadSingleDocument_${dmsMediaInstanceRequest.mediaInstanceId}`,
               requestData: JSON.stringify({
                 chs_document_extract_svc_request: {
                   personId: personId,
@@ -1991,7 +1991,7 @@ class DocumentExtractService {
       }], () => {
         try {
           console.log('[DocumentExtractService] downloadSingleDocument() - Service call completed, retrieving data');
-          const raw = this.customService.get('downloadSingleDocument');
+          const raw = this.customService.get(`downloadSingleDocument_${dmsMediaInstanceRequest.mediaInstanceId}`);
           if (!raw) {
             console.error('[DocumentExtractService] downloadSingleDocument() - No response from download service for single document');
             observer.error('No response from download service for single document');
@@ -3090,9 +3090,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T21:47:23.162Z
-const buildVersion = 'v0.0.34-master';
-const packageVersion = '0.0.34';
+// Generated on: 2025-07-11T21:55:24.116Z
+const buildVersion = 'v0.0.35-master';
+const packageVersion = '0.0.35';
 const gitBranch = 'master';
 
 /***/ })
