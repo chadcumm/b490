@@ -952,13 +952,13 @@ class DocumentTrackingComponent {
     this.startDownload(downloadData.personId, downloadData.encntrId, downloadData.dmsMediaInstanceRequests);
   }
   /**
-   * Initiates download for selected documents
+   * Starts the download process for selected documents
    * @param personId The patient's person ID
    * @param encntrId The patient's encounter ID
    * @param dmsMediaInstanceRequests Array of document media instance requests to download
    */
   startDownload(personId, encntrId, dmsMediaInstanceRequests) {
-    console.log('[DocumentTrackingComponent] startDownload() - Starting download process:', {
+    console.log('[DocumentTrackingComponent] startDownload() - Starting download process with parameters:', {
       personId,
       encntrId,
       requestCount: dmsMediaInstanceRequests.length,
@@ -976,18 +976,70 @@ class DocumentTrackingComponent {
       status: 'pending'
     }));
     console.log('[DocumentTrackingComponent] startDownload() - Initialized download queue:', this.downloadQueue);
-    // Start the download process
-    console.log('[DocumentTrackingComponent] startDownload() - Calling document service');
-    this.documentService.downloadDocuments(personId, encntrId, dmsMediaInstanceRequests).subscribe({
+    // Start the sequential download process
+    console.log('[DocumentTrackingComponent] startDownload() - Calling document service for sequential download');
+    this.documentService.downloadDocumentsSequentially(personId, encntrId, dmsMediaInstanceRequests).subscribe({
       next: response => {
-        console.log('[DocumentTrackingComponent] startDownload() - Received download response:', response);
-        this.handleDownloadResponse(response);
+        console.log('[DocumentTrackingComponent] startDownload() - Received sequential download response:', response);
+        this.handleSequentialDownloadResponse(response);
       },
       error: error => {
-        console.error('[DocumentTrackingComponent] startDownload() - Download error:', error);
+        console.error('[DocumentTrackingComponent] startDownload() - Sequential download error:', error);
         this.handleDownloadError(error);
       }
     });
+  }
+  /**
+   * Handles sequential download response with progress updates
+   * @param response The sequential download response from the service
+   */
+  handleSequentialDownloadResponse(response) {
+    console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing sequential download response:', response);
+    const {
+      progress,
+      isComplete,
+      allResults
+    } = response;
+    // Update progress for current download
+    if (progress.current) {
+      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing current download:', progress.current);
+      const queueItem = this.downloadQueue.find(item => item.documentId === progress.current.mediaInstanceId.toString());
+      if (queueItem) {
+        console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Found queue item for current download:', queueItem);
+        queueItem.status = 'downloading';
+        queueItem.progress = 50; // Indicate download in progress
+      }
+    }
+    // Process completed results
+    allResults.forEach((result, index) => {
+      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing result:', result);
+      const queueItem = this.downloadQueue.find(item => item.documentId === result.mediaInstanceId.toString());
+      if (queueItem) {
+        console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Found queue item for result:', queueItem);
+        if (result.status === 1) {
+          // Download successful
+          console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Download successful for:', result.mediaInstanceId);
+          queueItem.status = 'completed';
+          queueItem.progress = 100;
+          this.moveToCompleted(queueItem);
+        } else {
+          // Download failed
+          console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Download failed for:', result.mediaInstanceId, 'Error:', result.message);
+          queueItem.status = 'failed';
+          queueItem.error = result.message;
+          this.moveToFailed(queueItem);
+        }
+      } else {
+        console.warn('[DocumentTrackingComponent] handleSequentialDownloadResponse() - No queue item found for mediaInstanceId:', result.mediaInstanceId);
+      }
+    });
+    // Check if all downloads are complete
+    if (isComplete) {
+      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - All downloads completed. Progress:', progress);
+      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Setting isDownloading to false and clearing queue');
+      this.isDownloading = false;
+      this.downloadQueue = [];
+    }
   }
   /**
    * Handles successful download response
@@ -1089,8 +1141,8 @@ class DocumentTrackingComponent {
       mediaInstanceId: parseInt(item.documentId)
     };
     console.log('[DocumentTrackingComponent] retryDownload() - Created retry request:', retryRequest);
-    // Start download for this single item using current patient context
-    console.log('[DocumentTrackingComponent] retryDownload() - Starting download with current patient context');
+    // Start sequential download for this single item using current patient context
+    console.log('[DocumentTrackingComponent] retryDownload() - Starting sequential download with current patient context');
     this.startDownload(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]);
   }
   /**
@@ -1905,6 +1957,150 @@ class DocumentExtractService {
     });
   }
   /**
+   * Processes a single document download request sequentially.
+   * @param personId The patient's person ID.
+   * @param encntrId The patient's encounter ID.
+   * @param dmsMediaInstanceRequest The single document media instance request to download.
+   * @returns Observable of SequentialDownloadResponse.
+   */
+  downloadSingleDocument(personId, encntrId, dmsMediaInstanceRequest) {
+    console.log('[DocumentExtractService] downloadSingleDocument() - Starting sequential download for single document:', dmsMediaInstanceRequest);
+    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+      this.customService.load({
+        customScript: {
+          script: [{
+            name: 'chs_document_extract_svc',
+            run: 'pre',
+            id: 'downloadSingleDocument',
+            parameters: {
+              requestType: 'downloadSingleDocument',
+              requestData: JSON.stringify({
+                chs_document_extract_svc_request: {
+                  personId: personId,
+                  encntrId: encntrId,
+                  dmsMediaInstanceId: dmsMediaInstanceRequest.mediaInstanceId
+                }
+              })
+            }
+          }],
+          clearPatientSource: true
+        }
+      }, [{
+        personId: personId,
+        encntrId: encntrId
+      }], () => {
+        try {
+          console.log('[DocumentExtractService] downloadSingleDocument() - Service call completed, retrieving data');
+          const raw = this.customService.get('downloadSingleDocument');
+          if (!raw) {
+            console.error('[DocumentExtractService] downloadSingleDocument() - No response from download service for single document');
+            observer.error('No response from download service for single document');
+            return;
+          }
+          console.log('[DocumentExtractService] downloadSingleDocument() - Raw response received:', raw);
+          const downloadResult = this.parseDownloadSingleDocumentResponse(raw);
+          console.log('[DocumentExtractService] downloadSingleDocument() - Parsed single document result:', downloadResult);
+          const progress = {
+            total: 1,
+            completed: 1,
+            failed: 0,
+            current: dmsMediaInstanceRequest,
+            results: [downloadResult]
+          };
+          const isComplete = true;
+          const allResults = [downloadResult];
+          observer.next({
+            progress,
+            isComplete,
+            allResults
+          });
+          observer.complete();
+        } catch (error) {
+          console.error('[DocumentExtractService] downloadSingleDocument() - Error:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+  /**
+   * Downloads documents sequentially, one at a time, with progress tracking.
+   * @param personId The patient's person ID.
+   * @param encntrId The patient's encounter ID.
+   * @param dmsMediaInstanceRequests Array of document media instance requests to download.
+   * @returns Observable of SequentialDownloadResponse with progress updates.
+   */
+  downloadDocumentsSequentially(personId, encntrId, dmsMediaInstanceRequests) {
+    console.log('[DocumentExtractService] downloadDocumentsSequentially() - Starting sequential download for:', {
+      personId,
+      encntrId,
+      requestCount: dmsMediaInstanceRequests.length,
+      requests: dmsMediaInstanceRequests
+    });
+    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+      const total = dmsMediaInstanceRequests.length;
+      let completed = 0;
+      let failed = 0;
+      const allResults = [];
+      let currentIndex = 0;
+      const processNext = () => {
+        if (currentIndex >= total) {
+          console.log('[DocumentExtractService] downloadDocumentsSequentially() - All downloads completed');
+          const progress = {
+            total,
+            completed,
+            failed,
+            current: null,
+            results: allResults
+          };
+          observer.next({
+            progress,
+            isComplete: true,
+            allResults
+          });
+          observer.complete();
+          return;
+        }
+        const currentRequest = dmsMediaInstanceRequests[currentIndex];
+        console.log('[DocumentExtractService] downloadDocumentsSequentially() - Processing download', currentIndex + 1, 'of', total, ':', currentRequest);
+        const progress = {
+          total,
+          completed,
+          failed,
+          current: currentRequest,
+          results: allResults
+        };
+        observer.next({
+          progress,
+          isComplete: false,
+          allResults
+        });
+        this.downloadSingleDocument(personId, encntrId, currentRequest).subscribe({
+          next: response => {
+            console.log('[DocumentExtractService] downloadDocumentsSequentially() - Single document download completed:', response);
+            const result = response.allResults[0];
+            allResults.push(result);
+            if (result.status === 1) {
+              completed++;
+              console.log('[DocumentExtractService] downloadDocumentsSequentially() - Download successful for mediaInstanceId:', result.mediaInstanceId);
+            } else {
+              failed++;
+              console.log('[DocumentExtractService] downloadDocumentsSequentially() - Download failed for mediaInstanceId:', result.mediaInstanceId, 'Error:', result.message);
+            }
+            currentIndex++;
+            processNext();
+          },
+          error: error => {
+            console.error('[DocumentExtractService] downloadDocumentsSequentially() - Error downloading single document:', error);
+            failed++;
+            currentIndex++;
+            processNext();
+          }
+        });
+      };
+      processNext();
+    });
+  }
+  /**
    * Maps raw service response to PatientSearchResult array
    * @param raw Raw response from the service
    * @returns PatientSearchResult array
@@ -2072,6 +2268,39 @@ class DocumentExtractService {
     console.warn('[DocumentExtractService] parseDownloadResponse() - No downloadDocuments_reply or downloadResults found in raw data');
     return {
       downloadResults: []
+    };
+  }
+  /**
+   * Parses the response for a single document download request.
+   * @param raw Raw response from the service.
+   * @returns A single DownloadResult.
+   */
+  parseDownloadSingleDocumentResponse(raw) {
+    console.log('[DocumentExtractService] parseDownloadSingleDocumentResponse() - Starting parsing of raw response:', raw);
+    if (raw.downloadSingleDocument_reply && raw.downloadSingleDocument_reply.downloadResult) {
+      const result = {
+        mediaInstanceId: raw.downloadSingleDocument_reply.downloadResult.mediaInstanceId || 0,
+        documentType: raw.downloadSingleDocument_reply.downloadResult.documentType || '',
+        filename: raw.downloadSingleDocument_reply.downloadResult.filename || '',
+        status: raw.downloadSingleDocument_reply.downloadResult.status || 0,
+        fullpath: raw.downloadSingleDocument_reply.downloadResult.fullpath || '',
+        message: raw.downloadSingleDocument_reply.downloadResult.message || '',
+        documentName: raw.downloadSingleDocument_reply.downloadResult.documentName || '',
+        contentType: raw.downloadSingleDocument_reply.downloadResult.contentType || ''
+      };
+      console.log('[DocumentExtractService] parseDownloadSingleDocumentResponse() - Parsed single document result:', result);
+      return result;
+    }
+    console.warn('[DocumentExtractService] parseDownloadSingleDocumentResponse() - No downloadSingleDocument_reply or downloadResult found in raw data');
+    return {
+      mediaInstanceId: 0,
+      documentType: '',
+      filename: '',
+      status: 0,
+      fullpath: '',
+      message: '',
+      documentName: '',
+      contentType: ''
     };
   }
   /**
@@ -2861,9 +3090,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T16:56:45.065Z
-const buildVersion = 'v0.0.33-master';
-const packageVersion = '0.0.33';
+// Generated on: 2025-07-11T21:47:23.162Z
+const buildVersion = 'v0.0.34-master';
+const packageVersion = '0.0.34';
 const gitBranch = 'master';
 
 /***/ })
