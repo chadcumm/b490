@@ -610,51 +610,67 @@ class DocumentListComponent {
    * @param document The document to toggle
    */
   toggleDocumentSelection(document) {
+    console.log('[DocumentListComponent] toggleDocumentSelection() - Toggling document:', document);
     const index = this.selectedDocuments.findIndex(doc => doc.id === document.id);
     if (index > -1) {
       // Remove from selection
+      console.log('[DocumentListComponent] toggleDocumentSelection() - Removing document from selection');
       this.selectedDocuments.splice(index, 1);
       document.selected = false;
     } else {
       // Add to selection
+      console.log('[DocumentListComponent] toggleDocumentSelection() - Adding document to selection');
       this.selectedDocuments.push(document);
       document.selected = true;
     }
+    console.log('[DocumentListComponent] toggleDocumentSelection() - Updated selected documents:', this.selectedDocuments);
     this.documentSelectionChange.emit(this.selectedDocuments);
   }
   /**
    * Selects all documents
    */
   selectAll() {
+    console.log('[DocumentListComponent] selectAll() - Selecting all documents, count:', this.documents.length);
     this.documents.forEach(doc => {
       doc.selected = true;
     });
     this.selectedDocuments = [...this.documents];
+    console.log('[DocumentListComponent] selectAll() - All documents selected:', this.selectedDocuments);
     this.documentSelectionChange.emit(this.selectedDocuments);
   }
   /**
    * Deselects all documents
    */
   deselectAll() {
+    console.log('[DocumentListComponent] deselectAll() - Deselecting all documents');
     this.documents.forEach(doc => {
       doc.selected = false;
     });
     this.selectedDocuments = [];
+    console.log('[DocumentListComponent] deselectAll() - All documents deselected');
     this.documentSelectionChange.emit(this.selectedDocuments);
   }
   /**
    * Initiates download of selected documents
    */
   downloadSelected() {
+    console.log('[DocumentListComponent] downloadSelected() - Starting download for selected documents');
+    console.log('[DocumentListComponent] downloadSelected() - Selected documents count:', this.selectedDocuments.length);
+    console.log('[DocumentListComponent] downloadSelected() - Patient info:', this.patientInfo);
     if (this.selectedDocuments.length > 0 && this.patientInfo) {
       const dmsMediaInstanceRequests = this.selectedDocuments.map(doc => ({
         mediaInstanceId: parseInt(doc.id)
       }));
-      this.downloadRequest.emit({
+      console.log('[DocumentListComponent] downloadSelected() - Created download requests:', dmsMediaInstanceRequests);
+      const downloadData = {
         personId: this.patientInfo.personId,
         encntrId: this.patientInfo.encntrId,
         dmsMediaInstanceRequests: dmsMediaInstanceRequests
-      });
+      };
+      console.log('[DocumentListComponent] downloadSelected() - Emitting download request:', downloadData);
+      this.downloadRequest.emit(downloadData);
+    } else {
+      console.warn('[DocumentListComponent] downloadSelected() - No documents selected or patient info missing');
     }
   }
   /**
@@ -932,6 +948,7 @@ class DocumentTrackingComponent {
    * @param downloadData The download request data
    */
   handleDownloadRequest(downloadData) {
+    console.log('[DocumentTrackingComponent] handleDownloadRequest() - Received download request:', downloadData);
     this.startDownload(downloadData.personId, downloadData.encntrId, downloadData.dmsMediaInstanceRequests);
   }
   /**
@@ -941,21 +958,33 @@ class DocumentTrackingComponent {
    * @param dmsMediaInstanceRequests Array of document media instance requests to download
    */
   startDownload(personId, encntrId, dmsMediaInstanceRequests) {
+    console.log('[DocumentTrackingComponent] startDownload() - Starting download process:', {
+      personId,
+      encntrId,
+      requestCount: dmsMediaInstanceRequests.length,
+      requests: dmsMediaInstanceRequests
+    });
     if (dmsMediaInstanceRequests.length === 0) {
+      console.warn('[DocumentTrackingComponent] startDownload() - No download requests provided');
       return;
     }
     this.isDownloading = true;
+    console.log('[DocumentTrackingComponent] startDownload() - Set isDownloading to true');
     // Initialize download queue
     this.downloadQueue = dmsMediaInstanceRequests.map(request => ({
       documentId: request.mediaInstanceId.toString(),
       status: 'pending'
     }));
+    console.log('[DocumentTrackingComponent] startDownload() - Initialized download queue:', this.downloadQueue);
     // Start the download process
+    console.log('[DocumentTrackingComponent] startDownload() - Calling document service');
     this.documentService.downloadDocuments(personId, encntrId, dmsMediaInstanceRequests).subscribe({
       next: response => {
+        console.log('[DocumentTrackingComponent] startDownload() - Received download response:', response);
         this.handleDownloadResponse(response);
       },
       error: error => {
+        console.error('[DocumentTrackingComponent] startDownload() - Download error:', error);
         this.handleDownloadError(error);
       }
     });
@@ -965,25 +994,33 @@ class DocumentTrackingComponent {
    * @param response The download response from the service
    */
   handleDownloadResponse(response) {
+    console.log('[DocumentTrackingComponent] handleDownloadResponse() - Processing download response:', response);
     // Process each download result
     response.downloadResults.forEach((result, index) => {
+      console.log('[DocumentTrackingComponent] handleDownloadResponse() - Processing result:', result);
       // Find corresponding item in download queue
       const queueItem = this.downloadQueue.find(item => item.documentId === result.mediaInstanceId.toString());
       if (queueItem) {
+        console.log('[DocumentTrackingComponent] handleDownloadResponse() - Found queue item:', queueItem);
         if (result.status === 1) {
           // Download successful
+          console.log('[DocumentTrackingComponent] handleDownloadResponse() - Download successful for:', result.mediaInstanceId);
           queueItem.status = 'completed';
           queueItem.progress = 100;
           this.moveToCompleted(queueItem);
         } else {
           // Download failed
+          console.log('[DocumentTrackingComponent] handleDownloadResponse() - Download failed for:', result.mediaInstanceId, 'Error:', result.message);
           queueItem.status = 'failed';
           queueItem.error = result.message;
           this.moveToFailed(queueItem);
         }
+      } else {
+        console.warn('[DocumentTrackingComponent] handleDownloadResponse() - No queue item found for mediaInstanceId:', result.mediaInstanceId);
       }
     });
     // Clear download queue after processing
+    console.log('[DocumentTrackingComponent] handleDownloadResponse() - Clearing download queue and setting isDownloading to false');
     this.isDownloading = false;
     this.downloadQueue = [];
   }
@@ -992,15 +1029,18 @@ class DocumentTrackingComponent {
    * @param error The error from the download service
    */
   handleDownloadError(error) {
-    console.error('Download error:', error);
+    console.error('[DocumentTrackingComponent] handleDownloadError() - Download error:', error);
     // Mark all pending items as failed
+    console.log('[DocumentTrackingComponent] handleDownloadError() - Marking all pending items as failed');
     this.downloadQueue.forEach(item => {
       if (item.status === 'pending' || item.status === 'downloading') {
+        console.log('[DocumentTrackingComponent] handleDownloadError() - Marking item as failed:', item);
         item.status = 'failed';
         item.error = 'Download failed';
         this.moveToFailed(item);
       }
     });
+    console.log('[DocumentTrackingComponent] handleDownloadError() - Setting isDownloading to false and clearing queue');
     this.isDownloading = false;
     this.downloadQueue = [];
   }
@@ -1009,30 +1049,37 @@ class DocumentTrackingComponent {
    * @param item The completed download item
    */
   moveToCompleted(item) {
+    console.log('[DocumentTrackingComponent] moveToCompleted() - Moving item to completed list:', item);
     this.completedDownloads.push(item);
+    console.log('[DocumentTrackingComponent] moveToCompleted() - Completed downloads count:', this.completedDownloads.length);
   }
   /**
    * Moves a failed download to the failed list
    * @param item The failed download item
    */
   moveToFailed(item) {
+    console.log('[DocumentTrackingComponent] moveToFailed() - Moving item to failed list:', item);
     this.failedDownloads.push(item);
+    console.log('[DocumentTrackingComponent] moveToFailed() - Failed downloads count:', this.failedDownloads.length);
   }
   /**
    * Retries a failed download
    * @param item The failed download item to retry
    */
   retryDownload(item) {
+    console.log('[DocumentTrackingComponent] retryDownload() - Retrying download for item:', item);
     if (!this.currentPatient) {
-      console.error('No current patient available for retry');
+      console.error('[DocumentTrackingComponent] retryDownload() - No current patient available for retry');
       return;
     }
     // Remove from failed list
     const index = this.failedDownloads.findIndex(failed => failed.documentId === item.documentId);
     if (index > -1) {
+      console.log('[DocumentTrackingComponent] retryDownload() - Removing item from failed list');
       this.failedDownloads.splice(index, 1);
     }
     // Add to download queue
+    console.log('[DocumentTrackingComponent] retryDownload() - Adding item to download queue');
     this.downloadQueue.push({
       documentId: item.documentId,
       status: 'pending'
@@ -1041,7 +1088,9 @@ class DocumentTrackingComponent {
     const retryRequest = {
       mediaInstanceId: parseInt(item.documentId)
     };
+    console.log('[DocumentTrackingComponent] retryDownload() - Created retry request:', retryRequest);
     // Start download for this single item using current patient context
+    console.log('[DocumentTrackingComponent] retryDownload() - Starting download with current patient context');
     this.startDownload(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]);
   }
   /**
@@ -1658,6 +1707,7 @@ class DocumentExtractService {
    * @returns Observable of ConfigData
    */
   getConfigData() {
+    console.log('[DocumentExtractService] getConfigData() - Starting configuration data load');
     return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
       this.customService.load({
         customScript: {
@@ -1677,15 +1727,19 @@ class DocumentExtractService {
         encntrId: 0
       }], () => {
         try {
+          console.log('[DocumentExtractService] getConfigData() - Service call completed, retrieving data');
           const raw = this.customService.get('configData');
           if (!raw) {
+            console.error('[DocumentExtractService] getConfigData() - No configuration data received');
             observer.error('No configuration data received');
             return;
           }
+          console.log('[DocumentExtractService] getConfigData() - Configuration data received:', raw);
           this.configData = raw;
           observer.next(raw);
           observer.complete();
         } catch (error) {
+          console.error('[DocumentExtractService] getConfigData() - Error:', error);
           observer.error(error);
         }
       });
@@ -1697,6 +1751,7 @@ class DocumentExtractService {
    * @returns Observable of PatientSearchResult array
    */
   searchPatients(fin) {
+    console.log('[DocumentExtractService] searchPatients() - Starting patient search for FIN:', fin);
     return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
       this.customService.load({
         customScript: {
@@ -1720,16 +1775,21 @@ class DocumentExtractService {
         encntrId: 0
       }], () => {
         try {
+          console.log('[DocumentExtractService] searchPatients() - Service call completed, retrieving data');
           const raw = this.customService.get('patientSearch');
           if (!raw) {
+            console.error('[DocumentExtractService] searchPatients() - No patient search results received');
             observer.error('No patient search results received');
             return;
           }
+          console.log('[DocumentExtractService] searchPatients() - Raw response received:', raw);
           // Map the raw response to PatientSearchResult array
           const patients = this.mapToPatientSearchResults(raw);
+          console.log('[DocumentExtractService] searchPatients() - Mapped patients:', patients);
           observer.next(patients);
           observer.complete();
         } catch (error) {
+          console.error('[DocumentExtractService] searchPatients() - Error:', error);
           observer.error(error);
         }
       });
@@ -1741,6 +1801,7 @@ class DocumentExtractService {
    * @returns Observable of PatientInfo with documents
    */
   getPatientDocuments(encntrId) {
+    console.log('[DocumentExtractService] getPatientDocuments() - Starting document retrieval for encounter ID:', encntrId);
     return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
       this.customService.load({
         customScript: {
@@ -1764,16 +1825,21 @@ class DocumentExtractService {
         encntrId: 0
       }], () => {
         try {
+          console.log('[DocumentExtractService] getPatientDocuments() - Service call completed, retrieving data');
           const raw = this.customService.get('patientDocuments');
           if (!raw) {
+            console.error('[DocumentExtractService] getPatientDocuments() - No response from document service');
             observer.error('No response from document service');
             return;
           }
+          console.log('[DocumentExtractService] getPatientDocuments() - Raw response received:', raw);
           // Map the raw response to PatientInfo structure
           const patientInfo = this.mapToPatientInfo(raw);
+          console.log('[DocumentExtractService] getPatientDocuments() - Mapped patient info:', patientInfo);
           observer.next(patientInfo);
           observer.complete();
         } catch (error) {
+          console.error('[DocumentExtractService] getPatientDocuments() - Error:', error);
           observer.error(error);
         }
       });
@@ -1787,6 +1853,12 @@ class DocumentExtractService {
    * @returns Observable of download status
    */
   downloadDocuments(personId, encntrId, dmsMediaInstanceRequests) {
+    console.log('[DocumentExtractService] downloadDocuments() - Starting download for:', {
+      personId,
+      encntrId,
+      requestCount: dmsMediaInstanceRequests.length,
+      requests: dmsMediaInstanceRequests
+    });
     return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
       this.customService.load({
         customScript: {
@@ -1798,7 +1870,9 @@ class DocumentExtractService {
               requestType: 'downloadDocuments',
               requestData: JSON.stringify({
                 chs_document_extract_svc_request: {
-                  dmsMediaInstanceIds: dmsMediaInstanceRequests.map(req => req.mediaInstanceId)
+                  personId: personId,
+                  encntrId: encntrId,
+                  dmsMediaInstanceIds: dmsMediaInstanceRequests
                 }
               })
             }
@@ -1810,16 +1884,21 @@ class DocumentExtractService {
         encntrId: encntrId
       }], () => {
         try {
+          console.log('[DocumentExtractService] downloadDocuments() - Service call completed, retrieving data');
           const raw = this.customService.get('downloadDocuments');
           if (!raw) {
+            console.error('[DocumentExtractService] downloadDocuments() - No response from download service');
             observer.error('No response from download service');
             return;
           }
+          console.log('[DocumentExtractService] downloadDocuments() - Raw response received:', raw);
           // Parse the response to get download results
           const downloadResponse = this.parseDownloadResponse(raw);
+          console.log('[DocumentExtractService] downloadDocuments() - Parsed download response:', downloadResponse);
           observer.next(downloadResponse);
           observer.complete();
         } catch (error) {
+          console.error('[DocumentExtractService] downloadDocuments() - Error:', error);
           observer.error(error);
         }
       });
@@ -1831,9 +1910,10 @@ class DocumentExtractService {
    * @returns PatientSearchResult array
    */
   mapToPatientSearchResults(raw) {
+    console.log('[DocumentExtractService] mapToPatientSearchResults() - Starting mapping of raw data:', raw);
     // Map the qual array from the response to PatientSearchResult objects
     if (raw.qual && Array.isArray(raw.qual)) {
-      return raw.qual.map(patient => ({
+      const results = raw.qual.map(patient => ({
         fin: patient.fin || '',
         name: patient.nameFullFormatted || '',
         dateOfBirth: patient.dob ? this.parseDate(patient.dob) : new Date(),
@@ -1850,7 +1930,10 @@ class DocumentExtractService {
         sex: patient.sex || '',
         selected: false
       }));
+      console.log('[DocumentExtractService] mapToPatientSearchResults() - Mapped results:', results);
+      return results;
     }
+    console.warn('[DocumentExtractService] mapToPatientSearchResults() - No qual array found in raw data');
     return [];
   }
   /**
@@ -1859,7 +1942,9 @@ class DocumentExtractService {
    * @returns Date object
    */
   parseDate(dateStr) {
+    console.log('[DocumentExtractService] parseDate() - Parsing date string:', dateStr);
     if (!dateStr || dateStr === '0000-00-00T00:00:00.000+00:00') {
+      console.log('[DocumentExtractService] parseDate() - Using default date for invalid date string');
       return new Date();
     }
     // Handle the "DD-MMM-YYYY" format from the sample
@@ -1883,10 +1968,13 @@ class DocumentExtractService {
       const month = months[parts[1]];
       const year = parseInt(parts[2]);
       if (!isNaN(day) && month !== undefined && !isNaN(year)) {
-        return new Date(year, month, day);
+        const result = new Date(year, month, day);
+        console.log('[DocumentExtractService] parseDate() - Successfully parsed date:', result);
+        return result;
       }
     }
     // Fallback to standard Date parsing
+    console.log('[DocumentExtractService] parseDate() - Using fallback date parsing');
     return new Date(dateStr);
   }
   /**
@@ -1895,8 +1983,10 @@ class DocumentExtractService {
    * @returns PatientInfo object
    */
   mapToPatientInfo(raw) {
+    console.log('[DocumentExtractService] mapToPatientInfo() - Starting mapping of raw data:', raw);
     // Extract patient information from the first qual entry
     const patientQual = raw.qual && raw.qual.length > 0 ? raw.qual[0] : {};
+    console.log('[DocumentExtractService] mapToPatientInfo() - Patient qual data:', patientQual);
     // Map documents from dmsQual array
     const documents = patientQual.dmsQual ? patientQual.dmsQual.map(doc => ({
       id: doc.dmsMediaInstanceId?.toString() || '',
@@ -1916,7 +2006,8 @@ class DocumentExtractService {
       parentEntityName: doc.parentEntityName || '',
       parentEntityId: doc.parentEntityId || 0
     })) : [];
-    return {
+    console.log('[DocumentExtractService] mapToPatientInfo() - Mapped documents:', documents);
+    const result = {
       fin: patientQual.fin || '',
       name: patientQual.nameFullFormatted || '',
       dateOfBirth: patientQual.dob ? this.parseDate(patientQual.dob) : new Date(),
@@ -1933,6 +2024,8 @@ class DocumentExtractService {
       sex: patientQual.sex || '',
       mrn: patientQual.mrn || ''
     };
+    console.log('[DocumentExtractService] mapToPatientInfo() - Final mapped result:', result);
+    return result;
   }
   /**
    * Formats file size in bytes to human readable format
@@ -1940,11 +2033,17 @@ class DocumentExtractService {
    * @returns Formatted file size string
    */
   formatFileSize(bytes) {
-    if (bytes === 0) return '0 Bytes';
+    console.log('[DocumentExtractService] formatFileSize() - Formatting bytes:', bytes);
+    if (bytes === 0) {
+      console.log('[DocumentExtractService] formatFileSize() - Returning 0 Bytes');
+      return '0 Bytes';
+    }
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    const result = parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    console.log('[DocumentExtractService] formatFileSize() - Formatted result:', result);
+    return result;
   }
   /**
    * Parses the download response from the service
@@ -1952,8 +2051,9 @@ class DocumentExtractService {
    * @returns DownloadDocumentsResponse object
    */
   parseDownloadResponse(raw) {
+    console.log('[DocumentExtractService] parseDownloadResponse() - Starting parsing of raw response:', raw);
     if (raw.downloadDocuments_reply && raw.downloadDocuments_reply.downloadResults) {
-      return {
+      const results = {
         downloadResults: raw.downloadDocuments_reply.downloadResults.map(result => ({
           mediaInstanceId: result.mediaInstanceId || 0,
           documentType: result.documentType || '',
@@ -1965,8 +2065,11 @@ class DocumentExtractService {
           contentType: result.contentType || ''
         }))
       };
+      console.log('[DocumentExtractService] parseDownloadResponse() - Parsed results:', results);
+      return results;
     }
     // Return empty response if structure is not as expected
+    console.warn('[DocumentExtractService] parseDownloadResponse() - No downloadDocuments_reply or downloadResults found in raw data');
     return {
       downloadResults: []
     };
@@ -2758,9 +2861,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T16:29:31.648Z
-const buildVersion = 'v0.0.32-master';
-const packageVersion = '0.0.32';
+// Generated on: 2025-07-11T16:56:45.065Z
+const buildVersion = 'v0.0.33-master';
+const packageVersion = '0.0.33';
 const gitBranch = 'master';
 
 /***/ })
