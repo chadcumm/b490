@@ -1973,7 +1973,7 @@ class DocumentExtractService {
             run: 'pre',
             id: `downloadSingleDocument_${dmsMediaInstanceRequest.mediaInstanceId}`,
             parameters: {
-              requestType: `downloadSingleDocument_${dmsMediaInstanceRequest.mediaInstanceId}`,
+              requestType: 'downloadSingleDocument',
               requestData: JSON.stringify({
                 chs_document_extract_svc_request: {
                   personId: personId,
@@ -3090,9 +3090,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T21:55:24.116Z
-const buildVersion = 'v0.0.35-master';
-const packageVersion = '0.0.35';
+// Generated on: 2025-07-11T22:00:49.774Z
+const buildVersion = 'v0.0.36-master';
+const packageVersion = '0.0.36';
 const gitBranch = 'master';
 
 /***/ })
