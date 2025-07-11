@@ -648,38 +648,13 @@ class DocumentListComponent {
   downloadSelected() {
     if (this.selectedDocuments.length > 0 && this.patientInfo) {
       const dmsMediaInstanceRequests = this.selectedDocuments.map(doc => ({
-        mediaInstanceId: parseInt(doc.id),
-        documentType: doc.contentTypeKey || 'PDF',
-        filename: `${doc.documentName || 'document'}_${doc.id}.${this.getFileExtension(doc.contentTypeKey)}`
+        mediaInstanceId: parseInt(doc.id)
       }));
       this.downloadRequest.emit({
         personId: this.patientInfo.personId,
         encntrId: this.patientInfo.encntrId,
         dmsMediaInstanceRequests: dmsMediaInstanceRequests
       });
-    }
-  }
-  /**
-   * Gets file extension based on content type
-   * @param contentTypeKey The content type key
-   * @returns File extension
-   */
-  getFileExtension(contentTypeKey) {
-    switch (contentTypeKey?.toLowerCase()) {
-      case 'pdf':
-        return 'pdf';
-      case 'doc':
-      case 'docx':
-        return 'doc';
-      case 'txt':
-        return 'txt';
-      case 'jpg':
-      case 'jpeg':
-        return 'jpg';
-      case 'png':
-        return 'png';
-      default:
-        return 'pdf';
     }
   }
   /**
@@ -973,9 +948,7 @@ class DocumentTrackingComponent {
     // Initialize download queue
     this.downloadQueue = dmsMediaInstanceRequests.map(request => ({
       documentId: request.mediaInstanceId.toString(),
-      status: 'pending',
-      filename: request.filename,
-      documentType: request.documentType
+      status: 'pending'
     }));
     // Start the download process
     this.documentService.downloadDocuments(personId, encntrId, dmsMediaInstanceRequests).subscribe({
@@ -1062,15 +1035,11 @@ class DocumentTrackingComponent {
     // Add to download queue
     this.downloadQueue.push({
       documentId: item.documentId,
-      status: 'pending',
-      filename: item.filename,
-      documentType: item.documentType
+      status: 'pending'
     });
     // Create download request for this single item
     const retryRequest = {
-      mediaInstanceId: parseInt(item.documentId),
-      documentType: item.documentType || 'PDF',
-      filename: item.filename || `document_${item.documentId}.pdf`
+      mediaInstanceId: parseInt(item.documentId)
     };
     // Start download for this single item using current patient context
     this.startDownload(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]);
@@ -1829,7 +1798,7 @@ class DocumentExtractService {
               requestType: 'downloadDocuments',
               requestData: JSON.stringify({
                 chs_document_extract_svc_request: {
-                  dmsMediaInstanceIds: dmsMediaInstanceRequests
+                  dmsMediaInstanceIds: dmsMediaInstanceRequests.map(req => req.mediaInstanceId)
                 }
               })
             }
@@ -2789,9 +2758,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T16:12:33.997Z
-const buildVersion = 'v0.0.31-master';
-const packageVersion = '0.0.31';
+// Generated on: 2025-07-11T16:29:31.648Z
+const buildVersion = 'v0.0.32-master';
+const packageVersion = '0.0.32';
 const gitBranch = 'master';
 
 /***/ })
