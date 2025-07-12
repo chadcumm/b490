@@ -3061,6 +3061,30 @@ class DocumentExtractService {
    */
   parseExtractResponse(raw) {
     console.log('[DocumentExtractService] parseExtractResponse() - Starting parsing of raw response:', raw);
+    // Check for the new response structure with extract_info and qual
+    if (raw.extract_info && raw.qual && raw.qual.length > 0) {
+      const extractInfo = raw.extract_info;
+      const qual = raw.qual[0];
+      const isSuccess = raw.reply && raw.reply.status_data && raw.reply.status_data.status === 'S';
+      const result = {
+        success: isSuccess,
+        zipFileUrl: extractInfo.download_url || '',
+        zipFileName: extractInfo.zip_filename || 'extracted_documents.zip',
+        message: raw.reply?.text || (isSuccess ? 'Extract completed successfully' : 'Extract failed'),
+        metadataFile: extractInfo.metadata_filename || '',
+        zipCammIdentifier: extractInfo.zip_camm_identifier || qual.zip_camm_identifier || '',
+        downloadUrl: extractInfo.download_url || '',
+        extractInfo: {
+          zipFilename: extractInfo.zip_filename || 'extracted_documents.zip',
+          metadataFilename: extractInfo.metadata_filename || '',
+          fileCount: extractInfo.file_count || 0,
+          zipCammIdentifier: extractInfo.zip_camm_identifier || qual.zip_camm_identifier || '',
+          downloadUrl: extractInfo.download_url || ''
+        }
+      };
+      console.log('[DocumentExtractService] parseExtractResponse() - Parsed extract result:', result);
+      return result;
+    }
     // Check for the new response structure with extract information
     if (raw.createExtract_reply) {
       const reply = raw.createExtract_reply;
@@ -3069,7 +3093,16 @@ class DocumentExtractService {
         zipFileUrl: reply.zipFileUrl || '',
         zipFileName: reply.zipFileName || 'extracted_documents.zip',
         message: reply.message || 'Extract completed',
-        metadataFile: reply.metadataFile || ''
+        metadataFile: reply.metadataFile || '',
+        zipCammIdentifier: reply.zipCammIdentifier || '',
+        downloadUrl: reply.downloadUrl || '',
+        extractInfo: {
+          zipFilename: reply.zipFileName || 'extracted_documents.zip',
+          metadataFilename: reply.metadataFile || '',
+          fileCount: reply.fileCount || 0,
+          zipCammIdentifier: reply.zipCammIdentifier || '',
+          downloadUrl: reply.downloadUrl || ''
+        }
       };
       console.log('[DocumentExtractService] parseExtractResponse() - Parsed extract result:', result);
       return result;
@@ -3082,7 +3115,16 @@ class DocumentExtractService {
         zipFileUrl: raw.zipFileUrl || '',
         zipFileName: raw.zipFileName || 'extracted_documents.zip',
         message: raw.reply.text || (isSuccess ? 'Extract completed successfully' : 'Extract failed'),
-        metadataFile: raw.metadataFile || ''
+        metadataFile: raw.metadataFile || '',
+        zipCammIdentifier: raw.zipCammIdentifier || '',
+        downloadUrl: raw.downloadUrl || '',
+        extractInfo: {
+          zipFilename: raw.zipFileName || 'extracted_documents.zip',
+          metadataFilename: raw.metadataFile || '',
+          fileCount: raw.fileCount || 0,
+          zipCammIdentifier: raw.zipCammIdentifier || '',
+          downloadUrl: raw.downloadUrl || ''
+        }
       };
       console.log('[DocumentExtractService] parseExtractResponse() - Parsed fallback result:', result);
       return result;
@@ -3881,9 +3923,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T01:32:13.102Z
-const buildVersion = 'v0.0.44-master';
-const packageVersion = '0.0.44';
+// Generated on: 2025-07-12T01:56:45.052Z
+const buildVersion = 'v0.0.47-master';
+const packageVersion = '0.0.47';
 const gitBranch = 'master';
 
 /***/ })
