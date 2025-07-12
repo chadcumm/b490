@@ -1668,7 +1668,7 @@ function ExtractDownloadComponent_div_19_button_10_Template(rf, ctx) {
       const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r16.downloadWithFileTransfer());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " \uD83D\uDCE5 Download (FileTransfer) ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " \uD83D\uDCE5 Download (Basic Auth) ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
@@ -2111,7 +2111,7 @@ class ExtractDownloadComponent {
     },
     decls: 22,
     vars: 14,
-    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with authentication (recommended)", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download using fileTransfer/retrieveFile endpoint", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
+    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with authentication (recommended)", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
     template: function ExtractDownloadComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h3");
@@ -3708,6 +3708,60 @@ class DocumentExtractService {
     return this.configData;
   }
   /**
+   * Gets system credentials for basic authorization
+   * @returns Observable of credentials object
+   */
+  getSystemCredentials() {
+    console.log('[DocumentExtractService] getSystemCredentials() - Getting system credentials');
+    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+      this.customService.load({
+        customScript: {
+          script: [{
+            name: 'chs_document_extract_svc',
+            run: 'pre',
+            id: 'systemCredentials',
+            parameters: {
+              requestType: 'getSystemCredentials',
+              requestData: {}
+            }
+          }],
+          clearPatientSource: true
+        }
+      }, [{
+        personId: 0,
+        encntrId: 0
+      }], () => {
+        try {
+          console.log('[DocumentExtractService] getSystemCredentials() - Service call completed');
+          const raw = this.customService.get('systemCredentials');
+          if (!raw) {
+            console.error('[DocumentExtractService] getSystemCredentials() - No credentials data received');
+            observer.error('No credentials data received');
+            return;
+          }
+          // Parse the credentials from the response
+          let credentials = {
+            username: 'system@chsi2_tn',
+            password: 'system'
+          };
+          // Check for the systemCredentials_reply structure
+          if (raw.systemCredentials_reply) {
+            credentials = {
+              username: raw.systemCredentials_reply.username || 'system@chsi2_tn',
+              password: raw.systemCredentials_reply.password || 'system'
+            };
+          }
+          console.log('[DocumentExtractService] getSystemCredentials() - Credentials received:', credentials);
+          observer.next(credentials);
+          observer.complete();
+        } catch (error) {
+          console.error('[DocumentExtractService] getSystemCredentials() - Error:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+  /**
    * Downloads the extract file using the fileTransfer/retrieveFile endpoint
    * @param fileName The name of the file to retrieve
    * @param nodeName The node name where the file is stored
@@ -3719,32 +3773,46 @@ class DocumentExtractService {
       nodeName
     });
     return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
-      const url = 'http://chsi2tneanp/discern/b490.chsi2_tn.cernerasp.com/mpages/fileTransfer/retrieveFile';
-      // Create FormData with the required parts
-      const formData = new FormData();
-      formData.append('fileName', fileName);
-      formData.append('nodeName', nodeName);
-      // Create XMLHttpRequest for the POST request
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', url);
-      // Set response type to blob for file download
-      xhr.responseType = 'blob';
-      xhr.onload = () => {
-        if (xhr.status === 200) {
-          console.log('[DocumentExtractService] downloadExtractFile() - Download successful');
-          observer.next(xhr.response);
-          observer.complete();
-        } else {
-          console.error('[DocumentExtractService] downloadExtractFile() - Download failed with status:', xhr.status);
-          observer.error(new Error(`Download failed with status: ${xhr.status}`));
+      // First get system credentials
+      this.getSystemCredentials().subscribe({
+        next: credentials => {
+          const url = 'http://chsi2tneanp/discern/b490.chsi2_tn.cernerasp.com/mpages/fileTransfer/retrieveFile';
+          // Create FormData with the required parts
+          const formData = new FormData();
+          formData.append('fileName', fileName);
+          formData.append('nodeName', nodeName);
+          // Create XMLHttpRequest for the POST request
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', url);
+          // Add basic authorization header
+          // Format: "Basic " + base64(username:password)
+          const authString = `${credentials.username}:${credentials.password}`;
+          const credentials_b64 = btoa(authString);
+          xhr.setRequestHeader('Authorization', `Basic ${credentials_b64}`);
+          // Set response type to blob for file download
+          xhr.responseType = 'blob';
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              console.log('[DocumentExtractService] downloadExtractFile() - Download successful');
+              observer.next(xhr.response);
+              observer.complete();
+            } else {
+              console.error('[DocumentExtractService] downloadExtractFile() - Download failed with status:', xhr.status);
+              observer.error(new Error(`Download failed with status: ${xhr.status}`));
+            }
+          };
+          xhr.onerror = () => {
+            console.error('[DocumentExtractService] downloadExtractFile() - Network error during download');
+            observer.error(new Error('Network error during download'));
+          };
+          // Send the FormData
+          xhr.send(formData);
+        },
+        error: error => {
+          console.error('[DocumentExtractService] downloadExtractFile() - Error getting credentials:', error);
+          observer.error(error);
         }
-      };
-      xhr.onerror = () => {
-        console.error('[DocumentExtractService] downloadExtractFile() - Network error during download');
-        observer.error(new Error('Network error during download'));
-      };
-      // Send the FormData
-      xhr.send(formData);
+      });
     });
   }
   static #_ = this.ɵfac = function DocumentExtractService_Factory(t) {
@@ -4527,9 +4595,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T05:51:24.920Z
-const buildVersion = 'v0.0.77-master';
-const packageVersion = '0.0.77';
+// Generated on: 2025-07-12T06:00:01.251Z
+const buildVersion = 'v0.0.79-master';
+const packageVersion = '0.0.79';
 const gitBranch = 'master';
 
 /***/ })
