@@ -1595,22 +1595,8 @@ function ExtractDownloadComponent_div_15_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_19_div_6_div_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 38)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 39)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Metadata File:");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r13.extractResult.metadataFile, " ");
-  }
-}
-function ExtractDownloadComponent_div_19_div_6_div_6_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 38)(1, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Files Included:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1618,13 +1604,13 @@ function ExtractDownloadComponent_div_19_div_6_div_6_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r14.extractResult.extractInfo == null ? null : ctx_r14.extractResult.extractInfo.fileCount, " documents ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r14.extractResult.metadataFile, " ");
   }
 }
-function ExtractDownloadComponent_div_19_div_6_div_7_Template(rf, ctx) {
+function ExtractDownloadComponent_div_19_div_6_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 38)(1, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Status:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 39)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Files Included:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1632,19 +1618,33 @@ function ExtractDownloadComponent_div_19_div_6_div_7_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r15.extractResult.message, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r15.extractResult.extractInfo == null ? null : ctx_r15.extractResult.extractInfo.fileCount, " documents ");
+  }
+}
+function ExtractDownloadComponent_div_19_div_6_div_7_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 39)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Status:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r16.extractResult.message, " ");
   }
 }
 function ExtractDownloadComponent_div_19_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 37)(1, "div", 38)(2, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 38)(1, "div", 39)(2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Zip File:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](5, ExtractDownloadComponent_div_19_div_6_div_5_Template, 4, 1, "div", 39);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_19_div_6_div_6_Template, 4, 1, "div", 39);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_19_div_6_div_7_Template, 4, 1, "div", 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](5, ExtractDownloadComponent_div_19_div_6_div_5_Template, 4, 1, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_19_div_6_div_6_Template, 4, 1, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_19_div_6_div_7_Template, 4, 1, "div", 40);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
@@ -1659,14 +1659,27 @@ function ExtractDownloadComponent_div_19_div_6_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r11.extractResult.message);
   }
 }
-function ExtractDownloadComponent_div_19_button_10_Template(rf, ctx) {
+function ExtractDownloadComponent_div_19_button_8_Template(rf, ctx) {
   if (rf & 1) {
-    const _r17 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_button_10_Template_button_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r17);
-      const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r16.downloadWithFileTransfer());
+    const _r18 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_button_8_Template_button_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r18);
+      const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r17.downloadWithMPagesAuth());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " \uD83D\uDCE5 Download (MPage Auth) ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_div_19_button_11_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r20 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_button_11_Template_button_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r20);
+      const ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r19.downloadWithFileTransfer());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " \uD83D\uDCE5 Download (Basic Auth) ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1674,7 +1687,7 @@ function ExtractDownloadComponent_div_19_button_10_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_19_Template(rf, ctx) {
   if (rf & 1) {
-    const _r19 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    const _r22 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 31)(1, "div", 32)(2, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Extract Complete");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1683,22 +1696,26 @@ function ExtractDownloadComponent_div_19_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_19_div_6_Template, 8, 4, "div", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "div", 34)(8, "button", 35);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_Template_button_click_8_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r19);
-      const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r18.downloadWithUrlCredentials());
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "div", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](8, ExtractDownloadComponent_div_19_button_8_Template, 2, 0, "button", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](9, "button", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_Template_button_click_9_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r22);
+      const ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r21.downloadWithUrlCredentials());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](10, ExtractDownloadComponent_div_19_button_10_Template, 2, 0, "button", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](11, ExtractDownloadComponent_div_19_button_11_Template, 2, 0, "button", 37);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
     const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r6.extractResult);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r6.isMPageAuthAvailable() && (ctx_r6.extractResult == null ? null : ctx_r6.extractResult.downloadUrl));
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r6.getDownloadButtonText(), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r6.shouldShowFileTransferButton());
@@ -1706,33 +1723,33 @@ function ExtractDownloadComponent_div_19_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_20_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 44)(1, "div", 37)(2, "div", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 46)(1, "div", 38)(2, "div", 47);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "div", 46)(5, "span", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "div", 48)(5, "span", 49);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "span", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "span", 50);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()()();
   }
   if (rf & 2) {
-    const file_r21 = ctx.$implicit;
+    const file_r24 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r21.documentName || file_r21.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r24.documentName || file_r24.filename);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r21.documentType);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r24.documentType);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r21.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r24.filename);
   }
 }
 function ExtractDownloadComponent_div_20_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 41)(1, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 43)(1, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "div", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_20_div_4_Template, 9, 3, "div", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "div", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_20_div_4_Template, 9, 3, "div", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
@@ -1745,7 +1762,7 @@ function ExtractDownloadComponent_div_20_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_21_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 49)(1, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 51)(1, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "No downloaded files available for extract.");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "p");
@@ -1871,6 +1888,125 @@ class ExtractDownloadComponent {
     })();
   }
   /**
+   * Downloads the created zip file using MPAGES_SVC_AUTH
+   * This method follows the pattern from mediagallery-o1.js for Edge authentication
+   */
+  downloadWithMPagesAuth() {
+    var _this2 = this;
+    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      if (!_this2.extractResult?.downloadUrl) {
+        console.warn('[ExtractDownloadComponent] downloadWithMPagesAuth() - No downloadUrl available');
+        alert('No download URL available.');
+        return;
+      }
+      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Starting MPages authenticated download');
+      try {
+        // Use the downloadUrl from the service
+        const downloadUrl = _this2.extractResult.downloadUrl;
+        // Create XMLHttpRequest for authenticated download
+        const xhr = new XMLHttpRequest();
+        // Open the request
+        xhr.open('GET', downloadUrl);
+        // Set response type to blob for binary data
+        xhr.responseType = 'blob';
+        // Check if we're in Edge context and apply MPAGES_SVC_AUTH
+        let authPromise = Promise.resolve();
+        if (window.CERN_Platform?.inEdgeContext?.() && window.MPAGES_SVC_AUTH) {
+          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - In Edge context, applying MPAGES_SVC_AUTH');
+          authPromise = window.MPAGES_SVC_AUTH(xhr);
+        } else {
+          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Not in Edge context or MPAGES_SVC_AUTH not available');
+        }
+        // Wait for authentication to complete
+        yield authPromise;
+        // Create promise for the download
+        const downloadPromise = new Promise((resolve, reject) => {
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download successful');
+              // Get the blob response
+              const blob = xhr.response;
+              // Use the descriptive filename from the extract response
+              const filename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
+              // Create a temporary URL for the blob
+              const url = window.URL.createObjectURL(blob);
+              // Create a download link
+              const link = document.createElement('a');
+              link.href = url;
+              link.download = filename;
+              // In Edge/Chrome, we can use the File System Access API for save dialog
+              if ('showSaveFilePicker' in window) {
+                _this2.saveWithFileSystemAPI(blob, filename).then(() => resolve()).catch(() => {
+                  // Fallback to standard download
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  window.URL.revokeObjectURL(url);
+                  resolve();
+                });
+              } else {
+                // Standard download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+                resolve();
+              }
+            } else {
+              console.error('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download failed with status:', xhr.status);
+              reject(new Error(`Download failed with status: ${xhr.status}`));
+            }
+          };
+          xhr.onerror = () => {
+            console.error('[ExtractDownloadComponent] downloadWithMPagesAuth() - Network error during download');
+            reject(new Error('Network error during download'));
+          };
+          // Send the request
+          xhr.send();
+        });
+        yield downloadPromise;
+      } catch (error) {
+        console.error('[ExtractDownloadComponent] downloadWithMPagesAuth() - Error:', error);
+        alert('Download failed. Please try another method.');
+      }
+    })();
+  }
+  /**
+   * Uses the File System Access API to show a save dialog
+   * @param blob The blob to save
+   * @param suggestedName The suggested filename
+   */
+  saveWithFileSystemAPI(blob, suggestedName) {
+    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        // Request file handle with save dialog
+        const handle = yield window.showSaveFilePicker({
+          suggestedName: suggestedName,
+          types: [{
+            description: 'Zip files',
+            accept: {
+              'application/zip': ['.zip']
+            }
+          }]
+        });
+        // Create a writable stream
+        const writable = yield handle.createWritable();
+        // Write the blob to the file
+        yield writable.write(blob);
+        // Close the file
+        yield writable.close();
+        console.log('[ExtractDownloadComponent] saveWithFileSystemAPI() - File saved successfully');
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          console.log('[ExtractDownloadComponent] saveWithFileSystemAPI() - User cancelled save dialog');
+        } else {
+          console.error('[ExtractDownloadComponent] saveWithFileSystemAPI() - Error:', error);
+        }
+        throw error;
+      }
+    })();
+  }
+  /**
    * Downloads using the downloadUrl with embedded credentials
    */
   downloadWithUrlCredentials() {
@@ -1921,11 +2057,11 @@ class ExtractDownloadComponent {
    * @param url The URL to download from
    */
   downloadWithAuthentication(url) {
-    var _this2 = this;
+    var _this3 = this;
     return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Starting authenticated download');
       // Check for mixed content and try HTTPS if needed
-      const processedUrl = _this2.processUrlForMixedContent(url);
+      const processedUrl = _this3.processUrlForMixedContent(url);
       // Create XMLHttpRequest for authenticated download
       const xhr = new XMLHttpRequest();
       // Make XMLHttpRequest globally accessible (following mediagallery-o1.js pattern)
@@ -1958,8 +2094,8 @@ class ExtractDownloadComponent {
             const blob = new Blob([xhr.response], {
               type: xhr.getResponseHeader('Content-Type') || 'application/zip'
             });
-            const downloadFilename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
-            _this2.downloadBlob(blob, downloadFilename);
+            const downloadFilename = _this3.extractResult?.zipFileName || 'extracted_documents.zip';
+            _this3.downloadBlob(blob, downloadFilename);
             // Clean up global reference
             delete window.g_ExtractDownloadXMLHttpRequestObj;
             resolve();
@@ -2160,7 +2296,7 @@ class ExtractDownloadComponent {
     },
     decls: 22,
     vars: 14,
-    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with URL credentials (recommended)", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
+    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["class", "btn btn-primary", "title", "Download with MPAGES_SVC_AUTH (recommended for Edge)", 3, "click", 4, "ngIf"], ["title", "Download with URL credentials", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download with MPAGES_SVC_AUTH (recommended for Edge)", 1, "btn", "btn-primary", 3, "click"], ["title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
     template: function ExtractDownloadComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h3");
@@ -2187,7 +2323,7 @@ class ExtractDownloadComponent {
         });
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](18);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](19, ExtractDownloadComponent_div_19_Template, 11, 3, "div", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](19, ExtractDownloadComponent_div_19_Template, 12, 4, "div", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](20, ExtractDownloadComponent_div_20_Template, 5, 3, "div", 15);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](21, ExtractDownloadComponent_div_21_Template, 5, 0, "div", 16);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -3006,9 +3142,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   DocumentExtractService: () => (/* binding */ DocumentExtractService)
 /* harmony export */ });
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ 2235);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @clinicaloffice/clinical-office-mpage-core */ 5715);
+/* harmony import */ var _Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2235);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @clinicaloffice/clinical-office-mpage-core */ 5715);
+
 
 
 
@@ -3023,7 +3161,7 @@ class DocumentExtractService {
    */
   getConfigData() {
     console.log('[DocumentExtractService] getConfigData() - Starting configuration data load');
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3067,7 +3205,7 @@ class DocumentExtractService {
    */
   searchPatients(fin) {
     console.log('[DocumentExtractService] searchPatients() - Starting patient search for FIN:', fin);
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3117,7 +3255,7 @@ class DocumentExtractService {
    */
   getPatientDocuments(encntrId) {
     console.log('[DocumentExtractService] getPatientDocuments() - Starting document retrieval for encounter ID:', encntrId);
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3174,7 +3312,7 @@ class DocumentExtractService {
       requestCount: dmsMediaInstanceRequests.length,
       requests: dmsMediaInstanceRequests
     });
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3228,7 +3366,7 @@ class DocumentExtractService {
    */
   downloadSingleDocument(personId, encntrId, dmsMediaInstanceRequest) {
     console.log('[DocumentExtractService] downloadSingleDocument() - Starting sequential download for single document:', dmsMediaInstanceRequest);
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3299,7 +3437,7 @@ class DocumentExtractService {
       requestCount: dmsMediaInstanceRequests.length,
       requests: dmsMediaInstanceRequests
     });
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       const total = dmsMediaInstanceRequests.length;
       let completed = 0;
       let failed = 0;
@@ -3374,7 +3512,7 @@ class DocumentExtractService {
       encntrId: extractRequest.encntrId,
       fileCount: extractRequest.downloadedFiles.length
     });
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3762,7 +3900,7 @@ class DocumentExtractService {
    */
   getSystemCredentials() {
     console.log('[DocumentExtractService] getSystemCredentials() - Getting system credentials');
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       this.customService.load({
         customScript: {
           script: [{
@@ -3822,34 +3960,58 @@ class DocumentExtractService {
   }
   /**
    * Downloads the extract file using the fileTransfer/retrieveFile endpoint
+   * Now uses MPAGES_SVC_AUTH instead of basic credentials and dynamic URL construction
    * @param fileName The name of the file to retrieve
    * @param nodeName The node name where the file is stored
    * @returns Observable of the file blob
    */
   downloadExtractFile(fileName, nodeName) {
-    console.log('[DocumentExtractService] downloadExtractFile() - Starting file download:', {
+    var _this = this;
+    console.log('[DocumentExtractService] downloadExtractFile() - Starting file download with MPAGES_SVC_AUTH:', {
       fileName,
       nodeName
     });
-    return new rxjs__WEBPACK_IMPORTED_MODULE_0__.Observable(observer => {
-      // First get system credentials
-      this.getSystemCredentials().subscribe({
-        next: credentials => {
-          const url = 'http://chsi2tneanp/discern/b490.chsi2_tn.cernerasp.com/mpages/fileTransfer/retrieveFile';
-          // Create FormData with the required parts
-          const formData = new FormData();
-          formData.append('fileName', fileName);
-          formData.append('nodeName', nodeName);
-          // Create XMLHttpRequest for the POST request
-          const xhr = new XMLHttpRequest();
-          xhr.open('POST', url);
-          // Add basic authorization header
-          // Format: "Basic " + base64(username:password)
-          const authString = `${credentials.username}:${credentials.password}`;
-          const credentials_b64 = btoa(authString);
-          xhr.setRequestHeader('Authorization', `Basic ${credentials_b64}`);
-          // Set response type to blob for file download
-          xhr.responseType = 'blob';
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
+      // Construct URL dynamically based on current host instead of hardcoded URL
+      const currentHost = window.location.host;
+      const url = `${window.location.protocol}//${currentHost}/mpages/fileTransfer/retrieveFile`;
+      console.log('[DocumentExtractService] downloadExtractFile() - Using URL:', url);
+      // Create FormData with the required parts
+      const formData = new FormData();
+      formData.append('fileName', fileName);
+      formData.append('nodeName', nodeName);
+      // Create XMLHttpRequest for the POST request
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', url);
+      // Set response type to blob for file download
+      xhr.responseType = 'blob';
+      // Apply MPAGES_SVC_AUTH if available and in Edge context
+      const setupAuth = /*#__PURE__*/function () {
+        var _ref = (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+          try {
+            if (window.CERN_Platform?.inEdgeContext?.() && window.MPAGES_SVC_AUTH) {
+              console.log('[DocumentExtractService] downloadExtractFile() - In Edge context, applying MPAGES_SVC_AUTH');
+              yield window.MPAGES_SVC_AUTH(xhr);
+            } else {
+              console.log('[DocumentExtractService] downloadExtractFile() - Not in Edge context or MPAGES_SVC_AUTH not available, using fallback');
+              // Fallback to basic credentials if MPAGES_SVC_AUTH is not available
+              try {
+                const credentials = yield _this.getSystemCredentials().toPromise();
+                if (credentials) {
+                  const authString = `${credentials.username}:${credentials.password}`;
+                  const credentials_b64 = btoa(authString);
+                  xhr.setRequestHeader('Authorization', `Basic ${credentials_b64}`);
+                } else {
+                  console.warn('[DocumentExtractService] downloadExtractFile() - No credentials received');
+                }
+              } catch (credError) {
+                console.warn('[DocumentExtractService] downloadExtractFile() - Could not get basic credentials:', credError);
+              }
+            }
+          } catch (authError) {
+            console.warn('[DocumentExtractService] downloadExtractFile() - Authentication setup failed:', authError);
+          }
+          // Set up response handlers
           xhr.onload = () => {
             if (xhr.status === 200) {
               console.log('[DocumentExtractService] downloadExtractFile() - Download successful');
@@ -3866,18 +4028,21 @@ class DocumentExtractService {
           };
           // Send the FormData
           xhr.send(formData);
-        },
-        error: error => {
-          console.error('[DocumentExtractService] downloadExtractFile() - Error getting credentials:', error);
-          observer.error(error);
-        }
+        });
+        return function setupAuth() {
+          return _ref.apply(this, arguments);
+        };
+      }();
+      setupAuth().catch(error => {
+        console.error('[DocumentExtractService] downloadExtractFile() - Setup error:', error);
+        observer.error(error);
       });
     });
   }
   static #_ = this.ɵfac = function DocumentExtractService_Factory(t) {
-    return new (t || DocumentExtractService)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵinject"](_clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_2__.CustomService));
+    return new (t || DocumentExtractService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_3__.CustomService));
   };
-  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjectable"]({
+  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
     token: DocumentExtractService,
     factory: DocumentExtractService.ɵfac,
     providedIn: 'root'
@@ -4654,10 +4819,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T06:28:01.366Z
-const buildVersion = 'v0.0.87-master';
-const packageVersion = '0.0.87';
-const gitBranch = 'master';
+// Generated on: 2025-07-12T19:45:06.443Z
+const buildVersion = 'v0.0.90-download-updates';
+const packageVersion = '0.0.90';
+const gitBranch = 'download-updates';
 
 /***/ })
 
