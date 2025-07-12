@@ -145,14 +145,19 @@ class AppComponent {
         this.configData = configData;
         this.configLoaded = true;
         this.loading = false;
-        // Update discovery step
-        this.progressStepper.updateStep('discovery', 'completed');
+        // Only update discovery step if we have a patient selected
+        // Configuration loading just enables the ability to discover documents
+        if (this.mPage.personId) {
+          this.progressStepper.updateStep('discovery', 'completed');
+        }
       },
       error: error => {
         console.error('Failed to load configuration:', error);
         this.loading = false;
-        // Mark discovery as error
-        this.progressStepper.updateStep('discovery', 'error');
+        // Only mark discovery as error if we have a patient
+        if (this.mPage.personId) {
+          this.progressStepper.updateStep('discovery', 'error');
+        }
       }
     });
   }
@@ -4981,9 +4986,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T22:04:10.737Z
-const buildVersion = 'v0.0.106-ui-improvement';
-const packageVersion = '0.0.106';
+// Generated on: 2025-07-12T23:14:39.310Z
+const buildVersion = 'v0.0.107-ui-improvement';
+const packageVersion = '0.0.107';
 const gitBranch = 'ui-improvement';
 
 /***/ })
