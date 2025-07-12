@@ -50,7 +50,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppComponent: () => (/* binding */ AppComponent)
 /* harmony export */ });
-/* harmony import */ var _Users_chadcummings_Github_chadcumm_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var _Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var _document_tracking_document_tracking_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./document-tracking/document-tracking.component */ 5568);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 1699);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ 7947);
@@ -114,7 +114,7 @@ class AppComponent {
   }
   waitForServiceReady() {
     var _this = this;
-    return (0,_Users_chadcummings_Github_chadcumm_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       while (!_this.mPage.serviceReady) {
         // Polling loop to wait for MPage service initialization
         // Service readiness is required before making API calls to Cerner
@@ -1110,6 +1110,17 @@ class DocumentTrackingComponent {
     this.startDownload(downloadData.personId, downloadData.encntrId, downloadData.dmsMediaInstanceRequests);
   }
   /**
+   * Clears all download state to start fresh
+   */
+  clearDownloadState() {
+    console.log('[DocumentTrackingComponent] clearDownloadState() - Clearing all download state');
+    this.downloadQueue = [];
+    this.completedDownloads = [];
+    this.failedDownloads = [];
+    this.downloadedFiles = [];
+    this.showExtractComponent = false;
+  }
+  /**
    * Starts the download process for selected documents
    * @param personId The patient's person ID
    * @param encntrId The patient's encounter ID
@@ -1126,9 +1137,9 @@ class DocumentTrackingComponent {
       console.warn('[DocumentTrackingComponent] startDownload() - No download requests provided');
       return;
     }
+    // Clear previous download state
+    this.clearDownloadState();
     this.isDownloading = true;
-    this.showExtractComponent = false;
-    this.downloadedFiles = [];
     console.log('[DocumentTrackingComponent] startDownload() - Set isDownloading to true');
     // Initialize download queue
     this.downloadQueue = dmsMediaInstanceRequests.map(request => ({
@@ -1195,8 +1206,14 @@ class DocumentTrackingComponent {
               documentType: result.documentType,
               mediaInstanceId: result.mediaInstanceId
             };
-            this.downloadedFiles.push(downloadedFile);
-            console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Added to downloaded files:', downloadedFile);
+            // Check if this file is already in the downloaded files list to prevent duplicates
+            const existingFile = this.downloadedFiles.find(file => file.mediaInstanceId === result.mediaInstanceId);
+            if (!existingFile) {
+              this.downloadedFiles.push(downloadedFile);
+              console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Added to downloaded files:', downloadedFile);
+            } else {
+              console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - File already exists in downloaded files, skipping:', result.mediaInstanceId);
+            }
           }
         } else {
           // Download failed
@@ -1299,6 +1316,12 @@ class DocumentTrackingComponent {
    */
   moveToCompleted(item) {
     console.log('[DocumentTrackingComponent] moveToCompleted() - Moving item to completed list:', item);
+    // Check if this item is already in the completed list to prevent duplicates
+    const existingItem = this.completedDownloads.find(completed => completed.documentId === item.documentId);
+    if (existingItem) {
+      console.log('[DocumentTrackingComponent] moveToCompleted() - Item already exists in completed list, skipping:', item.documentId);
+      return;
+    }
     this.completedDownloads.push(item);
     console.log('[DocumentTrackingComponent] moveToCompleted() - Completed downloads count:', this.completedDownloads.length);
   }
@@ -1308,6 +1331,12 @@ class DocumentTrackingComponent {
    */
   moveToFailed(item) {
     console.log('[DocumentTrackingComponent] moveToFailed() - Moving item to failed list:', item);
+    // Check if this item is already in the failed list to prevent duplicates
+    const existingItem = this.failedDownloads.find(failed => failed.documentId === item.documentId);
+    if (existingItem) {
+      console.log('[DocumentTrackingComponent] moveToFailed() - Item already exists in failed list, skipping:', item.documentId);
+      return;
+    }
     this.failedDownloads.push(item);
     console.log('[DocumentTrackingComponent] moveToFailed() - Failed downloads count:', this.failedDownloads.length);
   }
@@ -3852,9 +3881,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-11T22:17:52.146Z
-const buildVersion = 'v0.0.38-master';
-const packageVersion = '0.0.38';
+// Generated on: 2025-07-12T01:15:30.611Z
+const buildVersion = 'v0.0.41-master';
+const packageVersion = '0.0.41';
 const gitBranch = 'master';
 
 /***/ })
