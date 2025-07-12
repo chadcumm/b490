@@ -1814,44 +1814,132 @@ class ExtractDownloadComponent {
     this.isExtracting = false;
   }
   /**
-  * Downloads the created zip file with authentication
-  */
+   * Downloads the created zip file with MPage authentication
+   * Incorporates patterns from mediagallery-o1.js for proper authentication handling
+   */
   downloadZipFile() {
     var _this = this;
     return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.extractResult?.zipFileUrl) {
         console.log('[ExtractDownloadComponent] downloadZipFile() - Downloading zip file:', _this.extractResult.zipFileUrl);
         try {
-          // Check if URL is HTTP and we're on HTTPS
-          const isHttpsPage = window.location.protocol === 'https:';
-          const isHttpUrl = _this.extractResult.zipFileUrl.startsWith('http://');
-          if (isHttpsPage && isHttpUrl) {
-            console.warn('[ExtractDownloadComponent] downloadZipFile() - Mixed content detected, trying alternative methods');
-            // Try to convert HTTP to HTTPS
-            const httpsUrl = _this.extractResult.zipFileUrl.replace('http://', 'https://');
-            console.log('[ExtractDownloadComponent] downloadZipFile() - Trying HTTPS URL:', httpsUrl);
-            // Test if HTTPS URL works
-            const testResponse = yield fetch(httpsUrl, {
-              method: 'HEAD'
-            });
-            if (testResponse.ok) {
-              console.log('[ExtractDownloadComponent] downloadZipFile() - HTTPS URL works, using it');
-              _this.downloadWithUrl(httpsUrl);
-              return;
-            }
-          }
-          // Fallback to original method
-          _this.downloadWithUrl(_this.extractResult.zipFileUrl);
+          // Use the new authenticated download method
+          yield _this.downloadWithAuthentication(_this.extractResult.zipFileUrl);
         } catch (error) {
           console.error('[ExtractDownloadComponent] downloadZipFile() - Download error:', error);
-          // Show user-friendly error message
-          alert('Download failed due to security restrictions. Please try the alternative download method or contact your administrator.');
+          // Fallback to alternative methods
+          _this.tryAlternativeDownloadMethods();
         }
       }
     })();
   }
   /**
-   * Helper method to perform the actual download
+   * Downloads file with MPage authentication, following patterns from mediagallery-o1.js
+   * @param url The URL to download from
+   */
+  downloadWithAuthentication(url) {
+    var _this2 = this;
+    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Starting authenticated download');
+      // Check for mixed content and try HTTPS if needed
+      const processedUrl = _this2.processUrlForMixedContent(url);
+      // Create XMLHttpRequest for authenticated download
+      const xhr = new XMLHttpRequest();
+      let authPromise = Promise.resolve();
+      // Open the request
+      xhr.open('GET', processedUrl);
+      // Apply MPage authentication if available
+      if (window.MPAGES_SVC_AUTH) {
+        console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
+        // Check if we're in Edge context (following mediagallery-o1.js pattern)
+        if (window.CERN_Platform?.inEdgeContext?.()) {
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH');
+          authPromise = window.MPAGES_SVC_AUTH(xhr);
+        } else {
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, using fallback');
+          // Fallback for non-Edge context (following mediagallery-o1.js pattern)
+          window.location.href = `javascript:window.MPAGES_SVC_AUTH(${xhr})`;
+        }
+      } else {
+        console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
+      }
+      // Wait for authentication to complete, then send request
+      yield authPromise;
+      return new Promise((resolve, reject) => {
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Download successful');
+            // Create blob and download
+            const blob = new Blob([xhr.response], {
+              type: xhr.getResponseHeader('Content-Type') || 'application/zip'
+            });
+            const downloadFilename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
+            _this2.downloadBlob(blob, downloadFilename);
+            resolve();
+          } else {
+            console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Download failed with status:', xhr.status);
+            reject(new Error(`Download failed with status: ${xhr.status}`));
+          }
+        };
+        xhr.onerror = () => {
+          console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Network error during download');
+          reject(new Error('Network error during download'));
+        };
+        // Set response type for binary data
+        xhr.responseType = 'blob';
+        // Send the request
+        xhr.send();
+      });
+    })();
+  }
+  /**
+   * Processes URL to handle mixed content issues
+   * @param url The original URL
+   * @returns Processed URL
+   */
+  processUrlForMixedContent(url) {
+    const isHttpsPage = window.location.protocol === 'https:';
+    const isHttpUrl = url.startsWith('http://');
+    if (isHttpsPage && isHttpUrl) {
+      console.warn('[ExtractDownloadComponent] processUrlForMixedContent() - Mixed content detected, trying HTTPS');
+      return url.replace('http://', 'https://');
+    }
+    return url;
+  }
+  /**
+   * Downloads a blob with the specified filename
+   * @param blob The blob to download
+   * @param filename The filename for the download
+   */
+  downloadBlob(blob, filename) {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    // Clean up the object URL
+    window.URL.revokeObjectURL(url);
+    console.log('[ExtractDownloadComponent] downloadBlob() - Download initiated for:', filename);
+  }
+  /**
+   * Tries alternative download methods if the main method fails
+   */
+  tryAlternativeDownloadMethods() {
+    console.log('[ExtractDownloadComponent] tryAlternativeDownloadMethods() - Trying alternative download methods');
+    if (this.extractResult?.zipFileUrl) {
+      // Try iframe method first
+      this.downloadWithIframe();
+      // If iframe fails, try window.open
+      setTimeout(() => {
+        this.downloadWithWindowOpen();
+      }, 1000);
+    }
+  }
+  /**
+   * Helper method to perform the actual download (legacy method)
    */
   downloadWithUrl(url) {
     const link = document.createElement('a');
@@ -1932,15 +2020,7 @@ class ExtractDownloadComponent {
     if (this.extractResult?.zipFileUrl) {
       console.log('[ExtractDownloadComponent] downloadWithIframe() - Using iframe download method');
       try {
-        // Check if URL is HTTP and we're on HTTPS
-        const isHttpsPage = window.location.protocol === 'https:';
-        const isHttpUrl = this.extractResult.zipFileUrl.startsWith('http://');
-        let downloadUrl = this.extractResult.zipFileUrl;
-        if (isHttpsPage && isHttpUrl) {
-          console.warn('[ExtractDownloadComponent] downloadWithIframe() - Mixed content detected, trying HTTPS');
-          // Try HTTPS version
-          downloadUrl = this.extractResult.zipFileUrl.replace('http://', 'https://');
-        }
+        const downloadUrl = this.processUrlForMixedContent(this.extractResult.zipFileUrl);
         // Create an iframe to handle the download with existing session
         const iframe = document.createElement('iframe');
         iframe.style.display = 'none';
@@ -1966,15 +2046,7 @@ class ExtractDownloadComponent {
     if (this.extractResult?.zipFileUrl) {
       console.log('[ExtractDownloadComponent] downloadWithWindowOpen() - Using window.open method');
       try {
-        // Check if URL is HTTP and we're on HTTPS
-        const isHttpsPage = window.location.protocol === 'https:';
-        const isHttpUrl = this.extractResult.zipFileUrl.startsWith('http://');
-        let downloadUrl = this.extractResult.zipFileUrl;
-        if (isHttpsPage && isHttpUrl) {
-          console.warn('[ExtractDownloadComponent] downloadWithWindowOpen() - Mixed content detected, trying HTTPS');
-          // Try HTTPS version
-          downloadUrl = this.extractResult.zipFileUrl.replace('http://', 'https://');
-        }
+        const downloadUrl = this.processUrlForMixedContent(this.extractResult.zipFileUrl);
         // Open in new window/tab
         const newWindow = window.open(downloadUrl, '_blank', 'noopener,noreferrer');
         if (!newWindow) {
@@ -4318,9 +4390,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T03:40:10.179Z
-const buildVersion = 'v0.0.61-master';
-const packageVersion = '0.0.61';
+// Generated on: 2025-07-12T03:59:01.730Z
+const buildVersion = 'v0.0.63-master';
+const packageVersion = '0.0.63';
 const gitBranch = 'master';
 
 /***/ })
