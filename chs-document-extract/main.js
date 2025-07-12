@@ -1861,13 +1861,11 @@ class ExtractDownloadComponent {
       // Make XMLHttpRequest globally accessible (following mediagallery-o1.js pattern)
       window.g_ExtractDownloadXMLHttpRequestObj = xhr;
       let authPromise = Promise.resolve();
-      // Open the request BEFORE authentication (following mediagallery-o1.js pattern)
-      xhr.open('GET', processedUrl);
-      // Set response type AFTER open but BEFORE authentication
-      xhr.responseType = 'blob';
       // Apply MPage authentication if available
       if (window.MPAGES_SVC_AUTH) {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
+        // Open the request BEFORE authentication (following mediagallery-o1.js pattern)
+        xhr.open('GET', processedUrl);
         // Check if we're in Edge context (following mediagallery-o1.js pattern)
         if (window.CERN_Platform?.inEdgeContext?.()) {
           console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH directly');
@@ -1881,6 +1879,8 @@ class ExtractDownloadComponent {
         }
       } else {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
+        // Open the request if no authentication is available
+        xhr.open('GET', processedUrl);
       }
       // Wait for authentication to complete (only in Edge context where it returns a promise)
       yield authPromise;
@@ -1910,6 +1910,8 @@ class ExtractDownloadComponent {
           delete window.g_ExtractDownloadXMLHttpRequestObj;
           reject(new Error('Network error during download'));
         };
+        // Set response type AFTER authentication but BEFORE sending
+        xhr.responseType = 'blob';
         // Send the request AFTER all setup is complete
         xhr.send();
       });
@@ -4363,9 +4365,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T04:22:17.999Z
-const buildVersion = 'v0.0.70-master';
-const packageVersion = '0.0.70';
+// Generated on: 2025-07-12T04:28:41.509Z
+const buildVersion = 'v0.0.71-master';
+const packageVersion = '0.0.71';
 const gitBranch = 'master';
 
 /***/ })
