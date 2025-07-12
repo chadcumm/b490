@@ -1213,41 +1213,6 @@ class DocumentTrackingComponent {
     // Handle extract completion - could show success message or reset state
   }
   /**
-   * Handles successful download response
-   * @param response The download response from the service
-   */
-  handleDownloadResponse(response) {
-    console.log('[DocumentTrackingComponent] handleDownloadResponse() - Processing download response:', response);
-    // Process each download result
-    response.downloadResults.forEach((result, index) => {
-      console.log('[DocumentTrackingComponent] handleDownloadResponse() - Processing result:', result);
-      // Find corresponding item in download queue
-      const queueItem = this.downloadQueue.find(item => item.documentId === result.mediaInstanceId.toString());
-      if (queueItem) {
-        console.log('[DocumentTrackingComponent] handleDownloadResponse() - Found queue item:', queueItem);
-        if (result.status === 1) {
-          // Download successful
-          console.log('[DocumentTrackingComponent] handleDownloadResponse() - Download successful for:', result.mediaInstanceId);
-          queueItem.status = 'completed';
-          queueItem.progress = 100;
-          this.moveToCompleted(queueItem);
-        } else {
-          // Download failed
-          console.log('[DocumentTrackingComponent] handleDownloadResponse() - Download failed for:', result.mediaInstanceId, 'Error:', result.message);
-          queueItem.status = 'failed';
-          queueItem.error = result.message;
-          this.moveToFailed(queueItem);
-        }
-      } else {
-        console.warn('[DocumentTrackingComponent] handleDownloadResponse() - No queue item found for mediaInstanceId:', result.mediaInstanceId);
-      }
-    });
-    // Clear download queue after processing
-    console.log('[DocumentTrackingComponent] handleDownloadResponse() - Clearing download queue and setting isDownloading to false');
-    this.isDownloading = false;
-    this.downloadQueue = [];
-  }
-  /**
    * Handles download errors
    * @param error The error from the download service
    */
@@ -1491,179 +1456,226 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ExtractDownloadComponent_span_9_Template(rf, ctx) {
+function ExtractDownloadComponent_span_7_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u23F3");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-}
-function ExtractDownloadComponent_span_10_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 21);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2713");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_span_11_Template(rf, ctx) {
+function ExtractDownloadComponent_span_18_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 22);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2717");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2713");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_span_12_Template(rf, ctx) {
+function ExtractDownloadComponent_span_19_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 23);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\uD83D\uDCC1");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u23F3");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_div_16_Template(rf, ctx) {
+function ExtractDownloadComponent_div_23_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](1, "div", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "ZIP archive preparation");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_div_24_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵstyleProp"]("width", ctx_r4.extractProgress, "%");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("", ctx_r4.extractProgress, "% complete");
   }
 }
-function ExtractDownloadComponent_button_20_Template(rf, ctx) {
+function ExtractDownloadComponent_span_30_Template(rf, ctx) {
   if (rf & 1) {
-    const _r10 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_button_20_Template_button_click_0_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r10);
-      const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r9.downloadWithMPagesAuth());
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2713");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_span_45_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u23F3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_span_46_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2713");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_span_47_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 37);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u2717");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_span_48_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 38);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\uD83D\uDCC1");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function ExtractDownloadComponent_div_52_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](1, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵstyleProp"]("width", ctx_r10.extractProgress, "%");
+  }
+}
+function ExtractDownloadComponent_button_56_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r16 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "button", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_button_56_Template_button_click_0_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r16);
+      const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r15.downloadWithMPagesAuth());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " \uD83D\uDCE5 Download ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_div_21_div_4_span_1_Template(rf, ctx) {
+function ExtractDownloadComponent_div_57_div_4_span_1_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 50);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\uD83D\uDD10");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_div_21_div_4_span_2_Template(rf, ctx) {
+function ExtractDownloadComponent_div_57_div_4_span_2_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span", 51);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "\u26A0\uFE0F");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function ExtractDownloadComponent_div_21_div_4_Template(rf, ctx) {
+function ExtractDownloadComponent_div_57_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](1, ExtractDownloadComponent_div_21_div_4_span_1_Template, 2, 0, "span", 33);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, ExtractDownloadComponent_div_21_div_4_span_2_Template, 2, 0, "span", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](1, ExtractDownloadComponent_div_57_div_4_span_1_Template, 2, 0, "span", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, ExtractDownloadComponent_div_57_div_4_span_2_Template, 2, 0, "span", 49);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
+    const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r11.isMPageAuthAvailable());
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r17.isMPageAuthAvailable());
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", !ctx_r11.isMPageAuthAvailable());
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", !ctx_r17.isMPageAuthAvailable());
   }
 }
-function ExtractDownloadComponent_div_21_div_6_Template(rf, ctx) {
+function ExtractDownloadComponent_div_57_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 37)(1, "div", 38)(2, "span", 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 52)(1, "div", 53)(2, "span", 54);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "span", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "span", 55);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const file_r15 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("title", file_r15.filename);
+    const file_r21 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("title", file_r21.filename);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r15.documentType);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r21.documentType);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r15.documentName || file_r15.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r21.documentName || file_r21.filename);
   }
 }
-function ExtractDownloadComponent_div_21_Template(rf, ctx) {
+function ExtractDownloadComponent_div_57_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 27)(1, "div", 28)(2, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 42)(1, "div", 43)(2, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_21_div_4_Template, 3, 2, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_57_div_4_Template, 3, 2, "div", 44);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "div", 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_21_div_6_Template, 6, 3, "div", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "div", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_57_div_6_Template, 6, 3, "div", 46);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+    const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("Files (", ctx_r6.downloadedFiles.length, ")");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("Files (", ctx_r12.downloadedFiles.length, ")");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r6.shouldShowDownloadButton());
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r12.shouldShowDownloadButton());
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngForOf", ctx_r6.downloadedFiles)("ngForTrackBy", ctx_r6.trackByFilename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngForOf", ctx_r12.downloadedFiles)("ngForTrackBy", ctx_r12.trackByFilename);
   }
 }
-function ExtractDownloadComponent_div_22_div_6_Template(rf, ctx) {
+function ExtractDownloadComponent_div_58_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 43)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 58)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Files:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
+    const ctx_r22 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r16.extractResult == null ? null : ctx_r16.extractResult.extractInfo == null ? null : ctx_r16.extractResult.extractInfo.fileCount, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r22.extractResult == null ? null : ctx_r22.extractResult.extractInfo == null ? null : ctx_r22.extractResult.extractInfo.fileCount, " ");
   }
 }
-function ExtractDownloadComponent_div_22_div_7_Template(rf, ctx) {
+function ExtractDownloadComponent_div_58_div_7_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 43)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 58)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Metadata:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const ctx_r17 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
+    const ctx_r23 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r17.extractResult == null ? null : ctx_r17.extractResult.metadataFile, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx_r23.extractResult == null ? null : ctx_r23.extractResult.metadataFile, " ");
   }
 }
-function ExtractDownloadComponent_div_22_Template(rf, ctx) {
+function ExtractDownloadComponent_div_58_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 41)(1, "div", 42)(2, "div", 43)(3, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 56)(1, "div", 57)(2, "div", 58)(3, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, "ZIP:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_22_div_6_Template, 4, 1, "div", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_22_div_7_Template, 4, 1, "div", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_58_div_6_Template, 4, 1, "div", 59);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_58_div_7_Template, 4, 1, "div", 59);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+    const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", (ctx_r7.extractResult == null ? null : ctx_r7.extractResult.zipFileName) || "extracted_documents.zip", " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", (ctx_r13.extractResult == null ? null : ctx_r13.extractResult.zipFileName) || "extracted_documents.zip", " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r7.extractResult == null ? null : ctx_r7.extractResult.extractInfo == null ? null : ctx_r7.extractResult.extractInfo.fileCount);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r13.extractResult == null ? null : ctx_r13.extractResult.extractInfo == null ? null : ctx_r13.extractResult.extractInfo.fileCount);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r7.extractResult == null ? null : ctx_r7.extractResult.metadataFile);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx_r13.extractResult == null ? null : ctx_r13.extractResult.metadataFile);
   }
 }
-function ExtractDownloadComponent_div_23_Template(rf, ctx) {
+function ExtractDownloadComponent_div_59_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 45)(1, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 60)(1, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "\uD83D\uDCC4 No files ready for extract");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "small");
@@ -1762,50 +1774,23 @@ class ExtractDownloadComponent {
     this.isExtracting = false;
   }
   /**
-   * Downloads the created zip file with MPage authentication
-   * Incorporates patterns from mediagallery-o1.js for proper authentication handling
-   */
-  downloadZipFile() {
-    var _this = this;
-    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (_this.extractResult?.zipFileUrl) {
-        console.log('[ExtractDownloadComponent] downloadZipFile() - Downloading zip file:', _this.extractResult.zipFileUrl);
-        try {
-          // Use the new authenticated download method
-          yield _this.downloadWithAuthentication(_this.extractResult.zipFileUrl);
-        } catch (error) {
-          console.error('[ExtractDownloadComponent] downloadZipFile() - Download error:', error);
-          // Try the Basic Auth method as fallback
-          console.log('[ExtractDownloadComponent] downloadZipFile() - Trying Basic Auth fallback');
-          try {
-            yield _this.downloadWithFileTransfer();
-          } catch (fallbackError) {
-            console.error('[ExtractDownloadComponent] downloadZipFile() - Basic Auth fallback also failed:', fallbackError);
-            // Show user-friendly error message
-            alert('Download failed. Please try again or contact your administrator.');
-          }
-        }
-      }
-    })();
-  }
-  /**
    * Downloads the created zip file using MPAGES_SVC_AUTH
    * This method follows the pattern from mediagallery-o1.js for Edge authentication
    */
   downloadWithMPagesAuth() {
-    var _this2 = this;
+    var _this = this;
     return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      if (!_this2.extractResult?.downloadUrl) {
+      if (!_this.extractResult?.downloadUrl) {
         console.warn('[ExtractDownloadComponent] downloadWithMPagesAuth() - No downloadUrl available');
         alert('No download URL available.');
         return;
       }
       console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Starting MPages authenticated download');
-      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download URL:', _this2.extractResult.downloadUrl);
-      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Extract Result:', _this2.extractResult);
+      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download URL:', _this.extractResult.downloadUrl);
+      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Extract Result:', _this.extractResult);
       try {
         // Use the downloadUrl from the service
-        const downloadUrl = _this2.extractResult.downloadUrl;
+        const downloadUrl = _this.extractResult.downloadUrl;
         // Create XMLHttpRequest for authenticated download
         const xhr = new XMLHttpRequest();
         // Open the request
@@ -1827,11 +1812,14 @@ class ExtractDownloadComponent {
           xhr.onload = () => {
             if (xhr.status === 200) {
               console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download successful');
-              // Get the blob response
-              const blob = xhr.response;
+              // Get the blob response and ensure it has the correct MIME type
+              const originalBlob = xhr.response;
+              const blob = new Blob([originalBlob], {
+                type: 'application/zip'
+              });
               // Use the descriptive filename from the extract response
-              let filename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
-              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Original filename:', _this2.extractResult?.zipFileName);
+              let filename = _this.extractResult?.zipFileName || 'extracted_documents.zip';
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Original filename:', _this.extractResult?.zipFileName);
               console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Filename before extension check:', filename);
               // Ensure filename has .zip extension
               if (!filename.toLowerCase().endsWith('.zip')) {
@@ -1839,7 +1827,7 @@ class ExtractDownloadComponent {
               }
               console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Final filename:', filename);
               console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Blob size:', blob.size);
-              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Blob type:', blob.type);
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Blob type (corrected):', blob.type);
               // Create a temporary URL for the blob
               const url = window.URL.createObjectURL(blob);
               // Create a download link
@@ -1848,7 +1836,7 @@ class ExtractDownloadComponent {
               link.download = filename;
               // In Edge/Chrome, we can use the File System Access API for save dialog
               if ('showSaveFilePicker' in window) {
-                _this2.saveWithFileSystemAPI(blob, filename).then(() => resolve()).catch(() => {
+                _this.saveWithFileSystemAPI(blob, filename).then(() => resolve()).catch(() => {
                   // Fallback to standard download
                   document.body.appendChild(link);
                   link.click();
@@ -1917,179 +1905,6 @@ class ExtractDownloadComponent {
         throw error;
       }
     })();
-  }
-  /**
-   * Downloads using the downloadUrl with embedded credentials
-   */
-  downloadWithUrlCredentials() {
-    if (this.extractResult?.downloadUrl) {
-      console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Downloading with URL credentials:', this.extractResult.downloadUrl);
-      console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Extract Result:', this.extractResult);
-      // Get system credentials and embed them in the URL
-      this.documentService.getSystemCredentials().subscribe({
-        next: credentials => {
-          console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Got credentials for user:', credentials.username);
-          try {
-            // Create URL with embedded credentials manually to avoid URL encoding issues
-            const downloadUrl = this.extractResult.downloadUrl;
-            const url = new URL(downloadUrl);
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Original download URL:', downloadUrl);
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Parsed URL parts:', {
-              protocol: url.protocol,
-              host: url.host,
-              pathname: url.pathname,
-              search: url.search
-            });
-            // Manually construct the URL with credentials to avoid encoding issues
-            const protocol = url.protocol;
-            const host = url.host;
-            const pathname = url.pathname;
-            const search = url.search;
-            // Create URL with credentials in the format: protocol://username:password@host/path
-            const urlWithCredentials = `${protocol}//${credentials.username}:${credentials.password}@${host}${pathname}${search}`;
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Final URL with credentials:', urlWithCredentials);
-            // Create download link
-            const link = document.createElement('a');
-            link.href = urlWithCredentials;
-            let downloadFilename = this.extractResult?.zipFileName || 'extracted_documents.zip';
-            if (!downloadFilename.toLowerCase().endsWith('.zip')) {
-              downloadFilename += '.zip';
-            }
-            link.download = downloadFilename;
-            // Remove target="_blank" to prevent cross-origin SecurityError
-            link.style.display = 'none';
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Download filename:', downloadFilename);
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Link element created:', {
-              href: link.href,
-              download: link.download
-            });
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Download initiated');
-          } catch (error) {
-            console.error('[ExtractDownloadComponent] downloadWithUrlCredentials() - Error creating URL:', error);
-            alert('Failed to create download URL. Please try another method.');
-          }
-        },
-        error: error => {
-          console.error('[ExtractDownloadComponent] downloadWithUrlCredentials() - Error getting credentials:', error);
-          alert('Failed to get system credentials. Please try another method.');
-        }
-      });
-    } else {
-      console.warn('[ExtractDownloadComponent] downloadWithUrlCredentials() - No downloadUrl available');
-      alert('No download URL available.');
-    }
-  }
-  /**
-   * Downloads file with MPage authentication, following patterns from mediagallery-o1.js
-   * @param url The URL to download from
-   */
-  downloadWithAuthentication(url) {
-    var _this3 = this;
-    return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Starting authenticated download');
-      // Check for mixed content and try HTTPS if needed
-      const processedUrl = _this3.processUrlForMixedContent(url);
-      // Create XMLHttpRequest for authenticated download
-      const xhr = new XMLHttpRequest();
-      // Make XMLHttpRequest globally accessible (following mediagallery-o1.js pattern)
-      window.g_ExtractDownloadXMLHttpRequestObj = xhr;
-      // Open the request first
-      xhr.open('GET', processedUrl);
-      // Apply MPage authentication if available
-      if (window.MPAGES_SVC_AUTH) {
-        console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
-        // Apply MPAGES_SVC_AUTH directly (from discern meta declarations)
-        try {
-          yield window.MPAGES_SVC_AUTH(xhr);
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH applied successfully');
-        } catch (error) {
-          console.warn('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH failed, continuing without auth:', error);
-        }
-      } else {
-        console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
-      }
-      return new Promise((resolve, reject) => {
-        xhr.onload = () => {
-          if (xhr.status === 200) {
-            console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Download successful');
-            // Create blob and download
-            const blob = new Blob([xhr.response], {
-              type: xhr.getResponseHeader('Content-Type') || 'application/zip'
-            });
-            const downloadFilename = _this3.extractResult?.zipFileName || 'extracted_documents.zip';
-            _this3.downloadBlob(blob, downloadFilename);
-            // Clean up global reference
-            delete window.g_ExtractDownloadXMLHttpRequestObj;
-            resolve();
-          } else {
-            console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Download failed with status:', xhr.status);
-            // Clean up global reference
-            delete window.g_ExtractDownloadXMLHttpRequestObj;
-            reject(new Error(`Download failed with status: ${xhr.status}`));
-          }
-        };
-        xhr.onerror = () => {
-          console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Network error during download');
-          // Clean up global reference
-          delete window.g_ExtractDownloadXMLHttpRequestObj;
-          reject(new Error('Network error during download'));
-        };
-        // Set response type for binary data
-        xhr.responseType = 'blob';
-        // Send the request
-        xhr.send();
-      });
-    })();
-  }
-  /**
-   * Processes URL to handle mixed content issues
-   * @param url The original URL
-   * @returns Processed URL
-   */
-  processUrlForMixedContent(url) {
-    const isHttpsPage = window.location.protocol === 'https:';
-    const isHttpUrl = url.startsWith('http://');
-    if (isHttpsPage && isHttpUrl) {
-      console.warn('[ExtractDownloadComponent] processUrlForMixedContent() - Mixed content detected, trying HTTPS');
-      return url.replace('http://', 'https://');
-    }
-    return url;
-  }
-  /**
-   * Downloads a blob with the specified filename
-   * @param blob The blob to download
-   * @param filename The filename for the download
-   */
-  downloadBlob(blob, filename) {
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    // Clean up the object URL
-    window.URL.revokeObjectURL(url);
-    console.log('[ExtractDownloadComponent] downloadBlob() - Download initiated for:', filename);
-  }
-  /**
-   * Helper method to perform the actual download (legacy method)
-   */
-  downloadWithUrl(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    // Use the descriptive filename from the extract response
-    const downloadFilename = this.extractResult?.zipFileName || 'extracted_documents.zip';
-    console.log('[ExtractDownloadComponent] downloadWithUrl() - Using filename for download:', downloadFilename);
-    link.download = downloadFilename;
-    // Remove target="_blank" to prevent cross-origin SecurityError
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
   /**
    * Gets the extract button text based on current state
@@ -2175,18 +1990,27 @@ class ExtractDownloadComponent {
       this.documentService.downloadExtractFile(fileName, nodeName).subscribe({
         next: blob => {
           console.log('[ExtractDownloadComponent] downloadWithFileTransfer() - Download successful');
+          // Ensure proper filename with .zip extension
+          let downloadFileName = fileName;
+          if (!downloadFileName.toLowerCase().endsWith('.zip')) {
+            downloadFileName += '.zip';
+          }
+          // Create blob with correct MIME type
+          const zipBlob = new Blob([blob], {
+            type: 'application/zip'
+          });
           // Create download link for the blob
-          const url = window.URL.createObjectURL(blob);
+          const url = window.URL.createObjectURL(zipBlob);
           const link = document.createElement('a');
           link.href = url;
-          link.download = fileName;
+          link.download = downloadFileName;
           link.style.display = 'none';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           // Clean up the object URL
           window.URL.revokeObjectURL(url);
-          console.log('[ExtractDownloadComponent] downloadWithFileTransfer() - File download initiated');
+          console.log('[ExtractDownloadComponent] downloadWithFileTransfer() - File download initiated for:', downloadFileName);
         },
         error: error => {
           console.error('[ExtractDownloadComponent] downloadWithFileTransfer() - Download error:', error);
@@ -2205,6 +2029,52 @@ class ExtractDownloadComponent {
   shouldShowFileTransferButton() {
     return this.extractResult?.success === true && !!this.extractResult.zipFileName;
   }
+  /**
+   * Gets the CSS class for a progress step
+   * @param step The step identifier
+   * @returns CSS class name
+   */
+  getStepClass(step) {
+    switch (step) {
+      case 'files':
+        return this.downloadedFiles.length > 0 ? 'step-completed' : 'step-pending';
+      case 'extract':
+        if (this.isExtracting) {
+          return 'step-active';
+        }
+        if (this.extractResult?.success) {
+          return 'step-completed';
+        }
+        if (this.downloadedFiles.length > 0) {
+          return 'step-pending';
+        }
+        return 'step-pending';
+      case 'download':
+        if (this.extractResult?.success) {
+          return 'step-active';
+        }
+        return 'step-pending';
+      default:
+        return 'step-pending';
+    }
+  }
+  /**
+   * Gets the CSS class for a step connector
+   * @param fromStep The starting step
+   * @param toStep The ending step
+   * @returns CSS class name
+   */
+  getConnectorClass(fromStep, toStep) {
+    const fromStepClass = this.getStepClass(fromStep);
+    const toStepClass = this.getStepClass(toStep);
+    if (fromStepClass === 'step-completed' && (toStepClass === 'step-active' || toStepClass === 'step-completed')) {
+      return 'connector-completed';
+    }
+    if (fromStepClass === 'step-completed' || fromStepClass === 'step-active') {
+      return 'connector-active';
+    }
+    return '';
+  }
   static #_ = this.ɵfac = function ExtractDownloadComponent_Factory(t) {
     return new (t || ExtractDownloadComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_services_document_extract_service__WEBPACK_IMPORTED_MODULE_1__.DocumentExtractService));
   };
@@ -2219,42 +2089,101 @@ class ExtractDownloadComponent {
     outputs: {
       extractComplete: "extractComplete"
     },
-    decls: 24,
-    vars: 14,
-    consts: [[1, "extract-download-container"], [1, "main-controls"], [1, "control-section"], [1, "status-and-controls"], [1, "status-area"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], [1, "progress-area"], ["class", "progress-bar", 4, "ngIf"], [1, "action-buttons"], [1, "btn", "btn-primary", "btn-sm", 3, "disabled", "click"], ["class", "btn btn-success btn-sm", "title", "Download ZIP file", 3, "click", 4, "ngIf"], ["class", "files-section", 4, "ngIf"], ["class", "extract-info", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-bar"], [1, "progress-fill"], ["title", "Download ZIP file", 1, "btn", "btn-success", "btn-sm", 3, "click"], [1, "files-section"], [1, "files-header"], ["class", "auth-indicator", 4, "ngIf"], [1, "compact-file-list"], ["class", "compact-file-item", 3, "title", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "auth-indicator"], ["class", "auth-ok", 4, "ngIf"], ["class", "auth-alt", 4, "ngIf"], [1, "auth-ok"], [1, "auth-alt"], [1, "compact-file-item", 3, "title"], [1, "file-main"], [1, "file-type"], [1, "file-name"], [1, "extract-info"], [1, "info-grid"], [1, "info-item"], ["class", "info-item", 4, "ngIf"], [1, "no-files"]],
+    decls: 60,
+    vars: 31,
+    consts: [[1, "extract-download-container"], [1, "layout-wrapper"], [1, "progress-stepper"], [1, "step"], [1, "step-indicator"], [1, "step-number"], ["class", "step-check", 4, "ngIf"], [1, "step-content"], [1, "step-title"], [1, "step-description"], [1, "step-connector"], ["class", "step-spinner", 4, "ngIf"], ["class", "step-description", 4, "ngIf"], [1, "main-content"], [1, "main-controls"], [1, "control-section"], [1, "status-and-controls"], [1, "status-area"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], [1, "progress-area"], ["class", "progress-bar", 4, "ngIf"], [1, "action-buttons"], [1, "btn", "btn-primary", "btn-sm", 3, "disabled", "click"], ["class", "btn btn-success btn-sm", "title", "Download ZIP file", 3, "click", 4, "ngIf"], ["class", "files-section", 4, "ngIf"], ["class", "extract-info", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "step-check"], [1, "step-spinner"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-bar"], [1, "progress-fill"], ["title", "Download ZIP file", 1, "btn", "btn-success", "btn-sm", 3, "click"], [1, "files-section"], [1, "files-header"], ["class", "auth-indicator", 4, "ngIf"], [1, "compact-file-list"], ["class", "compact-file-item", 3, "title", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "auth-indicator"], ["class", "auth-ok", 4, "ngIf"], ["class", "auth-alt", 4, "ngIf"], [1, "auth-ok"], [1, "auth-alt"], [1, "compact-file-item", 3, "title"], [1, "file-main"], [1, "file-type"], [1, "file-name"], [1, "extract-info"], [1, "info-grid"], [1, "info-item"], ["class", "info-item", 4, "ngIf"], [1, "no-files"]],
     template: function ExtractDownloadComponent_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h3");
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, "Extract & Download");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "div", 3)(4, "div", 4)(5, "span", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](6, "1");
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "div", 3)(6, "div", 4)(7, "div", 5)(8, "span", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](9, ExtractDownloadComponent_span_9_Template, 2, 0, "span", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](10, ExtractDownloadComponent_span_10_Template, 2, 0, "span", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](11, ExtractDownloadComponent_span_11_Template, 2, 0, "span", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](12, ExtractDownloadComponent_span_12_Template, 2, 0, "span", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_span_7_Template, 2, 0, "span", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](13, "span", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](8, "div", 7)(9, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](10, "Files Ready");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](11, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](13, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](14, "div", 3)(15, "div", 4)(16, "span", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](17, "2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](18, ExtractDownloadComponent_span_18_Template, 2, 0, "span", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](19, ExtractDownloadComponent_span_19_Template, 2, 0, "span", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](20, "div", 7)(21, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](22, "Create Extract");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](23, ExtractDownloadComponent_div_23_Template, 2, 0, "div", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](24, ExtractDownloadComponent_div_24_Template, 2, 1, "div", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](15, "div", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](16, ExtractDownloadComponent_div_16_Template, 2, 2, "div", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](25, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](26, "div", 3)(27, "div", 4)(28, "span", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](29, "3");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](30, ExtractDownloadComponent_span_30_Template, 2, 0, "span", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](31, "div", 7)(32, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](33, "Download");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](34, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](35, "Save ZIP to device");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](36, "div", 13)(37, "div", 14)(38, "div", 15)(39, "h3");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](40, "Extract & Download");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](41, "div", 16)(42, "div", 17)(43, "div", 18)(44, "span", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](45, ExtractDownloadComponent_span_45_Template, 2, 0, "span", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](46, ExtractDownloadComponent_span_46_Template, 2, 0, "span", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](47, ExtractDownloadComponent_span_47_Template, 2, 0, "span", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](48, ExtractDownloadComponent_span_48_Template, 2, 0, "span", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](49, "span", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](50);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](17, "div", 14)(18, "button", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_Template_button_click_18_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](51, "div", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](52, ExtractDownloadComponent_div_52_Template, 2, 2, "div", 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](53, "div", 27)(54, "button", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_Template_button_click_54_listener() {
           return ctx.startExtract();
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](55);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](20, ExtractDownloadComponent_button_20_Template, 2, 0, "button", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](56, ExtractDownloadComponent_button_56_Template, 2, 0, "button", 29);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](21, ExtractDownloadComponent_div_21_Template, 7, 4, "div", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](22, ExtractDownloadComponent_div_22_Template, 8, 3, "div", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](23, ExtractDownloadComponent_div_23_Template, 5, 0, "div", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](57, ExtractDownloadComponent_div_57_Template, 7, 4, "div", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](58, ExtractDownloadComponent_div_58_Template, 8, 3, "div", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](59, ExtractDownloadComponent_div_59_Template, 5, 0, "div", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()()();
       }
       if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getStepClass("files"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.getStepClass("files") === "step-completed");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("", ctx.downloadedFiles.length, " files available");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getConnectorClass("files", "extract"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getStepClass("extract"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.getStepClass("extract") === "step-completed");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.isExtracting);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", !ctx.isExtracting);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.isExtracting);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getConnectorClass("extract", "download"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getStepClass("download"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.getStepClass("download") === "step-completed");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](13);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵclassMap"](ctx.getExtractStatusClass());
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.isExtracting);
@@ -2283,7 +2212,7 @@ class ExtractDownloadComponent {
       }
     },
     dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf],
-    styles: [".extract-download-container[_ngcontent-%COMP%] {\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 8px;\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n}\n\n.extract-header[_ngcontent-%COMP%] {\n  margin-bottom: 16px;\n  text-align: center;\n}\n.extract-header[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n  margin: 0 0 6px 0;\n  color: #333;\n  font-size: 14px;\n  font-weight: 600;\n}\n.extract-header[_ngcontent-%COMP%]   .extract-description[_ngcontent-%COMP%] {\n  margin: 0;\n  color: #666;\n  font-size: 11px;\n}\n\n.extract-status[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 6px;\n  border-radius: 6px;\n  margin-bottom: 8px;\n  border-left: 3px solid transparent;\n}\n.extract-status.status-ready[_ngcontent-%COMP%] {\n  background-color: #f8f9fa;\n  border-left-color: #6c757d;\n}\n.extract-status.status-extracting[_ngcontent-%COMP%] {\n  background-color: #d1ecf1;\n  border-left-color: #17a2b8;\n}\n.extract-status.status-success[_ngcontent-%COMP%] {\n  background-color: #d4edda;\n  border-left-color: #28a745;\n}\n.extract-status.status-failed[_ngcontent-%COMP%] {\n  background-color: #f8d7da;\n  border-left-color: #dc3545;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%] {\n  font-size: 20px;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .spinner[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_spin 1s linear infinite;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .success-icon[_ngcontent-%COMP%] {\n  color: #28a745;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .error-icon[_ngcontent-%COMP%] {\n  color: #dc3545;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .ready-icon[_ngcontent-%COMP%] {\n  color: #6c757d;\n}\n.extract-status[_ngcontent-%COMP%]   .status-text[_ngcontent-%COMP%] {\n  flex: 1;\n  font-weight: 500;\n  color: #333;\n}\n\n@keyframes _ngcontent-%COMP%_spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n.progress-container[_ngcontent-%COMP%] {\n  margin-bottom: 8px;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-bar[_ngcontent-%COMP%] {\n  height: 8px;\n  background-color: #e9ecef;\n  border-radius: 4px;\n  overflow: hidden;\n  margin-bottom: 8px;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-bar[_ngcontent-%COMP%]   .progress-fill[_ngcontent-%COMP%] {\n  height: 100%;\n  background: linear-gradient(90deg, #007bff, #0056b3);\n  transition: width 0.3s ease;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-text[_ngcontent-%COMP%] {\n  text-align: center;\n  font-size: 12px;\n  color: #666;\n}\n\n.extract-actions[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-bottom: 8px;\n}\n\n.download-section[_ngcontent-%COMP%] {\n  background: #f8f9fa;\n  border-radius: 6px;\n  padding: 8px;\n  margin-bottom: 8px;\n  text-align: center;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%] {\n  margin-bottom: 16px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin: 0 0 8px 0;\n  color: #333;\n  font-size: 16px;\n  font-weight: 600;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 12px 0;\n  color: #666;\n  font-size: 14px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%] {\n  text-align: left;\n  background: white;\n  padding: 12px;\n  border-radius: 6px;\n  margin-top: 12px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-detail[_ngcontent-%COMP%] {\n  margin-bottom: 4px;\n  font-size: 12px;\n  color: #666;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-detail[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.download-section[_ngcontent-%COMP%]   .download-actions[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 12px;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n.download-section[_ngcontent-%COMP%]   .download-actions[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%] {\n  min-width: 120px;\n  font-size: 14px;\n  padding: 10px 16px;\n}\n\n.file-summary[_ngcontent-%COMP%] {\n  background: #ffffff;\n  border-radius: 6px;\n  padding: 8px;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);\n  margin-bottom: 8px;\n}\n.file-summary[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin: 0 0 16px 0;\n  color: #333;\n  font-size: 16px;\n  font-weight: 600;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%] {\n  padding: 12px;\n  border-bottom: 1px solid #e9ecef;\n  transition: background-color 0.2s ease;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]:last-child {\n  border-bottom: none;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]:hover {\n  background-color: #f8f9fa;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-name[_ngcontent-%COMP%] {\n  font-weight: 500;\n  color: #333;\n  margin-bottom: 4px;\n  font-size: 14px;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 12px;\n  font-size: 12px;\n  color: #666;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%]   .file-type[_ngcontent-%COMP%] {\n  background: #e9ecef;\n  padding: 2px 6px;\n  border-radius: 4px;\n  font-weight: 500;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%]   .file-path[_ngcontent-%COMP%] {\n  font-family: monospace;\n  color: #999;\n}\n\n.no-files[_ngcontent-%COMP%] {\n  text-align: center;\n  padding: 24px;\n  color: #666;\n  font-size: 14px;\n}\n.no-files[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 8px 0;\n}\n.no-files[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n\n.auth-status[_ngcontent-%COMP%] {\n  margin-top: 8px;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%] {\n  font-size: 11px;\n  font-weight: 500;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%]   .auth-available[_ngcontent-%COMP%] {\n  color: #28a745;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%]   .auth-unavailable[_ngcontent-%COMP%] {\n  color: #ffc107;\n}\n\n.btn[_ngcontent-%COMP%] {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  text-decoration: none;\n  display: inline-block;\n}\n.btn[_ngcontent-%COMP%]:disabled {\n  opacity: 0.6;\n  cursor: not-allowed;\n}\n.btn.btn-primary[_ngcontent-%COMP%] {\n  background-color: #007bff;\n  color: white;\n}\n.btn.btn-primary[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background-color: #0056b3;\n}\n.btn.btn-success[_ngcontent-%COMP%] {\n  background-color: #28a745;\n  color: white;\n}\n.btn.btn-success[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background-color: #1e7e34;\n}\n\n@media (max-width: 768px) {\n  .extract-download-container[_ngcontent-%COMP%] {\n    padding: 16px;\n  }\n  .extract-status[_ngcontent-%COMP%] {\n    flex-direction: column;\n    text-align: center;\n    gap: 8px;\n  }\n  .file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%] {\n    flex-direction: column;\n    gap: 4px;\n  }\n}\n@media (max-width: 480px) {\n  .control-section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    font-size: 14px;\n  }\n  .btn[_ngcontent-%COMP%] {\n    padding: 6px 10px;\n    font-size: 12px;\n  }\n  .compact-file-item[_ngcontent-%COMP%]   .file-main[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 4px;\n  }\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZXh0cmFjdC1kb3dubG9hZC9leHRyYWN0LWRvd25sb2FkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtFQUNBLDREQUFBO0FBQ0Y7O0FBRUE7RUFDRSxtQkFBQTtFQUNBLGtCQUFBO0FBQ0Y7QUFDRTtFQUNFLGlCQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQUNKO0FBRUU7RUFDRSxTQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7QUFBSjs7QUFJQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFFBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLGtDQUFBO0FBREY7QUFHRTtFQUNFLHlCQUFBO0VBQ0EsMEJBQUE7QUFESjtBQUlFO0VBQ0UseUJBQUE7RUFDQSwwQkFBQTtBQUZKO0FBS0U7RUFDRSx5QkFBQTtFQUNBLDBCQUFBO0FBSEo7QUFNRTtFQUNFLHlCQUFBO0VBQ0EsMEJBQUE7QUFKSjtBQU9FO0VBQ0UsZUFBQTtBQUxKO0FBT0k7RUFDRSxrQ0FBQTtBQUxOO0FBUUk7RUFDRSxjQUFBO0FBTk47QUFTSTtFQUNFLGNBQUE7QUFQTjtBQVVJO0VBQ0UsY0FBQTtBQVJOO0FBWUU7RUFDRSxPQUFBO0VBQ0EsZ0JBQUE7RUFDQSxXQUFBO0FBVko7O0FBY0E7RUFDRTtJQUFPLHVCQUFBO0VBVlA7RUFXQTtJQUFLLHlCQUFBO0VBUkw7QUFDRjtBQVVBO0VBQ0Usa0JBQUE7QUFSRjtBQVVFO0VBQ0UsV0FBQTtFQUNBLHlCQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtFQUNBLGtCQUFBO0FBUko7QUFVSTtFQUNFLFlBQUE7RUFDQSxvREFBQTtFQUNBLDJCQUFBO0FBUk47QUFZRTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7QUFWSjs7QUFjQTtFQUNFLGtCQUFBO0VBQ0Esa0JBQUE7QUFYRjs7QUFjQTtFQUNFLG1CQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtBQVhGO0FBYUU7RUFDRSxtQkFBQTtBQVhKO0FBYUk7RUFDRSxpQkFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFYTjtBQWNJO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtBQVpOO0FBZUk7RUFDRSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EsYUFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7QUFiTjtBQWVNO0VBQ0Usa0JBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtBQWJSO0FBZVE7RUFDRSxnQkFBQTtBQWJWO0FBbUJFO0VBQ0UsYUFBQTtFQUNBLFNBQUE7RUFDQSx1QkFBQTtFQUNBLGVBQUE7QUFqQko7QUFtQkk7RUFDRSxnQkFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtBQWpCTjs7QUFzQkE7RUFDRSxtQkFBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLHdDQUFBO0VBQ0Esa0JBQUE7QUFuQkY7QUFxQkU7RUFDRSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFuQko7QUF1Qkk7RUFDRSxhQUFBO0VBQ0EsZ0NBQUE7RUFDQSxzQ0FBQTtBQXJCTjtBQXVCTTtFQUNFLG1CQUFBO0FBckJSO0FBd0JNO0VBQ0UseUJBQUE7QUF0QlI7QUEwQlE7RUFDRSxnQkFBQTtFQUNBLFdBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUF4QlY7QUEyQlE7RUFDRSxhQUFBO0VBQ0EsU0FBQTtFQUNBLGVBQUE7RUFDQSxXQUFBO0FBekJWO0FBMkJVO0VBQ0UsbUJBQUE7RUFDQSxnQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7QUF6Qlo7QUE0QlU7RUFDRSxzQkFBQTtFQUNBLFdBQUE7QUExQlo7O0FBa0NBO0VBQ0Usa0JBQUE7RUFDQSxhQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7QUEvQkY7QUFpQ0U7RUFDRSxpQkFBQTtBQS9CSjtBQWlDSTtFQUNFLGdCQUFBO0FBL0JOOztBQXFDQTtFQUNFLGVBQUE7QUFsQ0Y7QUFvQ0U7RUFDRSxlQUFBO0VBQ0EsZ0JBQUE7QUFsQ0o7QUFvQ0k7RUFDRSxjQUFBO0FBbENOO0FBcUNJO0VBQ0UsY0FBQTtBQW5DTjs7QUF3Q0E7RUFDRSxrQkFBQTtFQUNBLFlBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtFQUNBLHFCQUFBO0VBQ0EscUJBQUE7QUFyQ0Y7QUF1Q0U7RUFDRSxZQUFBO0VBQ0EsbUJBQUE7QUFyQ0o7QUF3Q0U7RUFDRSx5QkFBQTtFQUNBLFlBQUE7QUF0Q0o7QUF3Q0k7RUFDRSx5QkFBQTtBQXRDTjtBQTBDRTtFQUNFLHlCQUFBO0VBQ0EsWUFBQTtBQXhDSjtBQTBDSTtFQUNFLHlCQUFBO0FBeENOOztBQThDQTtFQUNFO0lBQ0UsYUFBQTtFQTNDRjtFQThDQTtJQUNFLHNCQUFBO0lBQ0Esa0JBQUE7SUFDQSxRQUFBO0VBNUNGO0VBK0NBO0lBQ0Usc0JBQUE7SUFDQSxRQUFBO0VBN0NGO0FBQ0Y7QUFnREE7RUFDRTtJQUNFLGVBQUE7RUE5Q0Y7RUFpREE7SUFDRSxpQkFBQTtJQUNBLGVBQUE7RUEvQ0Y7RUFrREE7SUFDRSxzQkFBQTtJQUNBLHVCQUFBO0lBQ0EsUUFBQTtFQWhERjtBQUNGIiwic291cmNlc0NvbnRlbnQiOlsiLmV4dHJhY3QtZG93bmxvYWQtY29udGFpbmVyIHtcbiAgbWF4LXdpZHRoOiA4MDBweDtcbiAgbWFyZ2luOiAwIGF1dG87XG4gIHBhZGRpbmc6IDhweDtcbiAgZm9udC1mYW1pbHk6ICdTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hLCBzYW5zLXNlcmlmO1xufVxuXG4uZXh0cmFjdC1oZWFkZXIge1xuICBtYXJnaW4tYm90dG9tOiAxNnB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG5cbiAgaDMge1xuICAgIG1hcmdpbjogMCAwIDZweCAwO1xuICAgIGNvbG9yOiAjMzMzO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICBmb250LXdlaWdodDogNjAwO1xuICB9XG5cbiAgLmV4dHJhY3QtZGVzY3JpcHRpb24ge1xuICAgIG1hcmdpbjogMDtcbiAgICBjb2xvcjogIzY2NjtcbiAgICBmb250LXNpemU6IDExcHg7XG4gIH1cbn1cblxuLmV4dHJhY3Qtc3RhdHVzIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgZ2FwOiA4cHg7XG4gIHBhZGRpbmc6IDZweDtcbiAgYm9yZGVyLXJhZGl1czogNnB4O1xuICBtYXJnaW4tYm90dG9tOiA4cHg7XG4gIGJvcmRlci1sZWZ0OiAzcHggc29saWQgdHJhbnNwYXJlbnQ7XG5cbiAgJi5zdGF0dXMtcmVhZHkge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOGY5ZmE7XG4gICAgYm9yZGVyLWxlZnQtY29sb3I6ICM2Yzc1N2Q7XG4gIH1cblxuICAmLnN0YXR1cy1leHRyYWN0aW5nIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDFlY2YxO1xuICAgIGJvcmRlci1sZWZ0LWNvbG9yOiAjMTdhMmI4O1xuICB9XG5cbiAgJi5zdGF0dXMtc3VjY2VzcyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Q0ZWRkYTtcbiAgICBib3JkZXItbGVmdC1jb2xvcjogIzI4YTc0NTtcbiAgfVxuXG4gICYuc3RhdHVzLWZhaWxlZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZDdkYTtcbiAgICBib3JkZXItbGVmdC1jb2xvcjogI2RjMzU0NTtcbiAgfVxuXG4gIC5zdGF0dXMtaWNvbiB7XG4gICAgZm9udC1zaXplOiAyMHB4O1xuICAgIFxuICAgIC5zcGlubmVyIHtcbiAgICAgIGFuaW1hdGlvbjogc3BpbiAxcyBsaW5lYXIgaW5maW5pdGU7XG4gICAgfVxuICAgIFxuICAgIC5zdWNjZXNzLWljb24ge1xuICAgICAgY29sb3I6ICMyOGE3NDU7XG4gICAgfVxuICAgIFxuICAgIC5lcnJvci1pY29uIHtcbiAgICAgIGNvbG9yOiAjZGMzNTQ1O1xuICAgIH1cbiAgICBcbiAgICAucmVhZHktaWNvbiB7XG4gICAgICBjb2xvcjogIzZjNzU3ZDtcbiAgICB9XG4gIH1cblxuICAuc3RhdHVzLXRleHQge1xuICAgIGZsZXg6IDE7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBjb2xvcjogIzMzMztcbiAgfVxufVxuXG5Aa2V5ZnJhbWVzIHNwaW4ge1xuICBmcm9tIHsgdHJhbnNmb3JtOiByb3RhdGUoMGRlZyk7IH1cbiAgdG8geyB0cmFuc2Zvcm06IHJvdGF0ZSgzNjBkZWcpOyB9XG59XG5cbi5wcm9ncmVzcy1jb250YWluZXIge1xuICBtYXJnaW4tYm90dG9tOiA4cHg7XG5cbiAgLnByb2dyZXNzLWJhciB7XG4gICAgaGVpZ2h0OiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2U5ZWNlZjtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICBtYXJnaW4tYm90dG9tOiA4cHg7XG5cbiAgICAucHJvZ3Jlc3MtZmlsbCB7XG4gICAgICBoZWlnaHQ6IDEwMCU7XG4gICAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoOTBkZWcsICMwMDdiZmYsICMwMDU2YjMpO1xuICAgICAgdHJhbnNpdGlvbjogd2lkdGggMC4zcyBlYXNlO1xuICAgIH1cbiAgfVxuXG4gIC5wcm9ncmVzcy10ZXh0IHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICAgIGNvbG9yOiAjNjY2O1xuICB9XG59XG5cbi5leHRyYWN0LWFjdGlvbnMge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcbn1cblxuLmRvd25sb2FkLXNlY3Rpb24ge1xuICBiYWNrZ3JvdW5kOiAjZjhmOWZhO1xuICBib3JkZXItcmFkaXVzOiA2cHg7XG4gIHBhZGRpbmc6IDhweDtcbiAgbWFyZ2luLWJvdHRvbTogOHB4O1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG5cbiAgLmRvd25sb2FkLWluZm8ge1xuICAgIG1hcmdpbi1ib3R0b206IDE2cHg7XG5cbiAgICBoNCB7XG4gICAgICBtYXJnaW46IDAgMCA4cHggMDtcbiAgICAgIGNvbG9yOiAjMzMzO1xuICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgZm9udC13ZWlnaHQ6IDYwMDtcbiAgICB9XG5cbiAgICBwIHtcbiAgICAgIG1hcmdpbjogMCAwIDEycHggMDtcbiAgICAgIGNvbG9yOiAjNjY2O1xuICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgIH1cblxuICAgIC5maWxlLWluZm8ge1xuICAgICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICAgIGJhY2tncm91bmQ6IHdoaXRlO1xuICAgICAgcGFkZGluZzogMTJweDtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgICAgIG1hcmdpbi10b3A6IDEycHg7XG5cbiAgICAgIC5maWxlLWRldGFpbCB7XG4gICAgICAgIG1hcmdpbi1ib3R0b206IDRweDtcbiAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICBjb2xvcjogIzY2NjtcblxuICAgICAgICAmOmxhc3QtY2hpbGQge1xuICAgICAgICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cblxuICAuZG93bmxvYWQtYWN0aW9ucyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBnYXA6IDEycHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgZmxleC13cmFwOiB3cmFwO1xuXG4gICAgLmJ0biB7XG4gICAgICBtaW4td2lkdGg6IDEyMHB4O1xuICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgcGFkZGluZzogMTBweCAxNnB4O1xuICAgIH1cbiAgfVxufVxuXG4uZmlsZS1zdW1tYXJ5IHtcbiAgYmFja2dyb3VuZDogI2ZmZmZmZjtcbiAgYm9yZGVyLXJhZGl1czogNnB4O1xuICBwYWRkaW5nOiA4cHg7XG4gIGJveC1zaGFkb3c6IDAgMXB4IDRweCByZ2JhKDAsIDAsIDAsIDAuMSk7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcblxuICBoNCB7XG4gICAgbWFyZ2luOiAwIDAgMTZweCAwO1xuICAgIGNvbG9yOiAjMzMzO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBmb250LXdlaWdodDogNjAwO1xuICB9XG5cbiAgLmZpbGUtbGlzdCB7XG4gICAgLmZpbGUtaXRlbSB7XG4gICAgICBwYWRkaW5nOiAxMnB4O1xuICAgICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNlOWVjZWY7XG4gICAgICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuMnMgZWFzZTtcblxuICAgICAgJjpsYXN0LWNoaWxkIHtcbiAgICAgICAgYm9yZGVyLWJvdHRvbTogbm9uZTtcbiAgICAgIH1cblxuICAgICAgJjpob3ZlciB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNmOGY5ZmE7XG4gICAgICB9XG5cbiAgICAgIC5maWxlLWluZm8ge1xuICAgICAgICAuZmlsZS1uYW1lIHtcbiAgICAgICAgICBmb250LXdlaWdodDogNTAwO1xuICAgICAgICAgIGNvbG9yOiAjMzMzO1xuICAgICAgICAgIG1hcmdpbi1ib3R0b206IDRweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cblxuICAgICAgICAuZmlsZS1kZXRhaWxzIHtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGdhcDogMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICAgICAgY29sb3I6ICM2NjY7XG5cbiAgICAgICAgICAuZmlsZS10eXBlIHtcbiAgICAgICAgICAgIGJhY2tncm91bmQ6ICNlOWVjZWY7XG4gICAgICAgICAgICBwYWRkaW5nOiAycHggNnB4O1xuICAgICAgICAgICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICAgICAgICB9XG5cbiAgICAgICAgICAuZmlsZS1wYXRoIHtcbiAgICAgICAgICAgIGZvbnQtZmFtaWx5OiBtb25vc3BhY2U7XG4gICAgICAgICAgICBjb2xvcjogIzk5OTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cblxuLm5vLWZpbGVzIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwYWRkaW5nOiAyNHB4O1xuICBjb2xvcjogIzY2NjtcbiAgZm9udC1zaXplOiAxNHB4O1xuXG4gIHAge1xuICAgIG1hcmdpbjogMCAwIDhweCAwO1xuICAgIFxuICAgICY6bGFzdC1jaGlsZCB7XG4gICAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIH1cbiAgfVxufVxuXG4vLyBBdXRoZW50aWNhdGlvbiBzdGF0dXMgc3R5bGVzXG4uYXV0aC1zdGF0dXMge1xuICBtYXJnaW4tdG9wOiA4cHg7XG4gIFxuICAuYXV0aC1pbmZvIHtcbiAgICBmb250LXNpemU6IDExcHg7XG4gICAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgICBcbiAgICAuYXV0aC1hdmFpbGFibGUge1xuICAgICAgY29sb3I6ICMyOGE3NDU7XG4gICAgfVxuICAgIFxuICAgIC5hdXRoLXVuYXZhaWxhYmxlIHtcbiAgICAgIGNvbG9yOiAjZmZjMTA3O1xuICAgIH1cbiAgfVxufVxuXG4uYnRuIHtcbiAgcGFkZGluZzogMTBweCAyMHB4O1xuICBib3JkZXI6IG5vbmU7XG4gIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBmb250LXdlaWdodDogNTAwO1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuXG4gICY6ZGlzYWJsZWQge1xuICAgIG9wYWNpdHk6IDAuNjtcbiAgICBjdXJzb3I6IG5vdC1hbGxvd2VkO1xuICB9XG5cbiAgJi5idG4tcHJpbWFyeSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjtcbiAgICBjb2xvcjogd2hpdGU7XG5cbiAgICAmOmhvdmVyOm5vdCg6ZGlzYWJsZWQpIHtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDU2YjM7XG4gICAgfVxuICB9XG5cbiAgJi5idG4tc3VjY2VzcyB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzI4YTc0NTtcbiAgICBjb2xvcjogd2hpdGU7XG5cbiAgICAmOmhvdmVyOm5vdCg6ZGlzYWJsZWQpIHtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMxZTdlMzQ7XG4gICAgfVxuICB9XG59XG5cbi8vIFJlc3BvbnNpdmUgZGVzaWduXG5AbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgLmV4dHJhY3QtZG93bmxvYWQtY29udGFpbmVyIHtcbiAgICBwYWRkaW5nOiAxNnB4O1xuICB9XG5cbiAgLmV4dHJhY3Qtc3RhdHVzIHtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBnYXA6IDhweDtcbiAgfVxuXG4gIC5maWxlLXN1bW1hcnkgLmZpbGUtbGlzdCAuZmlsZS1pdGVtIC5maWxlLWluZm8gLmZpbGUtZGV0YWlscyB7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBnYXA6IDRweDtcbiAgfVxufVxuXG5AbWVkaWEgKG1heC13aWR0aDogNDgwcHgpIHtcbiAgLmNvbnRyb2wtc2VjdGlvbiBoMyB7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICB9XG5cbiAgLmJ0biB7XG4gICAgcGFkZGluZzogNnB4IDEwcHg7XG4gICAgZm9udC1zaXplOiAxMnB4O1xuICB9XG4gIFxuICAuY29tcGFjdC1maWxlLWl0ZW0gLmZpbGUtbWFpbiB7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcbiAgICBnYXA6IDRweDtcbiAgfVxufSAiXSwic291cmNlUm9vdCI6IiJ9 */"]
+    styles: [".extract-download-container[_ngcontent-%COMP%] {\n  max-width: 1000px;\n  margin: 0 auto;\n  padding: 8px;\n  font-family: \"Segoe UI\", Tahoma, Geneva, Verdana, sans-serif;\n}\n\n.layout-wrapper[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 24px;\n  align-items: flex-start;\n}\n\n.progress-stepper[_ngcontent-%COMP%] {\n  width: 200px;\n  flex-shrink: 0;\n}\n\n.main-content[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n}\n\n.step[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: flex-start;\n  margin-bottom: 8px;\n  transition: all 0.3s ease;\n}\n.step.step-pending[_ngcontent-%COMP%] {\n  opacity: 0.4;\n}\n.step.step-pending[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%] {\n  border-color: #e9ecef;\n  background-color: #f8f9fa;\n  color: #6c757d;\n}\n.step.step-active[_ngcontent-%COMP%] {\n  opacity: 1;\n}\n.step.step-active[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%] {\n  border-color: #007bff;\n  background-color: #007bff;\n  color: white;\n  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);\n}\n.step.step-completed[_ngcontent-%COMP%] {\n  opacity: 1;\n}\n.step.step-completed[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%] {\n  border-color: #28a745;\n  background-color: #28a745;\n  color: white;\n}\n.step[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%] {\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  border: 2px solid #e9ecef;\n  background-color: #f8f9fa;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 14px;\n  font-weight: 600;\n  margin-right: 12px;\n  flex-shrink: 0;\n  position: relative;\n  transition: all 0.3s ease;\n}\n.step[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%]   .step-number[_ngcontent-%COMP%] {\n  position: absolute;\n}\n.step[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%]   .step-check[_ngcontent-%COMP%] {\n  position: absolute;\n  font-size: 16px;\n}\n.step[_ngcontent-%COMP%]   .step-indicator[_ngcontent-%COMP%]   .step-spinner[_ngcontent-%COMP%] {\n  position: absolute;\n  animation: _ngcontent-%COMP%_spin 1s linear infinite;\n}\n.step[_ngcontent-%COMP%]   .step-content[_ngcontent-%COMP%] {\n  flex: 1;\n  padding-top: 2px;\n}\n.step[_ngcontent-%COMP%]   .step-content[_ngcontent-%COMP%]   .step-title[_ngcontent-%COMP%] {\n  font-weight: 600;\n  font-size: 14px;\n  color: #333;\n  margin-bottom: 2px;\n}\n.step[_ngcontent-%COMP%]   .step-content[_ngcontent-%COMP%]   .step-description[_ngcontent-%COMP%] {\n  font-size: 12px;\n  color: #666;\n  line-height: 1.3;\n}\n\n.step-connector[_ngcontent-%COMP%] {\n  width: 2px;\n  height: 24px;\n  margin-left: 15px;\n  margin-bottom: 4px;\n  background-color: #e9ecef;\n  transition: background-color 0.3s ease;\n}\n.step-connector.connector-active[_ngcontent-%COMP%] {\n  background-color: #007bff;\n}\n.step-connector.connector-completed[_ngcontent-%COMP%] {\n  background-color: #28a745;\n}\n\n.extract-header[_ngcontent-%COMP%] {\n  margin-bottom: 16px;\n  text-align: center;\n}\n.extract-header[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n  margin: 0 0 6px 0;\n  color: #333;\n  font-size: 14px;\n  font-weight: 600;\n}\n.extract-header[_ngcontent-%COMP%]   .extract-description[_ngcontent-%COMP%] {\n  margin: 0;\n  color: #666;\n  font-size: 11px;\n}\n\n.extract-status[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 6px;\n  border-radius: 6px;\n  margin-bottom: 8px;\n  border-left: 3px solid transparent;\n}\n.extract-status.status-ready[_ngcontent-%COMP%] {\n  background-color: #f8f9fa;\n  border-left-color: #6c757d;\n}\n.extract-status.status-extracting[_ngcontent-%COMP%] {\n  background-color: #d1ecf1;\n  border-left-color: #17a2b8;\n}\n.extract-status.status-success[_ngcontent-%COMP%] {\n  background-color: #d4edda;\n  border-left-color: #28a745;\n}\n.extract-status.status-failed[_ngcontent-%COMP%] {\n  background-color: #f8d7da;\n  border-left-color: #dc3545;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%] {\n  font-size: 20px;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .spinner[_ngcontent-%COMP%] {\n  animation: _ngcontent-%COMP%_spin 1s linear infinite;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .success-icon[_ngcontent-%COMP%] {\n  color: #28a745;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .error-icon[_ngcontent-%COMP%] {\n  color: #dc3545;\n}\n.extract-status[_ngcontent-%COMP%]   .status-icon[_ngcontent-%COMP%]   .ready-icon[_ngcontent-%COMP%] {\n  color: #6c757d;\n}\n.extract-status[_ngcontent-%COMP%]   .status-text[_ngcontent-%COMP%] {\n  flex: 1;\n  font-weight: 500;\n  color: #333;\n}\n\n@keyframes _ngcontent-%COMP%_spin {\n  from {\n    transform: rotate(0deg);\n  }\n  to {\n    transform: rotate(360deg);\n  }\n}\n.progress-container[_ngcontent-%COMP%] {\n  margin-bottom: 8px;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-bar[_ngcontent-%COMP%] {\n  height: 8px;\n  background-color: #e9ecef;\n  border-radius: 4px;\n  overflow: hidden;\n  margin-bottom: 8px;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-bar[_ngcontent-%COMP%]   .progress-fill[_ngcontent-%COMP%] {\n  height: 100%;\n  background: linear-gradient(90deg, #007bff, #0056b3);\n  transition: width 0.3s ease;\n}\n.progress-container[_ngcontent-%COMP%]   .progress-text[_ngcontent-%COMP%] {\n  text-align: center;\n  font-size: 12px;\n  color: #666;\n}\n\n.extract-actions[_ngcontent-%COMP%] {\n  text-align: center;\n  margin-bottom: 8px;\n}\n\n.download-section[_ngcontent-%COMP%] {\n  background: #f8f9fa;\n  border-radius: 6px;\n  padding: 8px;\n  margin-bottom: 8px;\n  text-align: center;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%] {\n  margin-bottom: 16px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin: 0 0 8px 0;\n  color: #333;\n  font-size: 16px;\n  font-weight: 600;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 12px 0;\n  color: #666;\n  font-size: 14px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%] {\n  text-align: left;\n  background: white;\n  padding: 12px;\n  border-radius: 6px;\n  margin-top: 12px;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-detail[_ngcontent-%COMP%] {\n  margin-bottom: 4px;\n  font-size: 12px;\n  color: #666;\n}\n.download-section[_ngcontent-%COMP%]   .download-info[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-detail[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n.download-section[_ngcontent-%COMP%]   .download-actions[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 12px;\n  justify-content: center;\n  flex-wrap: wrap;\n}\n.download-section[_ngcontent-%COMP%]   .download-actions[_ngcontent-%COMP%]   .btn[_ngcontent-%COMP%] {\n  min-width: 120px;\n  font-size: 14px;\n  padding: 10px 16px;\n}\n\n.file-summary[_ngcontent-%COMP%] {\n  background: #ffffff;\n  border-radius: 6px;\n  padding: 8px;\n  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);\n  margin-bottom: 8px;\n}\n.file-summary[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n  margin: 0 0 16px 0;\n  color: #333;\n  font-size: 16px;\n  font-weight: 600;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%] {\n  padding: 12px;\n  border-bottom: 1px solid #e9ecef;\n  transition: background-color 0.2s ease;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]:last-child {\n  border-bottom: none;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]:hover {\n  background-color: #f8f9fa;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-name[_ngcontent-%COMP%] {\n  font-weight: 500;\n  color: #333;\n  margin-bottom: 4px;\n  font-size: 14px;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 12px;\n  font-size: 12px;\n  color: #666;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%]   .file-type[_ngcontent-%COMP%] {\n  background: #e9ecef;\n  padding: 2px 6px;\n  border-radius: 4px;\n  font-weight: 500;\n}\n.file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%]   .file-path[_ngcontent-%COMP%] {\n  font-family: monospace;\n  color: #999;\n}\n\n.no-files[_ngcontent-%COMP%] {\n  text-align: center;\n  padding: 24px;\n  color: #666;\n  font-size: 14px;\n}\n.no-files[_ngcontent-%COMP%]   p[_ngcontent-%COMP%] {\n  margin: 0 0 8px 0;\n}\n.no-files[_ngcontent-%COMP%]   p[_ngcontent-%COMP%]:last-child {\n  margin-bottom: 0;\n}\n\n.auth-status[_ngcontent-%COMP%] {\n  margin-top: 8px;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%] {\n  font-size: 11px;\n  font-weight: 500;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%]   .auth-available[_ngcontent-%COMP%] {\n  color: #28a745;\n}\n.auth-status[_ngcontent-%COMP%]   .auth-info[_ngcontent-%COMP%]   .auth-unavailable[_ngcontent-%COMP%] {\n  color: #ffc107;\n}\n\n.btn[_ngcontent-%COMP%] {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  text-decoration: none;\n  display: inline-block;\n}\n.btn[_ngcontent-%COMP%]:disabled {\n  opacity: 0.6;\n  cursor: not-allowed;\n}\n.btn.btn-primary[_ngcontent-%COMP%] {\n  background-color: #007bff;\n  color: white;\n}\n.btn.btn-primary[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background-color: #0056b3;\n}\n.btn.btn-success[_ngcontent-%COMP%] {\n  background-color: #28a745;\n  color: white;\n}\n.btn.btn-success[_ngcontent-%COMP%]:hover:not(:disabled) {\n  background-color: #1e7e34;\n}\n\n@media (max-width: 768px) {\n  .extract-download-container[_ngcontent-%COMP%] {\n    padding: 16px;\n  }\n  .layout-wrapper[_ngcontent-%COMP%] {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .progress-stepper[_ngcontent-%COMP%] {\n    width: 100%;\n    order: 2;\n  }\n  .main-content[_ngcontent-%COMP%] {\n    order: 1;\n  }\n  .extract-status[_ngcontent-%COMP%] {\n    flex-direction: column;\n    text-align: center;\n    gap: 8px;\n  }\n  .file-summary[_ngcontent-%COMP%]   .file-list[_ngcontent-%COMP%]   .file-item[_ngcontent-%COMP%]   .file-info[_ngcontent-%COMP%]   .file-details[_ngcontent-%COMP%] {\n    flex-direction: column;\n    gap: 4px;\n  }\n}\n@media (max-width: 480px) {\n  .control-section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    font-size: 14px;\n  }\n  .btn[_ngcontent-%COMP%] {\n    padding: 6px 10px;\n    font-size: 12px;\n  }\n  .compact-file-item[_ngcontent-%COMP%]   .file-main[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 4px;\n  }\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvZXh0cmFjdC1kb3dubG9hZC9leHRyYWN0LWRvd25sb2FkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsaUJBQUE7RUFDQSxjQUFBO0VBQ0EsWUFBQTtFQUNBLDREQUFBO0FBQ0Y7O0FBRUE7RUFDRSxhQUFBO0VBQ0EsU0FBQTtFQUNBLHVCQUFBO0FBQ0Y7O0FBRUE7RUFDRSxZQUFBO0VBQ0EsY0FBQTtBQUNGOztBQUVBO0VBQ0UsT0FBQTtFQUNBLFlBQUE7QUFDRjs7QUFHQTtFQUNFLGFBQUE7RUFDQSx1QkFBQTtFQUNBLGtCQUFBO0VBQ0EseUJBQUE7QUFBRjtBQUVFO0VBQ0UsWUFBQTtBQUFKO0FBRUk7RUFDRSxxQkFBQTtFQUNBLHlCQUFBO0VBQ0EsY0FBQTtBQUFOO0FBSUU7RUFDRSxVQUFBO0FBRko7QUFJSTtFQUNFLHFCQUFBO0VBQ0EseUJBQUE7RUFDQSxZQUFBO0VBQ0EsNENBQUE7QUFGTjtBQU1FO0VBQ0UsVUFBQTtBQUpKO0FBTUk7RUFDRSxxQkFBQTtFQUNBLHlCQUFBO0VBQ0EsWUFBQTtBQUpOO0FBUUU7RUFDRSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0VBQ0EseUJBQUE7RUFDQSx5QkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLHVCQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0VBQ0Esa0JBQUE7RUFDQSxjQUFBO0VBQ0Esa0JBQUE7RUFDQSx5QkFBQTtBQU5KO0FBUUk7RUFDRSxrQkFBQTtBQU5OO0FBU0k7RUFDRSxrQkFBQTtFQUNBLGVBQUE7QUFQTjtBQVVJO0VBQ0Usa0JBQUE7RUFDQSxrQ0FBQTtBQVJOO0FBWUU7RUFDRSxPQUFBO0VBQ0EsZ0JBQUE7QUFWSjtBQVlJO0VBQ0UsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0FBVk47QUFhSTtFQUNFLGVBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7QUFYTjs7QUFnQkE7RUFDRSxVQUFBO0VBQ0EsWUFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7RUFDQSx5QkFBQTtFQUNBLHNDQUFBO0FBYkY7QUFlRTtFQUNFLHlCQUFBO0FBYko7QUFnQkU7RUFDRSx5QkFBQTtBQWRKOztBQWtCQTtFQUNFLG1CQUFBO0VBQ0Esa0JBQUE7QUFmRjtBQWlCRTtFQUNFLGlCQUFBO0VBQ0EsV0FBQTtFQUNBLGVBQUE7RUFDQSxnQkFBQTtBQWZKO0FBa0JFO0VBQ0UsU0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0FBaEJKOztBQW9CQTtFQUNFLGFBQUE7RUFDQSxtQkFBQTtFQUNBLFFBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtFQUNBLGtDQUFBO0FBakJGO0FBbUJFO0VBQ0UseUJBQUE7RUFDQSwwQkFBQTtBQWpCSjtBQW9CRTtFQUNFLHlCQUFBO0VBQ0EsMEJBQUE7QUFsQko7QUFxQkU7RUFDRSx5QkFBQTtFQUNBLDBCQUFBO0FBbkJKO0FBc0JFO0VBQ0UseUJBQUE7RUFDQSwwQkFBQTtBQXBCSjtBQXVCRTtFQUNFLGVBQUE7QUFyQko7QUF1Qkk7RUFDRSxrQ0FBQTtBQXJCTjtBQXdCSTtFQUNFLGNBQUE7QUF0Qk47QUF5Qkk7RUFDRSxjQUFBO0FBdkJOO0FBMEJJO0VBQ0UsY0FBQTtBQXhCTjtBQTRCRTtFQUNFLE9BQUE7RUFDQSxnQkFBQTtFQUNBLFdBQUE7QUExQko7O0FBOEJBO0VBQ0U7SUFBTyx1QkFBQTtFQTFCUDtFQTJCQTtJQUFLLHlCQUFBO0VBeEJMO0FBQ0Y7QUEwQkE7RUFDRSxrQkFBQTtBQXhCRjtBQTBCRTtFQUNFLFdBQUE7RUFDQSx5QkFBQTtFQUNBLGtCQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtBQXhCSjtBQTBCSTtFQUNFLFlBQUE7RUFDQSxvREFBQTtFQUNBLDJCQUFBO0FBeEJOO0FBNEJFO0VBQ0Usa0JBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtBQTFCSjs7QUE4QkE7RUFDRSxrQkFBQTtFQUNBLGtCQUFBO0FBM0JGOztBQThCQTtFQUNFLG1CQUFBO0VBQ0Esa0JBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxrQkFBQTtBQTNCRjtBQTZCRTtFQUNFLG1CQUFBO0FBM0JKO0FBNkJJO0VBQ0UsaUJBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0FBM0JOO0FBOEJJO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtBQTVCTjtBQStCSTtFQUNFLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxhQUFBO0VBQ0Esa0JBQUE7RUFDQSxnQkFBQTtBQTdCTjtBQStCTTtFQUNFLGtCQUFBO0VBQ0EsZUFBQTtFQUNBLFdBQUE7QUE3QlI7QUErQlE7RUFDRSxnQkFBQTtBQTdCVjtBQW1DRTtFQUNFLGFBQUE7RUFDQSxTQUFBO0VBQ0EsdUJBQUE7RUFDQSxlQUFBO0FBakNKO0FBbUNJO0VBQ0UsZ0JBQUE7RUFDQSxlQUFBO0VBQ0Esa0JBQUE7QUFqQ047O0FBc0NBO0VBQ0UsbUJBQUE7RUFDQSxrQkFBQTtFQUNBLFlBQUE7RUFDQSx3Q0FBQTtFQUNBLGtCQUFBO0FBbkNGO0FBcUNFO0VBQ0Usa0JBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLGdCQUFBO0FBbkNKO0FBdUNJO0VBQ0UsYUFBQTtFQUNBLGdDQUFBO0VBQ0Esc0NBQUE7QUFyQ047QUF1Q007RUFDRSxtQkFBQTtBQXJDUjtBQXdDTTtFQUNFLHlCQUFBO0FBdENSO0FBMENRO0VBQ0UsZ0JBQUE7RUFDQSxXQUFBO0VBQ0Esa0JBQUE7RUFDQSxlQUFBO0FBeENWO0FBMkNRO0VBQ0UsYUFBQTtFQUNBLFNBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtBQXpDVjtBQTJDVTtFQUNFLG1CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxrQkFBQTtFQUNBLGdCQUFBO0FBekNaO0FBNENVO0VBQ0Usc0JBQUE7RUFDQSxXQUFBO0FBMUNaOztBQWtEQTtFQUNFLGtCQUFBO0VBQ0EsYUFBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0FBL0NGO0FBaURFO0VBQ0UsaUJBQUE7QUEvQ0o7QUFpREk7RUFDRSxnQkFBQTtBQS9DTjs7QUFxREE7RUFDRSxlQUFBO0FBbERGO0FBb0RFO0VBQ0UsZUFBQTtFQUNBLGdCQUFBO0FBbERKO0FBb0RJO0VBQ0UsY0FBQTtBQWxETjtBQXFESTtFQUNFLGNBQUE7QUFuRE47O0FBd0RBO0VBQ0Usa0JBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EseUJBQUE7RUFDQSxxQkFBQTtFQUNBLHFCQUFBO0FBckRGO0FBdURFO0VBQ0UsWUFBQTtFQUNBLG1CQUFBO0FBckRKO0FBd0RFO0VBQ0UseUJBQUE7RUFDQSxZQUFBO0FBdERKO0FBd0RJO0VBQ0UseUJBQUE7QUF0RE47QUEwREU7RUFDRSx5QkFBQTtFQUNBLFlBQUE7QUF4REo7QUEwREk7RUFDRSx5QkFBQTtBQXhETjs7QUE4REE7RUFDRTtJQUNFLGFBQUE7RUEzREY7RUE4REE7SUFDRSxzQkFBQTtJQUNBLFNBQUE7RUE1REY7RUErREE7SUFDRSxXQUFBO0lBQ0EsUUFBQTtFQTdERjtFQWdFQTtJQUNFLFFBQUE7RUE5REY7RUFpRUE7SUFDRSxzQkFBQTtJQUNBLGtCQUFBO0lBQ0EsUUFBQTtFQS9ERjtFQWtFQTtJQUNFLHNCQUFBO0lBQ0EsUUFBQTtFQWhFRjtBQUNGO0FBbUVBO0VBQ0U7SUFDRSxlQUFBO0VBakVGO0VBb0VBO0lBQ0UsaUJBQUE7SUFDQSxlQUFBO0VBbEVGO0VBcUVBO0lBQ0Usc0JBQUE7SUFDQSx1QkFBQTtJQUNBLFFBQUE7RUFuRUY7QUFDRiIsInNvdXJjZXNDb250ZW50IjpbIi5leHRyYWN0LWRvd25sb2FkLWNvbnRhaW5lciB7XG4gIG1heC13aWR0aDogMTAwMHB4O1xuICBtYXJnaW46IDAgYXV0bztcbiAgcGFkZGluZzogOHB4O1xuICBmb250LWZhbWlseTogJ1NlZ29lIFVJJywgVGFob21hLCBHZW5ldmEsIFZlcmRhbmEsIHNhbnMtc2VyaWY7XG59XG5cbi5sYXlvdXQtd3JhcHBlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGdhcDogMjRweDtcbiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG59XG5cbi5wcm9ncmVzcy1zdGVwcGVyIHtcbiAgd2lkdGg6IDIwMHB4O1xuICBmbGV4LXNocmluazogMDtcbn1cblxuLm1haW4tY29udGVudCB7XG4gIGZsZXg6IDE7XG4gIG1pbi13aWR0aDogMDtcbn1cblxuLy8gUHJvZ3Jlc3MgU3RlcHBlciBTdHlsZXNcbi5zdGVwIHtcbiAgZGlzcGxheTogZmxleDtcbiAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcbiAgdHJhbnNpdGlvbjogYWxsIDAuM3MgZWFzZTtcblxuICAmLnN0ZXAtcGVuZGluZyB7XG4gICAgb3BhY2l0eTogMC40O1xuICAgIFxuICAgIC5zdGVwLWluZGljYXRvciB7XG4gICAgICBib3JkZXItY29sb3I6ICNlOWVjZWY7XG4gICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhmOWZhO1xuICAgICAgY29sb3I6ICM2Yzc1N2Q7XG4gICAgfVxuICB9XG5cbiAgJi5zdGVwLWFjdGl2ZSB7XG4gICAgb3BhY2l0eTogMTtcbiAgICBcbiAgICAuc3RlcC1pbmRpY2F0b3Ige1xuICAgICAgYm9yZGVyLWNvbG9yOiAjMDA3YmZmO1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwN2JmZjtcbiAgICAgIGNvbG9yOiB3aGl0ZTtcbiAgICAgIGJveC1zaGFkb3c6IDAgMCAwIDNweCByZ2JhKDAsIDEyMywgMjU1LCAwLjEpO1xuICAgIH1cbiAgfVxuXG4gICYuc3RlcC1jb21wbGV0ZWQge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgXG4gICAgLnN0ZXAtaW5kaWNhdG9yIHtcbiAgICAgIGJvcmRlci1jb2xvcjogIzI4YTc0NTtcbiAgICAgIGJhY2tncm91bmQtY29sb3I6ICMyOGE3NDU7XG4gICAgICBjb2xvcjogd2hpdGU7XG4gICAgfVxuICB9XG5cbiAgLnN0ZXAtaW5kaWNhdG9yIHtcbiAgICB3aWR0aDogMzJweDtcbiAgICBoZWlnaHQ6IDMycHg7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkICNlOWVjZWY7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZjlmYTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgbWFyZ2luLXJpZ2h0OiAxMnB4O1xuICAgIGZsZXgtc2hyaW5rOiAwO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICB0cmFuc2l0aW9uOiBhbGwgMC4zcyBlYXNlO1xuXG4gICAgLnN0ZXAtbnVtYmVyIHtcbiAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB9XG5cbiAgICAuc3RlcC1jaGVjayB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgfVxuXG4gICAgLnN0ZXAtc3Bpbm5lciB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBhbmltYXRpb246IHNwaW4gMXMgbGluZWFyIGluZmluaXRlO1xuICAgIH1cbiAgfVxuXG4gIC5zdGVwLWNvbnRlbnQge1xuICAgIGZsZXg6IDE7XG4gICAgcGFkZGluZy10b3A6IDJweDtcblxuICAgIC5zdGVwLXRpdGxlIHtcbiAgICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBjb2xvcjogIzMzMztcbiAgICAgIG1hcmdpbi1ib3R0b206IDJweDtcbiAgICB9XG5cbiAgICAuc3RlcC1kZXNjcmlwdGlvbiB7XG4gICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICBjb2xvcjogIzY2NjtcbiAgICAgIGxpbmUtaGVpZ2h0OiAxLjM7XG4gICAgfVxuICB9XG59XG5cbi5zdGVwLWNvbm5lY3RvciB7XG4gIHdpZHRoOiAycHg7XG4gIGhlaWdodDogMjRweDtcbiAgbWFyZ2luLWxlZnQ6IDE1cHg7XG4gIG1hcmdpbi1ib3R0b206IDRweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2U5ZWNlZjtcbiAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2U7XG5cbiAgJi5jb25uZWN0b3ItYWN0aXZlIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmO1xuICB9XG5cbiAgJi5jb25uZWN0b3ItY29tcGxldGVkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjhhNzQ1O1xuICB9XG59XG5cbi5leHRyYWN0LWhlYWRlciB7XG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcblxuICBoMyB7XG4gICAgbWFyZ2luOiAwIDAgNnB4IDA7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIH1cblxuICAuZXh0cmFjdC1kZXNjcmlwdGlvbiB7XG4gICAgbWFyZ2luOiAwO1xuICAgIGNvbG9yOiAjNjY2O1xuICAgIGZvbnQtc2l6ZTogMTFweDtcbiAgfVxufVxuXG4uZXh0cmFjdC1zdGF0dXMge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBnYXA6IDhweDtcbiAgcGFkZGluZzogNnB4O1xuICBib3JkZXItcmFkaXVzOiA2cHg7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcbiAgYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCB0cmFuc3BhcmVudDtcblxuICAmLnN0YXR1cy1yZWFkeSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZjlmYTtcbiAgICBib3JkZXItbGVmdC1jb2xvcjogIzZjNzU3ZDtcbiAgfVxuXG4gICYuc3RhdHVzLWV4dHJhY3Rpbmcge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNkMWVjZjE7XG4gICAgYm9yZGVyLWxlZnQtY29sb3I6ICMxN2EyYjg7XG4gIH1cblxuICAmLnN0YXR1cy1zdWNjZXNzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDRlZGRhO1xuICAgIGJvcmRlci1sZWZ0LWNvbG9yOiAjMjhhNzQ1O1xuICB9XG5cbiAgJi5zdGF0dXMtZmFpbGVkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjhkN2RhO1xuICAgIGJvcmRlci1sZWZ0LWNvbG9yOiAjZGMzNTQ1O1xuICB9XG5cbiAgLnN0YXR1cy1pY29uIHtcbiAgICBmb250LXNpemU6IDIwcHg7XG4gICAgXG4gICAgLnNwaW5uZXIge1xuICAgICAgYW5pbWF0aW9uOiBzcGluIDFzIGxpbmVhciBpbmZpbml0ZTtcbiAgICB9XG4gICAgXG4gICAgLnN1Y2Nlc3MtaWNvbiB7XG4gICAgICBjb2xvcjogIzI4YTc0NTtcbiAgICB9XG4gICAgXG4gICAgLmVycm9yLWljb24ge1xuICAgICAgY29sb3I6ICNkYzM1NDU7XG4gICAgfVxuICAgIFxuICAgIC5yZWFkeS1pY29uIHtcbiAgICAgIGNvbG9yOiAjNmM3NTdkO1xuICAgIH1cbiAgfVxuXG4gIC5zdGF0dXMtdGV4dCB7XG4gICAgZmxleDogMTtcbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIGNvbG9yOiAjMzMzO1xuICB9XG59XG5cbkBrZXlmcmFtZXMgc3BpbiB7XG4gIGZyb20geyB0cmFuc2Zvcm06IHJvdGF0ZSgwZGVnKTsgfVxuICB0byB7IHRyYW5zZm9ybTogcm90YXRlKDM2MGRlZyk7IH1cbn1cblxuLnByb2dyZXNzLWNvbnRhaW5lciB7XG4gIG1hcmdpbi1ib3R0b206IDhweDtcblxuICAucHJvZ3Jlc3MtYmFyIHtcbiAgICBoZWlnaHQ6IDhweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTllY2VmO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuICAgIG1hcmdpbi1ib3R0b206IDhweDtcblxuICAgIC5wcm9ncmVzcy1maWxsIHtcbiAgICAgIGhlaWdodDogMTAwJTtcbiAgICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudCg5MGRlZywgIzAwN2JmZiwgIzAwNTZiMyk7XG4gICAgICB0cmFuc2l0aW9uOiB3aWR0aCAwLjNzIGVhc2U7XG4gICAgfVxuICB9XG5cbiAgLnByb2dyZXNzLXRleHQge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBmb250LXNpemU6IDEycHg7XG4gICAgY29sb3I6ICM2NjY7XG4gIH1cbn1cblxuLmV4dHJhY3QtYWN0aW9ucyB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgbWFyZ2luLWJvdHRvbTogOHB4O1xufVxuXG4uZG93bmxvYWQtc2VjdGlvbiB7XG4gIGJhY2tncm91bmQ6ICNmOGY5ZmE7XG4gIGJvcmRlci1yYWRpdXM6IDZweDtcbiAgcGFkZGluZzogOHB4O1xuICBtYXJnaW4tYm90dG9tOiA4cHg7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcblxuICAuZG93bmxvYWQtaW5mbyB7XG4gICAgbWFyZ2luLWJvdHRvbTogMTZweDtcblxuICAgIGg0IHtcbiAgICAgIG1hcmdpbjogMCAwIDhweCAwO1xuICAgICAgY29sb3I6ICMzMzM7XG4gICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICBmb250LXdlaWdodDogNjAwO1xuICAgIH1cblxuICAgIHAge1xuICAgICAgbWFyZ2luOiAwIDAgMTJweCAwO1xuICAgICAgY29sb3I6ICM2NjY7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgfVxuXG4gICAgLmZpbGUtaW5mbyB7XG4gICAgICB0ZXh0LWFsaWduOiBsZWZ0O1xuICAgICAgYmFja2dyb3VuZDogd2hpdGU7XG4gICAgICBwYWRkaW5nOiAxMnB4O1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgbWFyZ2luLXRvcDogMTJweDtcblxuICAgICAgLmZpbGUtZGV0YWlsIHtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogNHB4O1xuICAgICAgICBmb250LXNpemU6IDEycHg7XG4gICAgICAgIGNvbG9yOiAjNjY2O1xuXG4gICAgICAgICY6bGFzdC1jaGlsZCB7XG4gICAgICAgICAgbWFyZ2luLWJvdHRvbTogMDtcbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cbiAgfVxuXG4gIC5kb3dubG9hZC1hY3Rpb25zIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGdhcDogMTJweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG5cbiAgICAuYnRuIHtcbiAgICAgIG1pbi13aWR0aDogMTIwcHg7XG4gICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICBwYWRkaW5nOiAxMHB4IDE2cHg7XG4gICAgfVxuICB9XG59XG5cbi5maWxlLXN1bW1hcnkge1xuICBiYWNrZ3JvdW5kOiAjZmZmZmZmO1xuICBib3JkZXItcmFkaXVzOiA2cHg7XG4gIHBhZGRpbmc6IDhweDtcbiAgYm94LXNoYWRvdzogMCAxcHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgbWFyZ2luLWJvdHRvbTogOHB4O1xuXG4gIGg0IHtcbiAgICBtYXJnaW46IDAgMCAxNnB4IDA7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIGZvbnQtd2VpZ2h0OiA2MDA7XG4gIH1cblxuICAuZmlsZS1saXN0IHtcbiAgICAuZmlsZS1pdGVtIHtcbiAgICAgIHBhZGRpbmc6IDEycHg7XG4gICAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2U5ZWNlZjtcbiAgICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4ycyBlYXNlO1xuXG4gICAgICAmOmxhc3QtY2hpbGQge1xuICAgICAgICBib3JkZXItYm90dG9tOiBub25lO1xuICAgICAgfVxuXG4gICAgICAmOmhvdmVyIHtcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogI2Y4ZjlmYTtcbiAgICAgIH1cblxuICAgICAgLmZpbGUtaW5mbyB7XG4gICAgICAgIC5maWxlLW5hbWUge1xuICAgICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgICAgY29sb3I6ICMzMzM7XG4gICAgICAgICAgbWFyZ2luLWJvdHRvbTogNHB4O1xuICAgICAgICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgICAgfVxuXG4gICAgICAgIC5maWxlLWRldGFpbHMge1xuICAgICAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICAgICAgZ2FwOiAxMnB4O1xuICAgICAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgICAgICAgICBjb2xvcjogIzY2NjtcblxuICAgICAgICAgIC5maWxlLXR5cGUge1xuICAgICAgICAgICAgYmFja2dyb3VuZDogI2U5ZWNlZjtcbiAgICAgICAgICAgIHBhZGRpbmc6IDJweCA2cHg7XG4gICAgICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgICAgICBmb250LXdlaWdodDogNTAwO1xuICAgICAgICAgIH1cblxuICAgICAgICAgIC5maWxlLXBhdGgge1xuICAgICAgICAgICAgZm9udC1mYW1pbHk6IG1vbm9zcGFjZTtcbiAgICAgICAgICAgIGNvbG9yOiAjOTk5O1xuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuICAgIH1cbiAgfVxufVxuXG4ubm8tZmlsZXMge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIHBhZGRpbmc6IDI0cHg7XG4gIGNvbG9yOiAjNjY2O1xuICBmb250LXNpemU6IDE0cHg7XG5cbiAgcCB7XG4gICAgbWFyZ2luOiAwIDAgOHB4IDA7XG4gICAgXG4gICAgJjpsYXN0LWNoaWxkIHtcbiAgICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgfVxuICB9XG59XG5cbi8vIEF1dGhlbnRpY2F0aW9uIHN0YXR1cyBzdHlsZXNcbi5hdXRoLXN0YXR1cyB7XG4gIG1hcmdpbi10b3A6IDhweDtcbiAgXG4gIC5hdXRoLWluZm8ge1xuICAgIGZvbnQtc2l6ZTogMTFweDtcbiAgICBmb250LXdlaWdodDogNTAwO1xuICAgIFxuICAgIC5hdXRoLWF2YWlsYWJsZSB7XG4gICAgICBjb2xvcjogIzI4YTc0NTtcbiAgICB9XG4gICAgXG4gICAgLmF1dGgtdW5hdmFpbGFibGUge1xuICAgICAgY29sb3I6ICNmZmMxMDc7XG4gICAgfVxuICB9XG59XG5cbi5idG4ge1xuICBwYWRkaW5nOiAxMHB4IDIwcHg7XG4gIGJvcmRlcjogbm9uZTtcbiAgYm9yZGVyLXJhZGl1czogNnB4O1xuICBmb250LXNpemU6IDE0cHg7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgdHJhbnNpdGlvbjogYWxsIDAuMnMgZWFzZTtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG5cbiAgJjpkaXNhYmxlZCB7XG4gICAgb3BhY2l0eTogMC42O1xuICAgIGN1cnNvcjogbm90LWFsbG93ZWQ7XG4gIH1cblxuICAmLmJ0bi1wcmltYXJ5IHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA3YmZmO1xuICAgIGNvbG9yOiB3aGl0ZTtcblxuICAgICY6aG92ZXI6bm90KDpkaXNhYmxlZCkge1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzAwNTZiMztcbiAgICB9XG4gIH1cblxuICAmLmJ0bi1zdWNjZXNzIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjhhNzQ1O1xuICAgIGNvbG9yOiB3aGl0ZTtcblxuICAgICY6aG92ZXI6bm90KDpkaXNhYmxlZCkge1xuICAgICAgYmFja2dyb3VuZC1jb2xvcjogIzFlN2UzNDtcbiAgICB9XG4gIH1cbn1cblxuLy8gUmVzcG9uc2l2ZSBkZXNpZ25cbkBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xuICAuZXh0cmFjdC1kb3dubG9hZC1jb250YWluZXIge1xuICAgIHBhZGRpbmc6IDE2cHg7XG4gIH1cblxuICAubGF5b3V0LXdyYXBwZXIge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgZ2FwOiAxNnB4O1xuICB9XG5cbiAgLnByb2dyZXNzLXN0ZXBwZXIge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG9yZGVyOiAyOyAvLyBNb3ZlIHN0ZXBwZXIgYmVsb3cgbWFpbiBjb250ZW50IG9uIG1vYmlsZVxuICB9XG5cbiAgLm1haW4tY29udGVudCB7XG4gICAgb3JkZXI6IDE7XG4gIH1cblxuICAuZXh0cmFjdC1zdGF0dXMge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGdhcDogOHB4O1xuICB9XG5cbiAgLmZpbGUtc3VtbWFyeSAuZmlsZS1saXN0IC5maWxlLWl0ZW0gLmZpbGUtaW5mbyAuZmlsZS1kZXRhaWxzIHtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGdhcDogNHB4O1xuICB9XG59XG5cbkBtZWRpYSAobWF4LXdpZHRoOiA0ODBweCkge1xuICAuY29udHJvbC1zZWN0aW9uIGgzIHtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gIH1cblxuICAuYnRuIHtcbiAgICBwYWRkaW5nOiA2cHggMTBweDtcbiAgICBmb250LXNpemU6IDEycHg7XG4gIH1cbiAgXG4gIC5jb21wYWN0LWZpbGUtaXRlbSAuZmlsZS1tYWluIHtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGFsaWduLWl0ZW1zOiBmbGV4LXN0YXJ0O1xuICAgIGdhcDogNHB4O1xuICB9XG59ICJdLCJzb3VyY2VSb290IjoiIn0= */"]
   });
 }
 
@@ -4622,16 +4551,6 @@ class SystemConfigurationComponent {
     });
   }
   /**
-   * Gets a nested value by path
-   * @param obj The root object
-   * @param path The dot-separated path
-   * @returns The value at the path
-   */
-  getValueByPath(obj, path) {
-    if (!path) return obj;
-    return path.split('.').reduce((current, key) => current?.[key], obj);
-  }
-  /**
    * Checks if a path is expanded
    * @param path The path to check
    * @returns True if the path is expanded
@@ -4744,9 +4663,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T21:34:20.708Z
-const buildVersion = 'v0.0.101-ui-improvement';
-const packageVersion = '0.0.101';
+// Generated on: 2025-07-12T21:48:07.156Z
+const buildVersion = 'v0.0.104-ui-improvement';
+const packageVersion = '0.0.104';
 const gitBranch = 'ui-improvement';
 
 /***/ })
