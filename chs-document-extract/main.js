@@ -1687,7 +1687,7 @@ function ExtractDownloadComponent_div_19_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_19_Template_button_click_8_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r19);
       const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r18.downloadZipFile());
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r18.downloadWithUrlCredentials());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -1869,6 +1869,47 @@ class ExtractDownloadComponent {
         }
       }
     })();
+  }
+  /**
+   * Downloads using the downloadUrl with embedded credentials
+   */
+  downloadWithUrlCredentials() {
+    if (this.extractResult?.downloadUrl) {
+      console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Downloading with URL credentials:', this.extractResult.downloadUrl);
+      // Get system credentials and embed them in the URL
+      this.documentService.getSystemCredentials().subscribe({
+        next: credentials => {
+          try {
+            // Create URL with embedded credentials
+            const downloadUrl = this.extractResult.downloadUrl;
+            const url = new URL(downloadUrl);
+            url.username = credentials.username;
+            url.password = credentials.password;
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Using URL with credentials:', url.toString());
+            // Create download link
+            const link = document.createElement('a');
+            link.href = url.toString();
+            link.download = this.extractResult?.zipFileName || 'extracted_documents.zip';
+            link.target = '_blank';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Download initiated');
+          } catch (error) {
+            console.error('[ExtractDownloadComponent] downloadWithUrlCredentials() - Error creating URL:', error);
+            alert('Failed to create download URL. Please try another method.');
+          }
+        },
+        error: error => {
+          console.error('[ExtractDownloadComponent] downloadWithUrlCredentials() - Error getting credentials:', error);
+          alert('Failed to get system credentials. Please try another method.');
+        }
+      });
+    } else {
+      console.warn('[ExtractDownloadComponent] downloadWithUrlCredentials() - No downloadUrl available');
+      alert('No download URL available.');
+    }
   }
   /**
    * Downloads file with MPage authentication, following patterns from mediagallery-o1.js
@@ -2114,7 +2155,7 @@ class ExtractDownloadComponent {
     },
     decls: 22,
     vars: 14,
-    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with authentication (recommended)", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
+    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], ["class", "auth-status", 4, "ngIf"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "auth-status"], [1, "auth-info"], ["class", "auth-available", 4, "ngIf"], ["class", "auth-unavailable", 4, "ngIf"], [1, "auth-available"], [1, "auth-unavailable"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with URL credentials (recommended)", 1, "btn", "btn-success", 3, "click"], ["class", "btn btn-info", "title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 3, "click", 4, "ngIf"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], ["title", "Download using fileTransfer/retrieveFile endpoint with basic authorization", 1, "btn", "btn-info", 3, "click"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
     template: function ExtractDownloadComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h3");
@@ -4598,9 +4639,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T06:13:17.945Z
-const buildVersion = 'v0.0.81-master';
-const packageVersion = '0.0.81';
+// Generated on: 2025-07-12T06:18:42.183Z
+const buildVersion = 'v0.0.83-master';
+const packageVersion = '0.0.83';
 const gitBranch = 'master';
 
 /***/ })
