@@ -1857,8 +1857,15 @@ class ExtractDownloadComponent {
           yield _this.downloadWithAuthentication(_this.extractResult.zipFileUrl);
         } catch (error) {
           console.error('[ExtractDownloadComponent] downloadZipFile() - Download error:', error);
-          // Show user-friendly error message
-          alert('Download failed. Please try again or contact your administrator.');
+          // Try the Basic Auth method as fallback
+          console.log('[ExtractDownloadComponent] downloadZipFile() - Trying Basic Auth fallback');
+          try {
+            yield _this.downloadWithFileTransfer();
+          } catch (fallbackError) {
+            console.error('[ExtractDownloadComponent] downloadZipFile() - Basic Auth fallback also failed:', fallbackError);
+            // Show user-friendly error message
+            alert('Download failed. Please try again or contact your administrator.');
+          }
         }
       }
     })();
@@ -1877,30 +1884,26 @@ class ExtractDownloadComponent {
       const xhr = new XMLHttpRequest();
       // Make XMLHttpRequest globally accessible (following mediagallery-o1.js pattern)
       window.g_ExtractDownloadXMLHttpRequestObj = xhr;
-      let authPromise = Promise.resolve();
+      // Open the request first
+      xhr.open('GET', processedUrl);
       // Apply MPage authentication if available
       if (window.MPAGES_SVC_AUTH) {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
-        // Open the request BEFORE authentication (following mediagallery-o1.js pattern)
-        xhr.open('GET', processedUrl);
         // Check if we're in Edge context (following mediagallery-o1.js pattern)
         if (window.CERN_Platform?.inEdgeContext?.()) {
           console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH directly');
-          authPromise = window.MPAGES_SVC_AUTH(xhr);
+          try {
+            yield window.MPAGES_SVC_AUTH(xhr);
+          } catch (error) {
+            console.warn('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH failed, continuing without auth:', error);
+          }
         } else {
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, using javascript: protocol');
-          // Use the global variable in the javascript: protocol (following mediagallery-o1.js pattern exactly)
-          window.location.href = 'javascript:MPAGES_SVC_AUTH(g_ExtractDownloadXMLHttpRequestObj)';
-          // In non-Edge context, authentication happens synchronously via javascript: protocol
-          // No promise to await
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, skipping authentication');
+          // In non-Edge context, we'll proceed without authentication to avoid the javascript: protocol issues
         }
       } else {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
-        // Open the request if no authentication is available
-        xhr.open('GET', processedUrl);
       }
-      // Wait for authentication to complete (only in Edge context where it returns a promise)
-      yield authPromise;
       return new Promise((resolve, reject) => {
         xhr.onload = () => {
           if (xhr.status === 200) {
@@ -1927,9 +1930,9 @@ class ExtractDownloadComponent {
           delete window.g_ExtractDownloadXMLHttpRequestObj;
           reject(new Error('Network error during download'));
         };
-        // Set response type AFTER authentication but BEFORE sending
+        // Set response type for binary data
         xhr.responseType = 'blob';
-        // Send the request AFTER all setup is complete
+        // Send the request
         xhr.send();
       });
     })();
@@ -4595,9 +4598,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T06:00:01.251Z
-const buildVersion = 'v0.0.79-master';
-const packageVersion = '0.0.79';
+// Generated on: 2025-07-12T06:13:17.945Z
+const buildVersion = 'v0.0.81-master';
+const packageVersion = '0.0.81';
 const gitBranch = 'master';
 
 /***/ })
