@@ -1880,15 +1880,20 @@ class ExtractDownloadComponent {
       this.documentService.getSystemCredentials().subscribe({
         next: credentials => {
           try {
-            // Create URL with embedded credentials
+            // Create URL with embedded credentials manually to avoid URL encoding issues
             const downloadUrl = this.extractResult.downloadUrl;
             const url = new URL(downloadUrl);
-            url.username = credentials.username;
-            url.password = credentials.password;
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Using URL with credentials:', url.toString());
+            // Manually construct the URL with credentials to avoid encoding issues
+            const protocol = url.protocol;
+            const host = url.host;
+            const pathname = url.pathname;
+            const search = url.search;
+            // Create URL with credentials in the format: protocol://username:password@host/path
+            const urlWithCredentials = `${protocol}//${credentials.username}:${credentials.password}@${host}${pathname}${search}`;
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Using URL with credentials:', urlWithCredentials);
             // Create download link
             const link = document.createElement('a');
-            link.href = url.toString();
+            link.href = urlWithCredentials;
             link.download = this.extractResult?.zipFileName || 'extracted_documents.zip';
             link.target = '_blank';
             link.style.display = 'none';
@@ -4639,9 +4644,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T06:18:42.183Z
-const buildVersion = 'v0.0.83-master';
-const packageVersion = '0.0.83';
+// Generated on: 2025-07-12T06:25:05.208Z
+const buildVersion = 'v0.0.85-master';
+const packageVersion = '0.0.85';
 const gitBranch = 'master';
 
 /***/ })
