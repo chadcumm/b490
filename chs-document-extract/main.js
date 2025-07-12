@@ -3881,9 +3881,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T01:15:30.611Z
-const buildVersion = 'v0.0.41-master';
-const packageVersion = '0.0.41';
+// Generated on: 2025-07-12T01:32:13.102Z
+const buildVersion = 'v0.0.44-master';
+const packageVersion = '0.0.44';
 const gitBranch = 'master';
 
 /***/ })
