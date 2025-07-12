@@ -1858,25 +1858,31 @@ class ExtractDownloadComponent {
       const processedUrl = _this2.processUrlForMixedContent(url);
       // Create XMLHttpRequest for authenticated download
       const xhr = new XMLHttpRequest();
+      // Make XMLHttpRequest globally accessible (following mediagallery-o1.js pattern)
+      window.g_ExtractDownloadXMLHttpRequestObj = xhr;
       let authPromise = Promise.resolve();
-      // Open the request
+      // Open the request BEFORE authentication (following mediagallery-o1.js pattern)
       xhr.open('GET', processedUrl);
+      // Set response type AFTER open but BEFORE authentication
+      xhr.responseType = 'blob';
       // Apply MPage authentication if available
       if (window.MPAGES_SVC_AUTH) {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
         // Check if we're in Edge context (following mediagallery-o1.js pattern)
         if (window.CERN_Platform?.inEdgeContext?.()) {
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH');
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH directly');
           authPromise = window.MPAGES_SVC_AUTH(xhr);
         } else {
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, using fallback');
-          // Fallback for non-Edge context (following mediagallery-o1.js pattern)
-          window.location.href = `javascript:window.MPAGES_SVC_AUTH(${xhr})`;
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, using javascript: protocol');
+          // Use the global variable in the javascript: protocol (following mediagallery-o1.js pattern exactly)
+          window.location.href = 'javascript:MPAGES_SVC_AUTH(g_ExtractDownloadXMLHttpRequestObj)';
+          // In non-Edge context, authentication happens synchronously via javascript: protocol
+          // No promise to await
         }
       } else {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
       }
-      // Wait for authentication to complete, then send request
+      // Wait for authentication to complete (only in Edge context where it returns a promise)
       yield authPromise;
       return new Promise((resolve, reject) => {
         xhr.onload = () => {
@@ -1888,19 +1894,23 @@ class ExtractDownloadComponent {
             });
             const downloadFilename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
             _this2.downloadBlob(blob, downloadFilename);
+            // Clean up global reference
+            delete window.g_ExtractDownloadXMLHttpRequestObj;
             resolve();
           } else {
             console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Download failed with status:', xhr.status);
+            // Clean up global reference
+            delete window.g_ExtractDownloadXMLHttpRequestObj;
             reject(new Error(`Download failed with status: ${xhr.status}`));
           }
         };
         xhr.onerror = () => {
           console.error('[ExtractDownloadComponent] downloadWithAuthentication() - Network error during download');
+          // Clean up global reference
+          delete window.g_ExtractDownloadXMLHttpRequestObj;
           reject(new Error('Network error during download'));
         };
-        // Set response type for binary data
-        xhr.responseType = 'blob';
-        // Send the request
+        // Send the request AFTER all setup is complete
         xhr.send();
       });
     })();
@@ -4353,9 +4363,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T04:15:09.520Z
-const buildVersion = 'v0.0.69-master';
-const packageVersion = '0.0.69';
+// Generated on: 2025-07-12T04:22:17.999Z
+const buildVersion = 'v0.0.70-master';
+const packageVersion = '0.0.70';
 const gitBranch = 'master';
 
 /***/ })
