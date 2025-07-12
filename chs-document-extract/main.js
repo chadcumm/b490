@@ -1883,6 +1883,8 @@ class ExtractDownloadComponent {
         return;
       }
       console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Starting MPages authenticated download');
+      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Download URL:', _this2.extractResult.downloadUrl);
+      console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Extract Result:', _this2.extractResult);
       try {
         // Use the downloadUrl from the service
         const downloadUrl = _this2.extractResult.downloadUrl;
@@ -1892,13 +1894,13 @@ class ExtractDownloadComponent {
         xhr.open('GET', downloadUrl);
         // Set response type to blob for binary data
         xhr.responseType = 'blob';
-        // Check if we're in Edge context and apply MPAGES_SVC_AUTH
+        // Apply MPAGES_SVC_AUTH if available (from discern meta declarations)
         let authPromise = Promise.resolve();
-        if (window.CERN_Platform?.inEdgeContext?.() && window.MPAGES_SVC_AUTH) {
-          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - In Edge context, applying MPAGES_SVC_AUTH');
+        if (window.MPAGES_SVC_AUTH) {
+          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Applying MPAGES_SVC_AUTH');
           authPromise = window.MPAGES_SVC_AUTH(xhr);
         } else {
-          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Not in Edge context or MPAGES_SVC_AUTH not available');
+          console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - MPAGES_SVC_AUTH not available');
         }
         // Wait for authentication to complete
         yield authPromise;
@@ -1911,10 +1913,15 @@ class ExtractDownloadComponent {
               const blob = xhr.response;
               // Use the descriptive filename from the extract response
               let filename = _this2.extractResult?.zipFileName || 'extracted_documents.zip';
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Original filename:', _this2.extractResult?.zipFileName);
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Filename before extension check:', filename);
               // Ensure filename has .zip extension
               if (!filename.toLowerCase().endsWith('.zip')) {
                 filename += '.zip';
               }
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Final filename:', filename);
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Blob size:', blob.size);
+              console.log('[ExtractDownloadComponent] downloadWithMPagesAuth() - Blob type:', blob.type);
               // Create a temporary URL for the blob
               const url = window.URL.createObjectURL(blob);
               // Create a download link
@@ -1999,13 +2006,22 @@ class ExtractDownloadComponent {
   downloadWithUrlCredentials() {
     if (this.extractResult?.downloadUrl) {
       console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Downloading with URL credentials:', this.extractResult.downloadUrl);
+      console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Extract Result:', this.extractResult);
       // Get system credentials and embed them in the URL
       this.documentService.getSystemCredentials().subscribe({
         next: credentials => {
+          console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Got credentials for user:', credentials.username);
           try {
             // Create URL with embedded credentials manually to avoid URL encoding issues
             const downloadUrl = this.extractResult.downloadUrl;
             const url = new URL(downloadUrl);
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Original download URL:', downloadUrl);
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Parsed URL parts:', {
+              protocol: url.protocol,
+              host: url.host,
+              pathname: url.pathname,
+              search: url.search
+            });
             // Manually construct the URL with credentials to avoid encoding issues
             const protocol = url.protocol;
             const host = url.host;
@@ -2013,13 +2029,22 @@ class ExtractDownloadComponent {
             const search = url.search;
             // Create URL with credentials in the format: protocol://username:password@host/path
             const urlWithCredentials = `${protocol}//${credentials.username}:${credentials.password}@${host}${pathname}${search}`;
-            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Using URL with credentials:', urlWithCredentials);
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Final URL with credentials:', urlWithCredentials);
             // Create download link
             const link = document.createElement('a');
             link.href = urlWithCredentials;
-            link.download = this.extractResult?.zipFileName || 'extracted_documents.zip';
+            let downloadFilename = this.extractResult?.zipFileName || 'extracted_documents.zip';
+            if (!downloadFilename.toLowerCase().endsWith('.zip')) {
+              downloadFilename += '.zip';
+            }
+            link.download = downloadFilename;
             // Remove target="_blank" to prevent cross-origin SecurityError
             link.style.display = 'none';
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Download filename:', downloadFilename);
+            console.log('[ExtractDownloadComponent] downloadWithUrlCredentials() - Link element created:', {
+              href: link.href,
+              download: link.download
+            });
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -2058,17 +2083,12 @@ class ExtractDownloadComponent {
       // Apply MPage authentication if available
       if (window.MPAGES_SVC_AUTH) {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Applying MPAGES_SVC_AUTH');
-        // Check if we're in Edge context (following mediagallery-o1.js pattern)
-        if (window.CERN_Platform?.inEdgeContext?.()) {
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - In Edge context, using MPAGES_SVC_AUTH directly');
-          try {
-            yield window.MPAGES_SVC_AUTH(xhr);
-          } catch (error) {
-            console.warn('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH failed, continuing without auth:', error);
-          }
-        } else {
-          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - Not in Edge context, skipping authentication');
-          // In non-Edge context, we'll proceed without authentication to avoid the javascript: protocol issues
+        // Apply MPAGES_SVC_AUTH directly (from discern meta declarations)
+        try {
+          yield window.MPAGES_SVC_AUTH(xhr);
+          console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH applied successfully');
+        } catch (error) {
+          console.warn('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH failed, continuing without auth:', error);
         }
       } else {
         console.log('[ExtractDownloadComponent] downloadWithAuthentication() - MPAGES_SVC_AUTH not available');
@@ -3976,11 +3996,11 @@ class DocumentExtractService {
       const setupAuth = /*#__PURE__*/function () {
         var _ref = (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
           try {
-            if (window.CERN_Platform?.inEdgeContext?.() && window.MPAGES_SVC_AUTH) {
-              console.log('[DocumentExtractService] downloadExtractFile() - In Edge context, applying MPAGES_SVC_AUTH');
+            if (window.MPAGES_SVC_AUTH) {
+              console.log('[DocumentExtractService] downloadExtractFile() - Applying MPAGES_SVC_AUTH');
               yield window.MPAGES_SVC_AUTH(xhr);
             } else {
-              console.log('[DocumentExtractService] downloadExtractFile() - Not in Edge context or MPAGES_SVC_AUTH not available, using fallback');
+              console.log('[DocumentExtractService] downloadExtractFile() - MPAGES_SVC_AUTH not available, using fallback');
               // Fallback to basic credentials if MPAGES_SVC_AUTH is not available
               try {
                 const credentials = yield _this.getSystemCredentials().toPromise();
@@ -4806,9 +4826,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T20:22:24.977Z
-const buildVersion = 'v0.0.91-download-updates';
-const packageVersion = '0.0.91';
+// Generated on: 2025-07-12T20:50:34.880Z
+const buildVersion = 'v0.0.94-download-updates';
+const packageVersion = '0.0.94';
 const gitBranch = 'download-updates';
 
 /***/ })
