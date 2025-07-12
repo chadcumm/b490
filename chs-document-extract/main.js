@@ -1566,7 +1566,7 @@ function ExtractDownloadComponent_div_14_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_18_div_6_div_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 31)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 32)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Metadata File:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
@@ -1580,7 +1580,7 @@ function ExtractDownloadComponent_div_18_div_6_div_5_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_18_div_6_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 31)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 32)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Files Included:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
@@ -1594,7 +1594,7 @@ function ExtractDownloadComponent_div_18_div_6_div_6_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_18_div_6_div_7_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 31)(1, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 32)(1, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "Status:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
@@ -1608,14 +1608,14 @@ function ExtractDownloadComponent_div_18_div_6_div_7_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_18_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 30)(1, "div", 31)(2, "strong");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 31)(1, "div", 32)(2, "strong");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Zip File:");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](5, ExtractDownloadComponent_div_18_div_6_div_5_Template, 4, 1, "div", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_18_div_6_div_6_Template, 4, 1, "div", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_18_div_6_div_7_Template, 4, 1, "div", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](5, ExtractDownloadComponent_div_18_div_6_div_5_Template, 4, 1, "div", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](6, ExtractDownloadComponent_div_18_div_6_div_6_Template, 4, 1, "div", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](7, ExtractDownloadComponent_div_18_div_6_div_7_Template, 4, 1, "div", 33);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
@@ -1655,7 +1655,15 @@ function ExtractDownloadComponent_div_18_Template(rf, ctx) {
       const ctx_r14 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r14.downloadWithIframe());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](11, " \uD83D\uDCE5 Download (Alternative) ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](11, " \uD83D\uDCE5 Download (Iframe) ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](12, "button", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function ExtractDownloadComponent_div_18_Template_button_click_12_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r13);
+      const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r15.downloadWithWindowOpen());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](13, " \uD83D\uDCE5 Download (Window) ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
@@ -1668,33 +1676,33 @@ function ExtractDownloadComponent_div_18_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_19_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 36)(1, "div", 30)(2, "div", 37);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 37)(1, "div", 31)(2, "div", 38);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "div", 38)(5, "span", 39);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "div", 39)(5, "span", 40);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "span", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "span", 41);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()()();
   }
   if (rf & 2) {
-    const file_r16 = ctx.$implicit;
+    const file_r17 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r16.documentName || file_r16.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r17.documentName || file_r17.filename);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r16.documentType);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r17.documentType);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r16.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](file_r17.filename);
   }
 }
 function ExtractDownloadComponent_div_19_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 33)(1, "h4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 34)(1, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "div", 34);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_19_div_4_Template, 9, 3, "div", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "div", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](4, ExtractDownloadComponent_div_19_div_4_Template, 9, 3, "div", 36);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
@@ -1707,7 +1715,7 @@ function ExtractDownloadComponent_div_19_Template(rf, ctx) {
 }
 function ExtractDownloadComponent_div_20_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 41)(1, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 42)(1, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, "No downloaded files available for extract.");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](3, "p");
@@ -1813,19 +1821,49 @@ class ExtractDownloadComponent {
     return (0,_Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
       if (_this.extractResult?.zipFileUrl) {
         console.log('[ExtractDownloadComponent] downloadZipFile() - Downloading zip file:', _this.extractResult.zipFileUrl);
-        // Simple direct download approach
-        const link = document.createElement('a');
-        link.href = _this.extractResult.zipFileUrl;
-        // Use the descriptive filename from the extract response
-        const downloadFilename = _this.extractResult?.zipFileName || 'extracted_documents.zip';
-        console.log('[ExtractDownloadComponent] downloadZipFile() - Using filename for download:', downloadFilename);
-        link.download = downloadFilename;
-        link.target = '_blank';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        try {
+          // Check if URL is HTTP and we're on HTTPS
+          const isHttpsPage = window.location.protocol === 'https:';
+          const isHttpUrl = _this.extractResult.zipFileUrl.startsWith('http://');
+          if (isHttpsPage && isHttpUrl) {
+            console.warn('[ExtractDownloadComponent] downloadZipFile() - Mixed content detected, trying alternative methods');
+            // Try to convert HTTP to HTTPS
+            const httpsUrl = _this.extractResult.zipFileUrl.replace('http://', 'https://');
+            console.log('[ExtractDownloadComponent] downloadZipFile() - Trying HTTPS URL:', httpsUrl);
+            // Test if HTTPS URL works
+            const testResponse = yield fetch(httpsUrl, {
+              method: 'HEAD'
+            });
+            if (testResponse.ok) {
+              console.log('[ExtractDownloadComponent] downloadZipFile() - HTTPS URL works, using it');
+              _this.downloadWithUrl(httpsUrl);
+              return;
+            }
+          }
+          // Fallback to original method
+          _this.downloadWithUrl(_this.extractResult.zipFileUrl);
+        } catch (error) {
+          console.error('[ExtractDownloadComponent] downloadZipFile() - Download error:', error);
+          // Show user-friendly error message
+          alert('Download failed due to security restrictions. Please try the alternative download method or contact your administrator.');
+        }
       }
     })();
+  }
+  /**
+   * Helper method to perform the actual download
+   */
+  downloadWithUrl(url) {
+    const link = document.createElement('a');
+    link.href = url;
+    // Use the descriptive filename from the extract response
+    const downloadFilename = this.extractResult?.zipFileName || 'extracted_documents.zip';
+    console.log('[ExtractDownloadComponent] downloadWithUrl() - Using filename for download:', downloadFilename);
+    link.download = downloadFilename;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
   /**
    * Gets the extract button text based on current state
@@ -1893,18 +1931,61 @@ class ExtractDownloadComponent {
   downloadWithIframe() {
     if (this.extractResult?.zipFileUrl) {
       console.log('[ExtractDownloadComponent] downloadWithIframe() - Using iframe download method');
-      // Create an iframe to handle the download with existing session
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = this.extractResult.zipFileUrl;
-      // Add to DOM temporarily
-      document.body.appendChild(iframe);
-      // Remove after a short delay
-      setTimeout(() => {
-        if (document.body.contains(iframe)) {
-          document.body.removeChild(iframe);
+      try {
+        // Check if URL is HTTP and we're on HTTPS
+        const isHttpsPage = window.location.protocol === 'https:';
+        const isHttpUrl = this.extractResult.zipFileUrl.startsWith('http://');
+        let downloadUrl = this.extractResult.zipFileUrl;
+        if (isHttpsPage && isHttpUrl) {
+          console.warn('[ExtractDownloadComponent] downloadWithIframe() - Mixed content detected, trying HTTPS');
+          // Try HTTPS version
+          downloadUrl = this.extractResult.zipFileUrl.replace('http://', 'https://');
         }
-      }, 5000);
+        // Create an iframe to handle the download with existing session
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = downloadUrl;
+        // Add to DOM temporarily
+        document.body.appendChild(iframe);
+        // Remove after a short delay
+        setTimeout(() => {
+          if (document.body.contains(iframe)) {
+            document.body.removeChild(iframe);
+          }
+        }, 5000);
+      } catch (error) {
+        console.error('[ExtractDownloadComponent] downloadWithIframe() - Error:', error);
+        alert('Alternative download method failed. Please contact your administrator.');
+      }
+    }
+  }
+  /**
+   * Third download method using window.open for mixed content handling
+   */
+  downloadWithWindowOpen() {
+    if (this.extractResult?.zipFileUrl) {
+      console.log('[ExtractDownloadComponent] downloadWithWindowOpen() - Using window.open method');
+      try {
+        // Check if URL is HTTP and we're on HTTPS
+        const isHttpsPage = window.location.protocol === 'https:';
+        const isHttpUrl = this.extractResult.zipFileUrl.startsWith('http://');
+        let downloadUrl = this.extractResult.zipFileUrl;
+        if (isHttpsPage && isHttpUrl) {
+          console.warn('[ExtractDownloadComponent] downloadWithWindowOpen() - Mixed content detected, trying HTTPS');
+          // Try HTTPS version
+          downloadUrl = this.extractResult.zipFileUrl.replace('http://', 'https://');
+        }
+        // Open in new window/tab
+        const newWindow = window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+        if (!newWindow) {
+          console.warn('[ExtractDownloadComponent] downloadWithWindowOpen() - Popup blocked, trying direct link');
+          // Fallback to direct link
+          this.downloadWithUrl(downloadUrl);
+        }
+      } catch (error) {
+        console.error('[ExtractDownloadComponent] downloadWithWindowOpen() - Error:', error);
+        alert('Window open method failed. Please try the other download methods.');
+      }
     }
   }
   static #_ = this.ɵfac = function ExtractDownloadComponent_Factory(t) {
@@ -1923,7 +2004,7 @@ class ExtractDownloadComponent {
     },
     decls: 21,
     vars: 13,
-    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with authentication (recommended)", 1, "btn", "btn-success", 3, "click"], ["title", "Alternative download method using existing session", 1, "btn", "btn-secondary", 3, "click"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
+    consts: [[1, "extract-download-container"], [1, "extract-header"], [1, "extract-description"], [1, "extract-status"], [1, "status-icon"], ["class", "spinner", 4, "ngIf"], ["class", "success-icon", 4, "ngIf"], ["class", "error-icon", 4, "ngIf"], ["class", "ready-icon", 4, "ngIf"], [1, "status-text"], ["class", "progress-container", 4, "ngIf"], [1, "extract-actions"], [1, "btn", "btn-primary", 3, "disabled", "click"], ["class", "download-section", 4, "ngIf"], ["class", "file-summary", 4, "ngIf"], ["class", "no-files", 4, "ngIf"], [1, "spinner"], [1, "success-icon"], [1, "error-icon"], [1, "ready-icon"], [1, "progress-container"], [1, "progress-bar"], [1, "progress-fill"], [1, "progress-text"], [1, "download-section"], [1, "download-info"], ["class", "file-info", 4, "ngIf"], [1, "download-actions"], ["title", "Download with authentication (recommended)", 1, "btn", "btn-success", 3, "click"], ["title", "Alternative download method using existing session", 1, "btn", "btn-secondary", 3, "click"], ["title", "Download using window.open (handles mixed content)", 1, "btn", "btn-info", 3, "click"], [1, "file-info"], [1, "file-detail"], ["class", "file-detail", 4, "ngIf"], [1, "file-summary"], [1, "file-list"], ["class", "file-item", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "file-item"], [1, "file-name"], [1, "file-details"], [1, "file-type"], [1, "file-path"], [1, "no-files"]],
     template: function ExtractDownloadComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h3");
@@ -1948,7 +2029,7 @@ class ExtractDownloadComponent {
         });
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](17);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](18, ExtractDownloadComponent_div_18_Template, 12, 2, "div", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](18, ExtractDownloadComponent_div_18_Template, 14, 2, "div", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](19, ExtractDownloadComponent_div_19_Template, 5, 3, "div", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](20, ExtractDownloadComponent_div_20_Template, 5, 0, "div", 15);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
@@ -4237,9 +4318,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T03:34:12.337Z
-const buildVersion = 'v0.0.59-master';
-const packageVersion = '0.0.59';
+// Generated on: 2025-07-12T03:40:10.179Z
+const buildVersion = 'v0.0.61-master';
+const packageVersion = '0.0.61';
 const gitBranch = 'master';
 
 /***/ })
