@@ -3790,15 +3790,25 @@ class DocumentExtractService {
           }
           // Parse the credentials from the response
           let credentials = {
-            username: 'system@chsi2_tn',
-            password: 'system'
+            username: '',
+            password: ''
           };
           // Check for the systemCredentials_reply structure
           if (raw.systemCredentials_reply) {
             credentials = {
-              username: raw.systemCredentials_reply.username || 'system@chsi2_tn',
-              password: raw.systemCredentials_reply.password || 'system'
+              username: raw.systemCredentials_reply.username || '',
+              password: raw.systemCredentials_reply.password || ''
             };
+          } else if (raw.username && raw.password) {
+            // Direct response structure
+            credentials = {
+              username: raw.username,
+              password: raw.password
+            };
+          } else {
+            console.error('[DocumentExtractService] getSystemCredentials() - No valid credentials structure found in response:', raw);
+            observer.error('No valid credentials structure found in response');
+            return;
           }
           console.log('[DocumentExtractService] getSystemCredentials() - Credentials received:', credentials);
           observer.next(credentials);
@@ -4644,9 +4654,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-12T06:25:05.208Z
-const buildVersion = 'v0.0.85-master';
-const packageVersion = '0.0.85';
+// Generated on: 2025-07-12T06:28:01.366Z
+const buildVersion = 'v0.0.87-master';
+const packageVersion = '0.0.87';
 const gitBranch = 'master';
 
 /***/ })
