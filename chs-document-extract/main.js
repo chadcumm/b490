@@ -702,14 +702,22 @@ class DocumentListComponent {
     console.log('[DocumentListComponent] downloadSelected() - Selected documents count:', this.selectedDocuments.length);
     console.log('[DocumentListComponent] downloadSelected() - Patient info:', this.patientInfo);
     if (this.selectedDocuments.length > 0 && this.patientInfo) {
-      const dmsMediaInstanceRequests = this.selectedDocuments.map(doc => ({
+      const dmsDocuments = this.selectedDocuments.filter(doc => doc.sourceType === 'dms');
+      const cpdiDocuments = this.selectedDocuments.filter(doc => doc.sourceType === 'cpdi');
+      const dmsMediaInstanceRequests = dmsDocuments.map(doc => ({
         mediaInstanceId: parseInt(doc.id)
       }));
-      console.log('[DocumentListComponent] downloadSelected() - Created download requests:', dmsMediaInstanceRequests);
+      const cpdiDocumentRequests = cpdiDocuments.map(doc => ({
+        eventId: parseInt(doc.id),
+        blobHandle: doc.contentUid
+      }));
+      console.log('[DocumentListComponent] downloadSelected() - Created DMS requests:', dmsMediaInstanceRequests);
+      console.log('[DocumentListComponent] downloadSelected() - Created CPDI requests:', cpdiDocumentRequests);
       const downloadData = {
         personId: this.patientInfo.personId,
         encntrId: this.patientInfo.encntrId,
-        dmsMediaInstanceRequests: dmsMediaInstanceRequests
+        dmsMediaInstanceRequests: dmsMediaInstanceRequests,
+        cpdiDocumentRequests: cpdiDocumentRequests
       };
       console.log('[DocumentListComponent] downloadSelected() - Emitting download request:', downloadData);
       this.downloadRequest.emit(downloadData);
@@ -3415,7 +3423,7 @@ class DocumentExtractService {
     const patientQual = raw.qual && raw.qual.length > 0 ? raw.qual[0] : {};
     console.log('[DocumentExtractService] mapToPatientInfo() - Patient qual data:', patientQual);
     // Map documents from dmsQual array
-    const documents = patientQual.dmsQual ? patientQual.dmsQual.map(doc => ({
+    const dmsDocuments = patientQual.dmsQual ? patientQual.dmsQual.map(doc => ({
       id: doc.dmsMediaInstanceId?.toString() || '',
       documentName: doc.name || '',
       documentType: doc.contentTypeDisplay || '',
@@ -3431,8 +3439,31 @@ class DocumentExtractService {
       appCtx: doc.appCtx || '',
       mediaObjectIdentifier: doc.mediaObjectIdentifier || '',
       parentEntityName: doc.parentEntityName || '',
-      parentEntityId: doc.parentEntityId || 0
+      parentEntityId: doc.parentEntityId || 0,
+      sourceType: 'dms'
     })) : [];
+    // Map documents from cpdiQual array
+    const cpdiDocuments = patientQual.cpdiQual ? patientQual.cpdiQual.map(doc => ({
+      id: doc.eventId?.toString() || '',
+      documentName: doc.eventTitleText || 'CPDI Document',
+      documentType: 'CPDI Document',
+      documentDate: doc.eventEndDtTm ? new Date(doc.eventEndDtTm) : new Date(),
+      documentSize: 'Unknown',
+      selected: false,
+      contentTypeKey: 'CPDI',
+      contentTypeDisplay: 'CPDI Document',
+      contentTypeDescription: 'Clinical Provider Document Image',
+      identifier: 'CPDI',
+      contentUid: doc.blobHandle || '',
+      mediaType: 'pdf',
+      appCtx: 'CPDI',
+      mediaObjectIdentifier: '',
+      parentEntityName: 'EVENT',
+      parentEntityId: doc.eventId || 0,
+      sourceType: 'cpdi'
+    })) : [];
+    // Combine both document types
+    const documents = [...dmsDocuments, ...cpdiDocuments];
     console.log('[DocumentExtractService] mapToPatientInfo() - Mapped documents:', documents);
     const result = {
       fin: patientQual.fin || '',
@@ -5058,10 +5089,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-13T06:04:41.260Z
-const buildVersion = 'v0.0.114-ui-improvement';
-const packageVersion = '0.0.114';
-const gitBranch = 'ui-improvement';
+// Generated on: 2025-07-14T11:58:34.693Z
+const buildVersion = 'v0.0.115-cpdi';
+const packageVersion = '0.0.115';
+const gitBranch = 'cpdi';
 
 /***/ })
 
