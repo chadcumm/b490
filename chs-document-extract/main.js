@@ -5410,9 +5410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-14T12:31:09.628Z
-const buildVersion = 'v0.0.117-cpdi';
-const packageVersion = '0.0.117';
+// Generated on: 2025-07-14T12:32:07.839Z
+const buildVersion = 'v0.0.118-cpdi';
+const packageVersion = '0.0.118';
 const gitBranch = 'cpdi';
 
 /***/ })
