@@ -882,7 +882,7 @@ function DocumentTrackingComponent_div_12_div_5_span_5_Template(rf, ctx) {
   if (rf & 2) {
     const item_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r10.event_code_display, ")");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r10.eventCodeDisplay, ")");
   }
 }
 function DocumentTrackingComponent_div_12_div_5_span_9_Template(rf, ctx) {
@@ -940,7 +940,7 @@ function DocumentTrackingComponent_div_12_div_5_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r10.documentName || item_r10.documentId, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r10.documentType === "CPDI Document" && item_r10.event_code_display);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r10.documentType === "CPDI Document" && item_r10.eventCodeDisplay);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](ctx_r9.getStatusText(item_r10.status));
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
@@ -982,7 +982,7 @@ function DocumentTrackingComponent_div_13_div_7_span_5_Template(rf, ctx) {
   if (rf & 2) {
     const item_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r19.event_code_display, ")");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r19.eventCodeDisplay, ")");
   }
 }
 function DocumentTrackingComponent_div_13_div_7_span_7_Template(rf, ctx) {
@@ -1021,7 +1021,7 @@ function DocumentTrackingComponent_div_13_div_7_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r19.documentName || item_r19.documentId, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.documentType === "CPDI Document" && item_r19.event_code_display);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.documentType === "CPDI Document" && item_r19.eventCodeDisplay);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.filename);
   }
@@ -1068,7 +1068,7 @@ function DocumentTrackingComponent_div_14_div_7_span_5_Template(rf, ctx) {
   if (rf & 2) {
     const item_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r28.event_code_display, ")");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r28.eventCodeDisplay, ")");
   }
 }
 function DocumentTrackingComponent_div_14_div_7_span_7_Template(rf, ctx) {
@@ -1115,7 +1115,7 @@ function DocumentTrackingComponent_div_14_div_7_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r28.documentName || item_r28.documentId, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.documentType === "CPDI Document" && item_r28.event_code_display);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.documentType === "CPDI Document" && item_r28.eventCodeDisplay);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.error);
   }
@@ -1236,7 +1236,7 @@ class DocumentTrackingComponent {
     })), ...cpdiDocumentRequests.map(request => ({
       documentId: request.eventId.toString(),
       status: 'pending',
-      event_code_display: '' // will be set after download
+      eventCodeDisplay: '' // will be set after download
     }))];
 
     console.log('[DocumentTrackingComponent] startDownload() - Initialized download queue:', this.downloadQueue);
@@ -1296,7 +1296,7 @@ class DocumentTrackingComponent {
         queueItem.filename = result.filename;
         queueItem.documentName = result.documentName;
         queueItem.documentType = result.documentType;
-        if (result.event_code_display) queueItem.event_code_display = result.event_code_display;
+        if (result.eventCodeDisplay) queueItem.eventCodeDisplay = result.eventCodeDisplay;
         if (result.status === 1) {
           queueItem.status = 'completed';
           queueItem.progress = 100;
@@ -3021,8 +3021,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Users_chadcummings_Github_chs_document_extract_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2235);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @clinicaloffice/clinical-office-mpage-core */ 5715);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ 4980);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ 4148);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 2389);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ 1699);
+/* harmony import */ var _clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @clinicaloffice/clinical-office-mpage-core */ 5715);
+
 
 
 
@@ -3314,6 +3318,7 @@ class DocumentExtractService {
       requestCount: dmsMediaInstanceRequests.length,
       requests: dmsMediaInstanceRequests
     });
+    const TIMEOUT_MS = 30000;
     return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       const total = dmsMediaInstanceRequests.length;
       let completed = 0;
@@ -3352,9 +3357,27 @@ class DocumentExtractService {
           isComplete: false,
           allResults
         });
-        this.downloadSingleDocument(personId, encntrId, currentRequest).subscribe({
+        this.downloadSingleDocument(personId, encntrId, currentRequest).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.timeout)(TIMEOUT_MS), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(error => {
+          console.error('[DocumentExtractService] downloadDocumentsSequentially() - Timeout or error for mediaInstanceId:', currentRequest.mediaInstanceId, error);
+          failed++;
+          // Add a failed result for timeout
+          allResults.push({
+            mediaInstanceId: currentRequest.mediaInstanceId,
+            documentType: '',
+            filename: '',
+            status: 0,
+            fullpath: '',
+            message: 'Download timed out or failed',
+            documentName: '',
+            contentType: ''
+          });
+          currentIndex++;
+          processNext();
+          // Return empty observable since we handle next step manually
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.of)();
+        })).subscribe({
           next: response => {
-            console.log('[DocumentExtractService] downloadDocumentsSequentially() - Single document download completed:', response);
+            if (!response || !response.allResults || response.allResults.length === 0) return;
             const result = response.allResults[0];
             allResults.push(result);
             if (result.status === 1) {
@@ -3367,14 +3390,10 @@ class DocumentExtractService {
             currentIndex++;
             processNext();
           },
-          error: error => {
-            console.error('[DocumentExtractService] downloadDocumentsSequentially() - Error downloading single document:', error);
-            failed++;
-            currentIndex++;
-            processNext();
-          }
+          error: () => {} // Already handled in catchError
         });
       };
+
       processNext();
     });
   }
@@ -3868,6 +3887,7 @@ class DocumentExtractService {
       requestCount: cpdiRequests.length,
       requests: cpdiRequests
     });
+    const TIMEOUT_MS = 30000;
     return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
       const total = cpdiRequests.length;
       let completed = 0;
@@ -3906,29 +3926,42 @@ class DocumentExtractService {
           isComplete: false,
           allResults
         });
-        this.downloadCpdiDocument(personId, encntrId, currentRequest).subscribe({
+        this.downloadCpdiDocument(personId, encntrId, currentRequest).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.timeout)(TIMEOUT_MS), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(error => {
+          console.error('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Timeout or error for eventId:', currentRequest.eventId, error);
+          failed++;
+          // Add a failed result for timeout
+          allResults.push({
+            eventId: currentRequest.eventId,
+            documentType: 'CPDI Document',
+            filename: '',
+            status: 0,
+            fullpath: '',
+            message: 'Download timed out or failed',
+            documentName: '',
+            contentType: 'CPDI',
+            eventCodeDisplay: ''
+          });
+          currentIndex++;
+          processNext();
+          // Return empty observable since we handle next step manually
+          return (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.of)();
+        })).subscribe({
           next: response => {
-            console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Single CPDI document download completed:', response);
+            if (!response || !response.allResults || response.allResults.length === 0) return;
             const result = response.allResults[0];
             allResults.push(result);
             if (result.status === 1) {
               completed++;
-              console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Download successful for eventId:', result.eventId);
             } else {
               failed++;
-              console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Download failed for eventId:', result.eventId, 'Error:', result.message);
             }
             currentIndex++;
             processNext();
           },
-          error: error => {
-            console.error('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Error downloading single CPDI document:', error);
-            failed++;
-            currentIndex++;
-            processNext();
-          }
+          error: () => {} // Already handled in catchError
         });
       };
+
       processNext();
     });
   }
@@ -3962,7 +3995,7 @@ class DocumentExtractService {
         message: downloadResponse?.CPDI_DOWNLOAD_RESPONSE?.MESSAGE || (isSuccess ? 'Download successful' : 'Download failed'),
         documentName: cpdiItem.eventTitleText || '',
         contentType: 'CPDI',
-        event_code_display: cpdiItem.eventCodeDisplay || ''
+        eventCodeDisplay: cpdiItem.eventCodeDisplay || ''
       };
       console.log('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Parsed result:', result);
       return result;
@@ -3978,7 +4011,7 @@ class DocumentExtractService {
       message: 'No response data found',
       documentName: '',
       contentType: 'CPDI',
-      event_code_display: ''
+      eventCodeDisplay: ''
     };
   }
   /**
@@ -4134,9 +4167,9 @@ class DocumentExtractService {
     });
   }
   static #_ = this.ɵfac = function DocumentExtractService_Factory(t) {
-    return new (t || DocumentExtractService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_3__.CustomService));
+    return new (t || DocumentExtractService)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_clinicaloffice_clinical_office_mpage_core__WEBPACK_IMPORTED_MODULE_6__.CustomService));
   };
-  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+  static #_2 = this.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"]({
     token: DocumentExtractService,
     factory: DocumentExtractService.ɵfac,
     providedIn: 'root'
@@ -5377,9 +5410,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-14T12:17:36.474Z
-const buildVersion = 'v0.0.116-cpdi';
-const packageVersion = '0.0.116';
+// Generated on: 2025-07-14T12:31:09.628Z
+const buildVersion = 'v0.0.117-cpdi';
+const packageVersion = '0.0.117';
 const gitBranch = 'cpdi';
 
 /***/ })
