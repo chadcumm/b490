@@ -205,12 +205,11 @@ class AppComponent {
    * @param downloadData The download request data
    */
   onDownloadRequest(downloadData) {
-    // Update progress stepper to show download step is active
+    const totalCount = (downloadData.dmsMediaInstanceRequests?.length || 0) + (downloadData.cpdiDocumentRequests?.length || 0);
     this.progressStepper.updateStep('download', 'active', undefined, {
-      count: downloadData.dmsMediaInstanceRequests.length
+      count: totalCount
     });
-    this.progressStepper.updateStepDescription('download', `Downloading ${downloadData.dmsMediaInstanceRequests.length} files...`);
-    // Pass the download request to the document tracking component
+    this.progressStepper.updateStepDescription('download', `Downloading ${totalCount} files...`);
     if (this.documentTrackingComponent) {
       this.documentTrackingComponent.handleDownloadRequest(downloadData);
     }
@@ -867,9 +866,28 @@ function DocumentTrackingComponent_div_10_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate2"]("", ctx_r3.getCurrentDownloadStatus(), " (", ctx_r3.getDownloadProgress(), "%)");
   }
 }
-function DocumentTrackingComponent_div_12_div_5_span_7_Template(rf, ctx) {
+function DocumentTrackingComponent_div_12_div_5_span_3_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "CPDI");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+}
+function DocumentTrackingComponent_div_12_div_5_span_5_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const item_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r10.event_code_display, ")");
+  }
+}
+function DocumentTrackingComponent_div_12_div_5_span_9_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 35);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
@@ -879,12 +897,12 @@ function DocumentTrackingComponent_div_12_div_5_span_7_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](item_r10.documentType);
   }
 }
-function DocumentTrackingComponent_div_12_div_5_div_8_Template(rf, ctx) {
+function DocumentTrackingComponent_div_12_div_5_div_10_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 32)(1, "div", 33);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](2, "div", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 36)(1, "div", 37);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](2, "div", 38);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "span", 35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "span", 39);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
@@ -899,24 +917,30 @@ function DocumentTrackingComponent_div_12_div_5_div_8_Template(rf, ctx) {
 function DocumentTrackingComponent_div_12_div_5_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 24)(1, "div", 25)(2, "div", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](3, DocumentTrackingComponent_div_12_div_5_span_3_Template, 2, 0, "span", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_12_div_5_span_5_Template, 2, 1, "span", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 27)(5, "span", 28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 29)(7, "span", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_12_div_5_span_7_Template, 2, 1, "span", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](9, DocumentTrackingComponent_div_12_div_5_span_9_Template, 2, 1, "span", 31);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](8, DocumentTrackingComponent_div_12_div_5_div_8_Template, 5, 3, "div", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](10, DocumentTrackingComponent_div_12_div_5_div_10_Template, 5, 3, "div", 32);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const item_r10 = ctx.$implicit;
     const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassMap"](ctx_r9.getStatusClass(item_r10.status));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassMap"](ctx_r9.getStatusClass(item_r10.status) + (item_r10.documentType === "CPDI Document" ? " cpdi-doc" : ""));
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r10.documentName || item_r10.documentId);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r10.documentType === "CPDI Document");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r10.documentName || item_r10.documentId, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r10.documentType === "CPDI Document" && item_r10.event_code_display);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](ctx_r9.getStatusText(item_r10.status));
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
@@ -931,7 +955,7 @@ function DocumentTrackingComponent_div_12_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 22);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_12_div_5_Template, 9, 7, "div", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_12_div_5_Template, 11, 9, "div", 23);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
@@ -942,56 +966,82 @@ function DocumentTrackingComponent_div_12_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", ctx_r4.downloadQueue);
   }
 }
+function DocumentTrackingComponent_div_13_div_7_span_3_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "CPDI");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+}
 function DocumentTrackingComponent_div_13_div_7_span_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const item_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
+    const item_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](item_r16.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r19.event_code_display, ")");
+  }
+}
+function DocumentTrackingComponent_div_13_div_7_span_7_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const item_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](item_r19.filename);
   }
 }
 function DocumentTrackingComponent_div_13_div_7_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 39)(1, "div", 25)(2, "div", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 43)(1, "div", 25)(2, "div", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](3, DocumentTrackingComponent_div_13_div_7_span_3_Template, 2, 0, "span", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_13_div_7_span_5_Template, 2, 1, "span", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_13_div_7_span_5_Template, 2, 1, "span", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_13_div_7_span_7_Template, 2, 1, "span", 44);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 41)(7, "span", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](8, "\u2713");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](8, "div", 45)(9, "span", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](10, "\u2713");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const item_r16 = ctx.$implicit;
+    const item_r19 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("cpdi-doc", item_r19.documentType === "CPDI Document");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r16.documentName || item_r16.documentId);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r19.documentName || item_r19.documentId);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r16.documentName || item_r16.documentId, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.documentType === "CPDI Document");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r19.documentName || item_r19.documentId, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.documentType === "CPDI Document" && item_r19.event_code_display);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r16.filename);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r19.filename);
   }
 }
 function DocumentTrackingComponent_div_13_Template(rf, ctx) {
   if (rf & 1) {
-    const _r20 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    const _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 20)(1, "div", 21)(2, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 40);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function DocumentTrackingComponent_div_13_Template_button_click_4_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r20);
-      const ctx_r19 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r19.clearCompleted());
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r26);
+      const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r25.clearCompleted());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](5, "Clear");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 37);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_13_div_7_Template, 9, 3, "div", 38);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_13_div_7_Template, 11, 7, "div", 42);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
@@ -1002,64 +1052,90 @@ function DocumentTrackingComponent_div_13_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", ctx_r5.completedDownloads);
   }
 }
+function DocumentTrackingComponent_div_14_div_7_span_3_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "CPDI");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+}
 function DocumentTrackingComponent_div_14_div_7_span_5_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 50);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const item_r22 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r22.error);
+    const item_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r22.error, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("(", item_r28.event_code_display, ")");
+  }
+}
+function DocumentTrackingComponent_div_14_div_7_span_7_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "span", 54);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const item_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r28.error);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r28.error, " ");
   }
 }
 function DocumentTrackingComponent_div_14_div_7_Template(rf, ctx) {
   if (rf & 1) {
-    const _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 46)(1, "div", 25)(2, "div", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
+    const _r35 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 50)(1, "div", 25)(2, "div", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](3, DocumentTrackingComponent_div_14_div_7_span_3_Template, 2, 0, "span", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_14_div_7_span_5_Template, 2, 1, "span", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "div", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](5, DocumentTrackingComponent_div_14_div_7_span_5_Template, 2, 2, "span", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_14_div_7_span_7_Template, 2, 2, "span", 51);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 48)(7, "button", 49);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function DocumentTrackingComponent_div_14_div_7_Template_button_click_7_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r26);
-      const item_r22 = restoredCtx.$implicit;
-      const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
-      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r25.retryDownload(item_r22));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](8, "div", 52)(9, "button", 53);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function DocumentTrackingComponent_div_14_div_7_Template_button_click_9_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r35);
+      const item_r28 = restoredCtx.$implicit;
+      const ctx_r34 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r34.retryDownload(item_r28));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](8, " \u21BB Retry ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](10, " \u21BB Retry ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const item_r22 = ctx.$implicit;
+    const item_r28 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵclassProp"]("cpdi-doc", item_r28.documentType === "CPDI Document");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r22.documentName || item_r22.documentId);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("title", item_r28.documentName || item_r28.documentId);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r22.documentName || item_r22.documentId, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.documentType === "CPDI Document");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", item_r28.documentName || item_r28.documentId, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.documentType === "CPDI Document" && item_r28.event_code_display);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r22.error);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", item_r28.error);
   }
 }
 function DocumentTrackingComponent_div_14_Template(rf, ctx) {
   if (rf & 1) {
-    const _r28 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    const _r37 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 20)(1, "div", 21)(2, "h4");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 36);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](4, "button", 40);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("click", function DocumentTrackingComponent_div_14_Template_button_click_4_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r28);
-      const ctx_r27 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r27.clearFailed());
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r37);
+      const ctx_r36 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r36.clearFailed());
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](5, "Clear");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_14_div_7_Template, 9, 3, "div", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](6, "div", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](7, DocumentTrackingComponent_div_14_div_7_Template, 11, 7, "div", 49);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
@@ -1072,12 +1148,12 @@ function DocumentTrackingComponent_div_14_Template(rf, ctx) {
 }
 function DocumentTrackingComponent_div_15_Template(rf, ctx) {
   if (rf & 1) {
-    const _r30 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 51)(1, "app-extract-download", 52);
+    const _r39 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 55)(1, "app-extract-download", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("extractComplete", function DocumentTrackingComponent_div_15_Template_app_extract_download_extractComplete_1_listener($event) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r30);
-      const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r29.handleExtractComplete($event));
+      _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵrestoreView"](_r39);
+      const ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵresetView"](ctx_r38.handleExtractComplete($event));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
   }
@@ -1089,7 +1165,7 @@ function DocumentTrackingComponent_div_15_Template(rf, ctx) {
 }
 function DocumentTrackingComponent_div_16_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 53)(1, "p");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 57)(1, "p");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](2, "\uD83D\uDCCB No download activity");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](3, "small");
@@ -1119,7 +1195,7 @@ class DocumentTrackingComponent {
    */
   handleDownloadRequest(downloadData) {
     console.log('[DocumentTrackingComponent] handleDownloadRequest() - Received download request:', downloadData);
-    this.startDownload(downloadData.personId, downloadData.encntrId, downloadData.dmsMediaInstanceRequests);
+    this.startDownload(downloadData.personId, downloadData.encntrId, downloadData.dmsMediaInstanceRequests, downloadData.cpdiDocumentRequests);
   }
   /**
    * Clears all download state to start fresh
@@ -1133,51 +1209,71 @@ class DocumentTrackingComponent {
     this.showExtractComponent = false;
   }
   /**
-   * Starts the download process for selected documents
+   * Starts the download process for selected documents (DMS and CPDI)
    * @param personId The patient's person ID
    * @param encntrId The patient's encounter ID
-   * @param dmsMediaInstanceRequests Array of document media instance requests to download
+   * @param dmsMediaInstanceRequests Array of DMS document requests
+   * @param cpdiDocumentRequests Array of CPDI document requests
    */
-  startDownload(personId, encntrId, dmsMediaInstanceRequests) {
+  startDownload(personId, encntrId, dmsMediaInstanceRequests, cpdiDocumentRequests) {
     console.log('[DocumentTrackingComponent] startDownload() - Starting download process with parameters:', {
       personId,
       encntrId,
-      requestCount: dmsMediaInstanceRequests.length,
-      requests: dmsMediaInstanceRequests
+      dmsCount: dmsMediaInstanceRequests.length,
+      cpdiCount: cpdiDocumentRequests.length
     });
-    if (dmsMediaInstanceRequests.length === 0) {
+    if (dmsMediaInstanceRequests.length === 0 && cpdiDocumentRequests.length === 0) {
       console.warn('[DocumentTrackingComponent] startDownload() - No download requests provided');
       return;
     }
     // Clear previous download state
     this.clearDownloadState();
     this.isDownloading = true;
-    console.log('[DocumentTrackingComponent] startDownload() - Set isDownloading to true');
-    // Initialize download queue
-    this.downloadQueue = dmsMediaInstanceRequests.map(request => ({
+    // Initialize download queue for both DMS and CPDI
+    this.downloadQueue = [...dmsMediaInstanceRequests.map(request => ({
       documentId: request.mediaInstanceId.toString(),
       status: 'pending'
-    }));
+    })), ...cpdiDocumentRequests.map(request => ({
+      documentId: request.eventId.toString(),
+      status: 'pending',
+      event_code_display: '' // will be set after download
+    }))];
+
     console.log('[DocumentTrackingComponent] startDownload() - Initialized download queue:', this.downloadQueue);
-    // Start the sequential download process
-    console.log('[DocumentTrackingComponent] startDownload() - Calling document service for sequential download');
-    this.documentService.downloadDocumentsSequentially(personId, encntrId, dmsMediaInstanceRequests).subscribe({
-      next: response => {
-        console.log('[DocumentTrackingComponent] startDownload() - Received sequential download response:', response);
-        this.handleSequentialDownloadResponse(response);
-      },
-      error: error => {
-        console.error('[DocumentTrackingComponent] startDownload() - Sequential download error:', error);
-        this.handleDownloadError(error);
-      }
-    });
+    // Start DMS downloads
+    if (dmsMediaInstanceRequests.length > 0) {
+      this.documentService.downloadDocumentsSequentially(personId, encntrId, dmsMediaInstanceRequests).subscribe({
+        next: response => {
+          console.log('[DocumentTrackingComponent] startDownload() - DMS sequential download response:', response);
+          this.handleSequentialDownloadResponse(response, 'dms');
+        },
+        error: error => {
+          console.error('[DocumentTrackingComponent] startDownload() - DMS sequential download error:', error);
+          this.handleDownloadError(error);
+        }
+      });
+    }
+    // Start CPDI downloads
+    if (cpdiDocumentRequests.length > 0) {
+      this.documentService.downloadCpdiDocumentsSequentially(personId, encntrId, cpdiDocumentRequests).subscribe({
+        next: response => {
+          console.log('[DocumentTrackingComponent] startDownload() - CPDI sequential download response:', response);
+          this.handleSequentialDownloadResponse(response, 'cpdi');
+        },
+        error: error => {
+          console.error('[DocumentTrackingComponent] startDownload() - CPDI sequential download error:', error);
+          this.handleDownloadError(error);
+        }
+      });
+    }
   }
   /**
-   * Handles sequential download response with progress updates
+   * Handles sequential download response with progress updates for DMS or CPDI
    * @param response The sequential download response from the service
+   * @param type 'dms' or 'cpdi'
    */
-  handleSequentialDownloadResponse(response) {
-    console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing sequential download response:', response);
+  handleSequentialDownloadResponse(response, type) {
+    console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing sequential download response:', response, 'type:', type);
     const {
       progress,
       isComplete,
@@ -1185,27 +1281,23 @@ class DocumentTrackingComponent {
     } = response;
     // Update progress for current download
     if (progress.current) {
-      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing current download:', progress.current);
-      const queueItem = this.downloadQueue.find(item => item.documentId === progress.current.mediaInstanceId.toString());
+      const id = type === 'dms' ? progress.current.mediaInstanceId.toString() : progress.current.eventId.toString();
+      const queueItem = this.downloadQueue.find(item => item.documentId === id);
       if (queueItem) {
-        console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Found queue item for current download:', queueItem);
         queueItem.status = 'downloading';
-        queueItem.progress = 50; // Indicate download in progress
+        queueItem.progress = 50;
       }
     }
     // Process completed results
-    allResults.forEach((result, index) => {
-      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Processing result:', result);
-      const queueItem = this.downloadQueue.find(item => item.documentId === result.mediaInstanceId.toString());
+    allResults.forEach(result => {
+      const id = type === 'dms' ? result.mediaInstanceId?.toString() : result.eventId?.toString();
+      const queueItem = this.downloadQueue.find(item => item.documentId === id);
       if (queueItem) {
-        console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Found queue item for result:', queueItem);
-        // Update queue item with result details
         queueItem.filename = result.filename;
         queueItem.documentName = result.documentName;
         queueItem.documentType = result.documentType;
+        if (result.event_code_display) queueItem.event_code_display = result.event_code_display;
         if (result.status === 1) {
-          // Download successful
-          console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Download successful for:', result.mediaInstanceId);
           queueItem.status = 'completed';
           queueItem.progress = 100;
           this.moveToCompleted(queueItem);
@@ -1216,52 +1308,36 @@ class DocumentTrackingComponent {
               fullpath: result.fullpath,
               documentName: result.documentName,
               documentType: result.documentType,
-              mediaInstanceId: result.mediaInstanceId
+              mediaInstanceId: result.mediaInstanceId || result.eventId || 0
             };
-            // Check if this file is already in the downloaded files list to prevent duplicates
-            const existingFile = this.downloadedFiles.find(file => file.mediaInstanceId === result.mediaInstanceId);
+            const existingFile = this.downloadedFiles.find(file => file.mediaInstanceId === (result.mediaInstanceId || result.eventId));
             if (!existingFile) {
               this.downloadedFiles.push(downloadedFile);
               console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Added to downloaded files:', downloadedFile);
-            } else {
-              console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - File already exists in downloaded files, skipping:', result.mediaInstanceId);
             }
           }
         } else {
-          // Download failed
-          console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Download failed for:', result.mediaInstanceId, 'Error:', result.message);
           queueItem.status = 'failed';
           queueItem.error = result.message;
           this.moveToFailed(queueItem);
         }
       } else {
-        console.warn('[DocumentTrackingComponent] handleSequentialDownloadResponse() - No queue item found for mediaInstanceId:', result.mediaInstanceId);
+        console.warn('[DocumentTrackingComponent] handleSequentialDownloadResponse() - No queue item found for id:', id);
       }
     });
     // Check if all downloads are complete
-    if (isComplete) {
-      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - All downloads completed. Progress:', progress);
-      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Setting isDownloading to false and clearing queue');
+    const allComplete = this.downloadQueue.every(item => item.status === 'completed' || item.status === 'failed');
+    if (isComplete && allComplete) {
       this.isDownloading = false;
       this.downloadQueue = [];
-      // Update progress stepper
       this.progressStepper.updateStep('download', 'completed', undefined, {
         count: this.downloadedFiles.length
       });
       this.progressStepper.updateStepDescription('download', `${this.downloadedFiles.length} files downloaded`);
-      // Show extract component if we have downloaded files
       if (this.downloadedFiles.length > 0) {
-        console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Showing extract component with', this.downloadedFiles.length, 'files');
         this.showExtractComponent = true;
       }
-      // Log final summary
-      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - Download Summary:', {
-        total: progress.total,
-        completed: progress.completed,
-        failed: progress.failed,
-        successRate: progress.total > 0 ? (progress.completed / progress.total * 100).toFixed(1) + '%' : '0%',
-        downloadedFilesCount: this.downloadedFiles.length
-      });
+      console.log('[DocumentTrackingComponent] handleSequentialDownloadResponse() - All downloads completed. Downloaded files:', this.downloadedFiles.length);
     }
   }
   /**
@@ -1345,23 +1421,41 @@ class DocumentTrackingComponent {
     // Remove from failed list
     const index = this.failedDownloads.findIndex(failed => failed.documentId === item.documentId);
     if (index > -1) {
-      console.log('[DocumentTrackingComponent] retryDownload() - Removing item from failed list');
       this.failedDownloads.splice(index, 1);
     }
     // Add to download queue
-    console.log('[DocumentTrackingComponent] retryDownload() - Adding item to download queue');
     this.downloadQueue.push({
       documentId: item.documentId,
       status: 'pending'
     });
-    // Create download request for this single item
-    const retryRequest = {
-      mediaInstanceId: parseInt(item.documentId)
-    };
-    console.log('[DocumentTrackingComponent] retryDownload() - Created retry request:', retryRequest);
-    // Start sequential download for this single item using current patient context
-    console.log('[DocumentTrackingComponent] retryDownload() - Starting sequential download with current patient context');
-    this.startDownload(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]);
+    // Determine if DMS or CPDI
+    const isDms = !!this.currentPatient.documents.find(doc => doc.id === item.documentId && doc.sourceType === 'dms');
+    if (isDms) {
+      const retryRequest = {
+        mediaInstanceId: parseInt(item.documentId)
+      };
+      this.documentService.downloadDocumentsSequentially(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]).subscribe({
+        next: response => {
+          this.handleSequentialDownloadResponse(response, 'dms');
+        },
+        error: error => {
+          this.handleDownloadError(error);
+        }
+      });
+    } else {
+      const retryRequest = {
+        eventId: parseInt(item.documentId),
+        blobHandle: this.currentPatient.documents.find(doc => doc.id === item.documentId && doc.sourceType === 'cpdi')?.contentUid || ''
+      };
+      this.documentService.downloadCpdiDocumentsSequentially(this.currentPatient.personId, this.currentPatient.encntrId, [retryRequest]).subscribe({
+        next: response => {
+          this.handleSequentialDownloadResponse(response, 'cpdi');
+        },
+        error: error => {
+          this.handleDownloadError(error);
+        }
+      });
+    }
   }
   /**
    * Clears completed downloads
@@ -1455,7 +1549,7 @@ class DocumentTrackingComponent {
     },
     decls: 17,
     vars: 9,
-    consts: [[1, "document-tracking-container"], [1, "tracking-header"], [1, "header-info"], [1, "status-indicators"], ["class", "queue-count", 4, "ngIf"], ["class", "completed-count", 4, "ngIf"], ["class", "failed-count", 4, "ngIf"], [1, "progress-area"], ["class", "progress-overview", 4, "ngIf"], [1, "main-grid"], ["class", "downloads-section", 4, "ngIf"], ["class", "extract-section", 4, "ngIf"], ["class", "no-activity", 4, "ngIf"], [1, "queue-count"], [1, "completed-count"], [1, "failed-count"], [1, "progress-overview"], [1, "progress-bar-overall"], [1, "progress-fill-overall"], [1, "progress-text"], [1, "downloads-section"], [1, "section-title"], [1, "compact-download-list"], ["class", "compact-download-item", 3, "class", 4, "ngFor", "ngForOf"], [1, "compact-download-item"], [1, "item-info"], [1, "doc-name", 3, "title"], [1, "doc-meta"], [1, "status-badge"], ["class", "doc-type", 4, "ngIf"], ["class", "item-progress", 4, "ngIf"], [1, "doc-type"], [1, "item-progress"], [1, "mini-progress"], [1, "mini-fill"], [1, "progress-pct"], [1, "btn", "btn-xs", "btn-outline", 3, "click"], [1, "compact-download-list", "completed"], ["class", "compact-download-item status-completed", 4, "ngFor", "ngForOf"], [1, "compact-download-item", "status-completed"], ["class", "filename", 4, "ngIf"], [1, "item-status"], [1, "checkmark"], [1, "filename"], [1, "compact-download-list", "failed"], ["class", "compact-download-item status-failed", 4, "ngFor", "ngForOf"], [1, "compact-download-item", "status-failed"], ["class", "error-msg", 3, "title", 4, "ngIf"], [1, "item-actions"], [1, "btn", "btn-xs", "btn-retry", 3, "click"], [1, "error-msg", 3, "title"], [1, "extract-section"], [3, "personId", "encntrId", "downloadedFiles", "extractComplete"], [1, "no-activity"]],
+    consts: [[1, "document-tracking-container"], [1, "tracking-header"], [1, "header-info"], [1, "status-indicators"], ["class", "queue-count", 4, "ngIf"], ["class", "completed-count", 4, "ngIf"], ["class", "failed-count", 4, "ngIf"], [1, "progress-area"], ["class", "progress-overview", 4, "ngIf"], [1, "main-grid"], ["class", "downloads-section", 4, "ngIf"], ["class", "extract-section", 4, "ngIf"], ["class", "no-activity", 4, "ngIf"], [1, "queue-count"], [1, "completed-count"], [1, "failed-count"], [1, "progress-overview"], [1, "progress-bar-overall"], [1, "progress-fill-overall"], [1, "progress-text"], [1, "downloads-section"], [1, "section-title"], [1, "compact-download-list"], ["class", "compact-download-item", 3, "class", 4, "ngFor", "ngForOf"], [1, "compact-download-item"], [1, "item-info"], [1, "doc-name", 3, "title"], ["class", "cpdi-badge", 4, "ngIf"], ["class", "event-code-display", 4, "ngIf"], [1, "doc-meta"], [1, "status-badge"], ["class", "doc-type", 4, "ngIf"], ["class", "item-progress", 4, "ngIf"], [1, "cpdi-badge"], [1, "event-code-display"], [1, "doc-type"], [1, "item-progress"], [1, "mini-progress"], [1, "mini-fill"], [1, "progress-pct"], [1, "btn", "btn-xs", "btn-outline", 3, "click"], [1, "compact-download-list", "completed"], ["class", "compact-download-item status-completed", 3, "cpdi-doc", 4, "ngFor", "ngForOf"], [1, "compact-download-item", "status-completed"], ["class", "filename", 4, "ngIf"], [1, "item-status"], [1, "checkmark"], [1, "filename"], [1, "compact-download-list", "failed"], ["class", "compact-download-item status-failed", 3, "cpdi-doc", 4, "ngFor", "ngForOf"], [1, "compact-download-item", "status-failed"], ["class", "error-msg", 3, "title", 4, "ngIf"], [1, "item-actions"], [1, "btn", "btn-xs", "btn-retry", 3, "click"], [1, "error-msg", 3, "title"], [1, "extract-section"], [3, "personId", "encntrId", "downloadedFiles", "extractComplete"], [1, "no-activity"]],
     template: function DocumentTrackingComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "div", 2)(3, "h3");
@@ -3694,6 +3788,200 @@ class DocumentExtractService {
     };
   }
   /**
+   * Downloads a single CPDI document
+   * @param personId The patient's person ID
+   * @param encntrId The patient's encounter ID
+   * @param cpdiRequest The CPDI document request
+   * @returns Observable of SequentialDownloadResponse
+   */
+  downloadCpdiDocument(personId, encntrId, cpdiRequest) {
+    console.log('[DocumentExtractService] downloadCpdiDocument() - Starting download for CPDI document:', cpdiRequest);
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
+      this.customService.load({
+        customScript: {
+          script: [{
+            name: 'chs_document_extract_svc',
+            run: 'pre',
+            id: `downloadCpdiDocument_${cpdiRequest.eventId}`,
+            parameters: {
+              requestType: 'downloadCpdiDocument',
+              requestData: JSON.stringify({
+                chs_document_extract_svc_request: {
+                  personId: personId,
+                  encntrId: encntrId,
+                  eventId: cpdiRequest.eventId,
+                  blobHandle: cpdiRequest.blobHandle
+                }
+              })
+            }
+          }],
+          clearPatientSource: true
+        }
+      }, [{
+        personId: personId,
+        encntrId: encntrId
+      }], () => {
+        try {
+          console.log('[DocumentExtractService] downloadCpdiDocument() - Service call completed, retrieving data');
+          const raw = this.customService.get(`downloadCpdiDocument_${cpdiRequest.eventId}`);
+          if (!raw) {
+            console.error('[DocumentExtractService] downloadCpdiDocument() - No response from download service for CPDI document');
+            observer.error('No response from download service for CPDI document');
+            return;
+          }
+          console.log('[DocumentExtractService] downloadCpdiDocument() - Raw response received:', raw);
+          const downloadResult = this.parseDownloadCpdiDocumentResponse(raw);
+          console.log('[DocumentExtractService] downloadCpdiDocument() - Parsed CPDI document result:', downloadResult);
+          const progress = {
+            total: 1,
+            completed: downloadResult.status === 1 ? 1 : 0,
+            failed: downloadResult.status === 1 ? 0 : 1,
+            current: cpdiRequest,
+            results: [downloadResult]
+          };
+          const isComplete = true;
+          const allResults = [downloadResult];
+          observer.next({
+            progress,
+            isComplete,
+            allResults
+          });
+          observer.complete();
+        } catch (error) {
+          console.error('[DocumentExtractService] downloadCpdiDocument() - Error:', error);
+          observer.error(error);
+        }
+      });
+    });
+  }
+  /**
+   * Downloads CPDI documents sequentially, one at a time, with progress tracking.
+   * @param personId The patient's person ID.
+   * @param encntrId The patient's encounter ID.
+   * @param cpdiRequests Array of CPDI document requests to download.
+   * @returns Observable of SequentialDownloadResponse with progress updates.
+   */
+  downloadCpdiDocumentsSequentially(personId, encntrId, cpdiRequests) {
+    console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Starting sequential download for:', {
+      personId,
+      encntrId,
+      requestCount: cpdiRequests.length,
+      requests: cpdiRequests
+    });
+    return new rxjs__WEBPACK_IMPORTED_MODULE_1__.Observable(observer => {
+      const total = cpdiRequests.length;
+      let completed = 0;
+      let failed = 0;
+      const allResults = [];
+      let currentIndex = 0;
+      const processNext = () => {
+        if (currentIndex >= total) {
+          console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - All CPDI downloads completed');
+          const progress = {
+            total,
+            completed,
+            failed,
+            current: null,
+            results: allResults
+          };
+          observer.next({
+            progress,
+            isComplete: true,
+            allResults
+          });
+          observer.complete();
+          return;
+        }
+        const currentRequest = cpdiRequests[currentIndex];
+        console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Processing download', currentIndex + 1, 'of', total, ':', currentRequest);
+        const progress = {
+          total,
+          completed,
+          failed,
+          current: currentRequest,
+          results: allResults
+        };
+        observer.next({
+          progress,
+          isComplete: false,
+          allResults
+        });
+        this.downloadCpdiDocument(personId, encntrId, currentRequest).subscribe({
+          next: response => {
+            console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Single CPDI document download completed:', response);
+            const result = response.allResults[0];
+            allResults.push(result);
+            if (result.status === 1) {
+              completed++;
+              console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Download successful for eventId:', result.eventId);
+            } else {
+              failed++;
+              console.log('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Download failed for eventId:', result.eventId, 'Error:', result.message);
+            }
+            currentIndex++;
+            processNext();
+          },
+          error: error => {
+            console.error('[DocumentExtractService] downloadCpdiDocumentsSequentially() - Error downloading single CPDI document:', error);
+            failed++;
+            currentIndex++;
+            processNext();
+          }
+        });
+      };
+      processNext();
+    });
+  }
+  /**
+   * Parses the download response for a single CPDI document.
+   * @param raw Raw response from the service.
+   * @returns A single DownloadResult.
+   */
+  parseDownloadCpdiDocumentResponse(raw) {
+    console.log('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Starting parsing of raw response:', raw);
+    // Example structure: raw.qual[0].cpdiQual[0]
+    if (raw.qual && raw.qual.length > 0 && raw.qual[0].cpdiQual && raw.qual[0].cpdiQual.length > 0) {
+      const cpdiItem = raw.qual[0].cpdiQual[0];
+      console.log('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Found cpdiQual item:', cpdiItem);
+      const isSuccess = cpdiItem.downloadedInd === 1;
+      let downloadResponse = null;
+      if (cpdiItem.downloadResponse) {
+        try {
+          downloadResponse = JSON.parse(cpdiItem.downloadResponse);
+          console.log('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Parsed download response:', downloadResponse);
+        } catch (error) {
+          console.warn('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Failed to parse download response:', error);
+        }
+      }
+      const result = {
+        eventId: cpdiItem.eventId || 0,
+        documentType: 'CPDI Document',
+        filename: cpdiItem.filename || '',
+        status: isSuccess ? 1 : 0,
+        fullpath: downloadResponse?.CPDI_DOWNLOAD_RESPONSE?.FULLPATH || '',
+        message: downloadResponse?.CPDI_DOWNLOAD_RESPONSE?.MESSAGE || (isSuccess ? 'Download successful' : 'Download failed'),
+        documentName: cpdiItem.eventTitleText || '',
+        contentType: 'CPDI',
+        event_code_display: cpdiItem.eventCodeDisplay || ''
+      };
+      console.log('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - Parsed result:', result);
+      return result;
+    }
+    // Fallback
+    console.warn('[DocumentExtractService] parseDownloadCpdiDocumentResponse() - No valid response structure found in raw data');
+    return {
+      eventId: 0,
+      documentType: 'CPDI Document',
+      filename: '',
+      status: 0,
+      fullpath: '',
+      message: 'No response data found',
+      documentName: '',
+      contentType: 'CPDI',
+      event_code_display: ''
+    };
+  }
+  /**
    * Gets the loaded configuration data
    * @returns ConfigData or null if not loaded
    */
@@ -5089,9 +5377,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   packageVersion: () => (/* binding */ packageVersion)
 /* harmony export */ });
 // Auto-generated build version file
-// Generated on: 2025-07-14T11:58:34.693Z
-const buildVersion = 'v0.0.115-cpdi';
-const packageVersion = '0.0.115';
+// Generated on: 2025-07-14T12:17:36.474Z
+const buildVersion = 'v0.0.116-cpdi';
+const packageVersion = '0.0.116';
 const gitBranch = 'cpdi';
 
 /***/ })
